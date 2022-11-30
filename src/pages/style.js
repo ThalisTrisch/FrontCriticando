@@ -135,3 +135,9 @@ export const ConfigPost = Style.div`
 export const ImagePost = Style.img`
     width:60px;height:60px;border-radius:120px;
 `;
+
+export const Star = Style.div`
+    * {
+        color:orange
+    }
+`;

@@ -1,16 +1,16 @@
 import axios from 'axios';
 import { useEffect , useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Logo , LargeNav, Obra, Teorias, ImgStar, ImagePost} from './style.js'
+import { Logo , LargeNav, Obra, Teorias, ImagePost, Star} from './style.js'
 import Comentario from '../components/Comentario.js'
-import Star from '../images/star.png'
 import FotoPerfil from '../images/imagemusuariodefault.png';
+import { BsStar,BsStarFill } from "react-icons/bs";
 
 function Postagem(){
     const [postagem,setPostagem] = useState('');
     const [usuario,setUsuario] = useState('');
     const [comentario,setComentario] = useState();
-    const [stars,setStars] = useState(null);
+    const [stars,setStars] = useState(0);
     const [newComentario,setNewComentario] = useState('');
     const navigate = useNavigate()
     const {id} = useParams()
@@ -18,15 +18,12 @@ function Postagem(){
 
     const changecomentario = (value) => {setNewComentario(value.target.value)}
 
-    function repetirStars(){
-        
-    }
-
     async function deleteComentario(posicao){
         setComentario(comentario.filter(comentario => comentario.posicao !== posicao))
         await axios.post('http://localhost:3001/deletarcomentario', {
             id: id,
-            email: localStorage['useremail']
+            email: localStorage['useremail'],
+            posicao: posicao
         })
     }
 
@@ -37,8 +34,7 @@ function Postagem(){
             email: localStorage['useremail']
         })
         const {data} = await axios.get(`http://localhost:3001/getcomentario/${id}`)
-        console.log(data)
-        setComentario(comentario.push(data));
+        setComentario(data[0]);
     }
 
     function avaliar(star){
@@ -46,6 +42,7 @@ function Postagem(){
             email: localStorage['useremail'],
             star: star
         })
+        setStars(star)
     }
 
     useEffect(()=>{
@@ -58,15 +55,9 @@ function Postagem(){
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response)=>{
             setUsuario(response.data[0]);
         })
-        axios.post(`http://localhost:3001/getstars`,{
-            email: localStorage['useremail'],
-            id : id
-        }).then((response)=>{
-            setStars(response.data[0]);
+        axios.post(`http://localhost:3001/getstars/${id}/${localStorage['useremail']}`).then((response)=>{
+            setStars(response.data[0].stars);
         })
-        /*axios.get(`http://localhost:3001/getpostagemstars/${id}/${localStorage['useremail']}`).then((response)=>{
-            setStars(response.data);
-        })*/
     }, []);
 
     return(
@@ -81,11 +72,14 @@ function Postagem(){
             <h1>{postagem.titulo}</h1>
             <p>{postagem.conteudo}</p>
             <h3>Avalie a obra! </h3>
-            <ImgStar src={Star} onClick={() => avaliar(1)}/>
-            <ImgStar src={Star} onClick={() => avaliar(2)}/>
-            <ImgStar src={Star} onClick={() => avaliar(3)}/>
-            <ImgStar src={Star} onClick={() => avaliar(4)}/>
-            <ImgStar src={Star} onClick={() => avaliar(5)}/>
+            {stars?<p>{stars}</p>:<p>Você não avaliou ainda</p>}
+            <Star>
+            {stars>=1 ? <BsStarFill onClick={() => avaliar(1)}></BsStarFill> : <BsStar onClick={() => avaliar(1)}></BsStar>}
+            {stars>=2 ? <BsStarFill onClick={() => avaliar(2)}></BsStarFill> : <BsStar onClick={() => avaliar(2)}></BsStar>}
+            {stars>=3 ? <BsStarFill onClick={() => avaliar(3)}></BsStarFill> : <BsStar onClick={() => avaliar(3)}></BsStar>}
+            {stars>=4 ? <BsStarFill onClick={() => avaliar(4)}></BsStarFill> : <BsStar onClick={() => avaliar(4)}></BsStar>}
+            {stars>=5 ? <BsStarFill onClick={() => avaliar(5)}></BsStarFill> : <BsStar onClick={() => avaliar(5)}></BsStar>}
+            </Star>
             <br></br>
             {postagem.foto == 'imagemusuariodefault.png'?
                 <ImagePost src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 

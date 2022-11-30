@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate , Link } from 'react-router-dom'
-import { IconUser, Heath } from './style.js'
+import { IconUser, Heath, BlocoComent } from './style.js'
 import FotoPerfil from '../images/imagemusuariodefault.png';
 import { BsHeartFill, BsHeart} from "react-icons/bs";
 import axios from 'axios';
@@ -51,7 +51,7 @@ function Comentario(props){
     },[])
 
     return(
-            <div>
+            <BlocoComent>
                 <center>
                     {props.foto == 'imagemusuariodefault.png'?
                     <IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 
@@ -66,7 +66,7 @@ function Comentario(props){
                         }
                     </Heath>
                 </center>
-            </div>
+            </BlocoComent>
     );
 }
 

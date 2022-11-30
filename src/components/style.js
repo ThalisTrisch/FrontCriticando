@@ -72,3 +72,6 @@ export const IconUser = Style.img`
 export const Heath = Style.div`
     * { font-size:20px;color:red }
 `;
+export const BlocoComent = Style.div`
+    margin-top:20px
+`
