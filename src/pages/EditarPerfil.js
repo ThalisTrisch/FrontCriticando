@@ -91,9 +91,8 @@ function EditarPerfil(){
             {typeof listaPostagem !== "undefined" &&
                 listaPostagem.map((obras)=>{
                     return(
-                        <>
+                        <div  key={obras.id}>
                             <CardPostagem
-                                key={obras.id}
                                 id={obras.id}
                                 titulo={obras.titulo}
                                 conteudo={obras.conteudo}
@@ -110,7 +109,7 @@ function EditarPerfil(){
                                 <button>editar</button>
                                 <button onClick={() => deletePostagem(obras.id)}>deletar</button>
                             </ConfigPost>
-                        </>
+                        </div>
                     )
                 })
             }

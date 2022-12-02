@@ -29,12 +29,16 @@ function Postagem(){
 
     async function comentar(){
         await axios.post('http://localhost:3001/comentar', {
-            id: id,
-            comentario: newComentario,
+             id: id,
+             comentario: newComentario,
             email: localStorage['useremail']
-        })
+        }).then((response) => {
+            console.log(response)
+        }).catch((e) => {
+            console.log("Erro", e);
+        });
         const {data} = await axios.get(`http://localhost:3001/getcomentario/${id}`)
-        setComentario(data[0]);
+        console.log(data)
     }
 
     function avaliar(star){
@@ -91,9 +95,8 @@ function Postagem(){
                 {typeof comentario !== "undefined" && 
                     comentario.map((coment)=>{
                         return(
-                            <>
+                            <div key={coment.posicao}>
                                 <Comentario
-                                    key={coment.posicao}
                                     posicao={coment.posicao}
                                     foto={coment.foto}
                                     resposta={coment.resposta}
@@ -105,7 +108,7 @@ function Postagem(){
                                 { coment.email == localStorage['useremail'] &&
                                     <button onClick={() => deleteComentario(coment.posicao)}>deletar</button>
                                 }
-                            </>
+                            </div>
                         )
                     })
                 }   
