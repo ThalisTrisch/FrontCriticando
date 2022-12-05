@@ -21,13 +21,15 @@ export const Bar = Style.div`
     width:500px;margin-top:20px
 `;
 export const CampoPesq = Style.input`
-    font-size:14px;border-radius:20px 0px 0px 20px;width:300px;height:24px;border-color:grey;
+    font-size:16px;border-radius:20px 0px 0px 20px;width:300px;height:24px;border-color:grey;
     text-align:center;border-right:none;
 
 `;
 export const BtnPesq = Style.button`
-    font-size:14px;border-radius:0px 20px 20px 0px;height:30px;width:100px;
-    background-color:grey
+    border-radius:0px 20px 20px 0px;height:30px;width:40px;background-color:grey;
+    *{
+        font-size:13px
+    }
 `;
 
 export const FotoPerfilD = Style.img`
@@ -140,4 +142,15 @@ export const Star = Style.div`
     * {
         color:orange
     }
+`;
+
+export const Blackout = Style.div`
+    background-color:black;position:fixed;width:100%;height:120vh;z-index:10;
+    h3{
+        color:white;text-align:center;margin-top:50vh;
+    }
+`;
+
+export const BotaoSelecionado = Style.button`
+    background-color:grey
 `;

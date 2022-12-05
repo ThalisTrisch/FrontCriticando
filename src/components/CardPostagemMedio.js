@@ -1,12 +1,12 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, Global, PgTitulo, ImgStar,CardE, CardD, FotoPerfilPost, InfoPost, InfoStars} from './style';
+import { Bandeira, Imagem, Cardbottom, Titulo, GlobalMedio, PgTitulo, CardE, CardD, FotoPerfilPost, InfoPost, InfoStars} from './style';
 import { BiComment, ImStarEmpty } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
 
-function CardPostagemGrande(props){
+function CardPostagemMedio(props){
     const [favoritado,setFavoritado] = useState(false)
     const navigate = useNavigate();
     const rota = "/postagem/"+props.id;
@@ -37,8 +37,7 @@ function CardPostagemGrande(props){
     })
 
     return(
-        <center>
-            <Global>
+            <GlobalMedio>
                 <Bandeira>
                     {favoritado?
                     <FaBookmark onClick={desfavoritar}/>:
@@ -70,9 +69,8 @@ function CardPostagemGrande(props){
                         </CardD>
                     </Cardbottom>
                 </Link>
-            </Global>
-        </center>
+            </GlobalMedio>
     );
 }
 
-export default CardPostagemGrande;
+export default CardPostagemMedio;

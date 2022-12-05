@@ -2,9 +2,9 @@ import axios from 'axios';
 import { Navigate , useNavigate } from 'react-router-dom';
 import { useEffect , useState } from 'react';
 import { PerfilNav, FotoPerfilE , DadosPerfil , PostTitulo, Menu} from './style.js'
-import CardPostagem from '../components/CardPostagem.js'
-import Logout from '../components/Logout.js'
-import FotoPerfil from '../images/imagemusuariodefault.png';
+import CardPostagem from '../../components/CardPostagemGrande.js'
+import Logout from '../../components/Logout.js'
+import FotoPerfil from '../../images/imagemusuariodefault.png';
 
 function MeuPerfil(){
     const navigate = useNavigate()

@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { gapi } from 'gapi-script';
-import Home from './pages/Home.js';
-import Logado from './pages/Principal.js';
+import Home from './pages/Home/Home.js';
+import Logado from './pages/Principal/Principal.js';
 import PrivateRoute from './PrivateRoute';
-import CriarPost from './pages/CriarPostagem.js';
-import MeuPerfil from './pages/MeuPerfil.js';
-import EditarPerfil from './pages/EditarPerfil.js';
-import Postagem from './pages/Postagem.js';
-import SalaTeorias from './pages/SalaTeorias.js';
-import CriarTeoria from './pages/CriarTeoria.js';
-import InserirImagens from './pages/InserirImagens.js';
+import CriarPost from './pages/PagesCriar/CriarPostagem.js';
+import MeuPerfil from './pages/Perfil/MeuPerfil.js';
+import EditarPerfil from './pages/Perfil/EditarPerfil.js';
+import Postagem from './pages/Postagem/Postagem.js';
+import SalaTeorias from './pages/Teorias/SalaTeorias.js';
+import CriarTeoria from './pages/PagesCriar/CriarTeoria.js';
+import InserirImagens from './pages/PagesCriar/InserirImagens.js';
+import AvisoTeorias from './pages/Teorias/AvisoTeorias.js';
 import LogarNoAuth from './pages/LogarNoAuth.js';
-import AvisoTeorias from './pages/AvisoTeorias.js';
 
 const client_id = '471779918661-jaop09sfeju5gepogp6lhb2bq7bqjirt.apps.googleusercontent.com';
 

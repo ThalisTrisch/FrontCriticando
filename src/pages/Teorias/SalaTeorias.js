@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate , Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { LargeNav, Obra, Teorias, Bar, BtnCriar } from './style.js'
-import CardTeorias from '../components/CardTeoria.js'
+import CardTeorias from '../../components/CardTeoria.js'
 
 function SalaTeorias(){
     const [listaTeorias,setListaTeorias] = useState();

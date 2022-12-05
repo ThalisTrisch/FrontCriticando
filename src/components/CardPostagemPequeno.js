@@ -6,7 +6,7 @@ import { BiComment, ImStarEmpty } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
 
-function CardPostagemGrande(props){
+function CardPostagemPequeno(props){
     const [favoritado,setFavoritado] = useState(false)
     const navigate = useNavigate();
     const rota = "/postagem/"+props.id;
@@ -75,4 +75,4 @@ function CardPostagemGrande(props){
     );
 }
 
-export default CardPostagemGrande;
+export default CardPostagemPequeno;

@@ -42,11 +42,7 @@ function Comentario(props){
             id : props.id,
             posicao: props.posicao
         }).then((response)=>{
-            if(typeof response.data[0]=='undefined'){
-                setCurtido(false);
-            }else{
-                setCurtido(true);
-            }
+            response.data[0]?setCurtido(true):setCurtido(false)
         })
     },[])
 

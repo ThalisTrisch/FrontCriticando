@@ -1,6 +1,6 @@
-import Login from '../components/Login'
-import { Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow} from './style.js'
-import imagem from '../images/image8.png'
+import Login from '../../components/Login'
+import { Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow } from './style.js'
+import imagem from '../../images/backgroundhome.png'
 import { BiMenu } from "react-icons/bi";
 
 function Home(){

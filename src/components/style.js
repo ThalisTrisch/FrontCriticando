@@ -18,6 +18,14 @@ export const Titulo = Style.div`
 export const Global = Style.div`
     width:fit-content;
 `;
+
+export const GlobalMedio = Style.div`
+    widht:400px;margin:0px;
+    a{
+        widht:400px;margin:0px
+    }
+`;
+
 export const PgTitulo = Style.p`
     margin-top:10px;font-size:20px;font-color:black;text-decoration: none;margin-left:10px
 `;
@@ -72,6 +80,12 @@ export const IconUser = Style.img`
 export const Heath = Style.div`
     * { font-size:20px;color:red }
 `;
+
 export const BlocoComent = Style.div`
     margin-top:20px
+`
+export const Bandeira = Style.div`
+    *{
+        font-size: 24px; position: absolute; margin-top: 268px;margin-left: 120px;color:white
+    }
 `
