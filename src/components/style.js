@@ -20,10 +20,7 @@ export const Global = Style.div`
 `;
 
 export const GlobalMedio = Style.div`
-    widht:400px;margin:0px;
-    a{
-        widht:400px;margin:0px
-    }
+    width:fit-content;
 `;
 
 export const PgTitulo = Style.p`
@@ -61,7 +58,9 @@ export const FotoPerfilPost = Style.img`
 export const InfoStars = Style.div`
     height:50px;width:150px;
     p {
-        margin-right:6px
+        margin-right:6px;
+    }div{
+        margin-right:10px;padding-top:22px;
     }
 `;
 export const InfoPost = Style.div`
@@ -89,3 +88,8 @@ export const Bandeira = Style.div`
         font-size: 24px; position: absolute; margin-top: 268px;margin-left: 120px;color:white
     }
 `
+export const Star = Style.div`
+    * {
+        color:orange
+    }
+`;

@@ -122,18 +122,6 @@ export const ImgStar = Style.img`
     height:26px;width:26px;
 `;
 
-export const SelectObras = Style.select`
-    width:220px;height:32px;background-color:LightGrey;border-radius:20px;margin:10px;
-    text-align:center;
-    option{
-        background-color:LightGrey
-    }
-`;
-
-export const ConfigPost = Style.div`
-    float:left;margin:0px;margin-left:20px;
-`;
-
 export const ImagePost = Style.img`
     width:60px;height:60px;border-radius:120px;
 `;
@@ -151,6 +139,11 @@ export const Blackout = Style.div`
     }
 `;
 
-export const BotaoSelecionado = Style.button`
-    background-color:grey
+export const BotaoLayout = Style.button`
+    background-color:white;border-radius:10px;width:36px;height:30px; margin:5px;margin-top:10px;
+    font-size:16px;padding-top:2px
+`;
+
+export const BotaoSelecionado = Style(BotaoLayout)`
+    background-color:grey;
 `;

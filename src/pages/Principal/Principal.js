@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import CardPostagemGrande from '../../components/CardPostagemGrande.js'
 import CardPostagemMedio from '../../components/CardPostagemMedio.js'
 import CardPostagemPequeno from '../../components/CardPostagemPequeno.js'
-import { Logo, Nav, BtnCriar, Bar, BtnPesq, CampoPesq, FotoPerfilD, Blackout, BotaoSelecionado} from './style.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
+import { Logo, Nav, BtnCriar, Bar, BtnPesq, CampoPesq, FotoPerfilD, Blackout, BotaoSelecionado, BotaoLayout} from './style.js'
 import { BsSearch, BsFillSquareFill } from "react-icons/bs";
 import { TfiLayoutGrid3Alt,TfiLayoutGrid2Alt } from "react-icons/tfi";
 
@@ -35,14 +35,13 @@ function Principal(){
         })
     }
 
-    function mostrarpagina(){setBlackout(false)}
-
     useEffect(()=>{
         buscarpostagem();
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response)=>{
             setUsuario(response.data[0]);
         })
-        window.setTimeout(mostrarpagina() , 10000);
+        window.setTimeout(mostrarpagina() , 1000);
+        async function mostrarpagina(){setBlackout(false)}
     }, []);
 
     return(
@@ -67,11 +66,11 @@ function Principal(){
                     </div>
                     <div>
                         {layout == 'grande' ?<BotaoSelecionado><BsFillSquareFill/></BotaoSelecionado>:
-                        <button onClick={() => selecionarbotao('grande')}><BsFillSquareFill/></button>}
+                        <BotaoLayout onClick={() => selecionarbotao('grande')}><BsFillSquareFill/></BotaoLayout>}
                         {layout == 'medio' ?<BotaoSelecionado><TfiLayoutGrid2Alt/></BotaoSelecionado>:
-                        <button onClick={() => selecionarbotao('medio')}><TfiLayoutGrid2Alt/></button>}
+                        <BotaoLayout onClick={() => selecionarbotao('medio')}><TfiLayoutGrid2Alt/></BotaoLayout>}
                         {layout == 'pequeno' ?<BotaoSelecionado><TfiLayoutGrid3Alt/></BotaoSelecionado>:
-                        <button onClick={() => selecionarbotao('pequeno')}><TfiLayoutGrid3Alt/></button>}
+                        <BotaoLayout onClick={() => selecionarbotao('pequeno')}><TfiLayoutGrid3Alt/></BotaoLayout>}
                     </div>
                 </Bar>
             </center>
