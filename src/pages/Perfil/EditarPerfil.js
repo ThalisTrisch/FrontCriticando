@@ -86,6 +86,9 @@ function EditarPerfil(){
                 <input type='file' name='image'/>
                 <button type='submit'>enviar imagem</button>
             </form>
+            <div>
+                
+            </div>
             <button onClick={deleteFoto}>excluir foto</button>
             <PostTitulo>Suas postagens</PostTitulo>
             {typeof listaPostagem !== "undefined" &&

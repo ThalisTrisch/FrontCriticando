@@ -1,8 +1,9 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, Global, PgTitulo, ImgStar,CardE, CardD, FotoPerfilPost, InfoPost, InfoStars, Star} from './style';
-import { BiComment, ImStarEmpty } from "react-icons/bi";
+import { Bandeira, Imagem, Cardbottom, Titulo, Global,CardE, CardD, 
+    FotoPerfilPost, InfoPost, InfoStars, Star} from './styleCardGrande.js';
+import { BiComment } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { BsStar,BsStarFill } from "react-icons/bs";
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
@@ -10,7 +11,11 @@ import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
 function CardPostagemGrande(props){
     const [favoritado,setFavoritado] = useState(false)
     const navigate = useNavigate();
-    const rota = "/postagem/"+props.id;
+
+    function verPostagem(){
+        const rota = "/postagem/"+props.id;
+        navigate(rota);
+    }
 
     function favoritar(){
         axios.post("http://localhost:3001/favoritar",{
@@ -45,8 +50,8 @@ function CardPostagemGrande(props){
                     <FaBookmark onClick={desfavoritar}/>:
                     <FaRegBookmark onClick={favoritar}/>}
                 </Bandeira>
-                <Link to={rota} className='link'>
-                    <Titulo><PgTitulo>{props.titulo}</PgTitulo></Titulo>
+                <div onClick={verPostagem}>
+                    <Titulo><p>{props.titulo}</p></Titulo>
                     <Imagem><img src={props.background}/></Imagem>
                     <Cardbottom>
                         <CardE>
@@ -59,14 +64,15 @@ function CardPostagemGrande(props){
                         </CardE>
                         <CardD>
                             <InfoStars>
+                                {props.stars != null ?
                                 <Star>
-                                    {props.stars == null && <p>Sem Avaliações</p>}
                                     {props.stars>=1 ? <BsStarFill onClick={() => avaliar(1)}></BsStarFill> : <BsStar onClick={() => avaliar(1)}></BsStar>}
                                     {props.stars>=2 ? <BsStarFill onClick={() => avaliar(2)}></BsStarFill> : <BsStar onClick={() => avaliar(2)}></BsStar>}
                                     {props.stars>=3 ? <BsStarFill onClick={() => avaliar(3)}></BsStarFill> : <BsStar onClick={() => avaliar(3)}></BsStar>}
                                     {props.stars>=4 ? <BsStarFill onClick={() => avaliar(4)}></BsStarFill> : <BsStar onClick={() => avaliar(4)}></BsStar>}
                                     {props.stars>=5 ? <BsStarFill onClick={() => avaliar(5)}></BsStarFill> : <BsStar onClick={() => avaliar(5)}></BsStar>}
                                 </Star>
+                                : <p>Sem Avaliações</p> }
                             </InfoStars>
                             <InfoPost>
                                 <BiComment/>
@@ -74,7 +80,7 @@ function CardPostagemGrande(props){
                             </InfoPost>
                         </CardD>
                     </Cardbottom>
-                </Link>
+                </div>
             </Global>
         </center>
     );

@@ -1,8 +1,9 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, GlobalMedio, PgTitulo, CardE, CardD, FotoPerfilPost, InfoPost, InfoStars, Star} from './style';
-import { BiComment, ImStarEmpty } from "react-icons/bi";
+import { Bandeira, Imagem, Cardbottom, Titulo, PgTitulo,CardE, CardD, 
+    FotoPerfilPost, InfoPost, InfoStars, Star, Global} from './styleCardMedio.js';
+import { BiComment} from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { BsStar,BsStarFill } from "react-icons/bs";
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
@@ -39,7 +40,7 @@ function CardPostagemMedio(props){
 
     return(
         <center>
-            <GlobalMedio>
+            <Global>
                 <Bandeira>
                     {favoritado?
                     <FaBookmark onClick={desfavoritar}/>:
@@ -59,14 +60,15 @@ function CardPostagemMedio(props){
                         </CardE>
                         <CardD>
                             <InfoStars>
+                                {props.stars != null ?
                                 <Star>
-                                    {props.stars == null && <p>Sem Avaliações</p>}
                                     {props.stars>=1 ? <BsStarFill onClick={() => avaliar(1)}></BsStarFill> : <BsStar onClick={() => avaliar(1)}></BsStar>}
                                     {props.stars>=2 ? <BsStarFill onClick={() => avaliar(2)}></BsStarFill> : <BsStar onClick={() => avaliar(2)}></BsStar>}
                                     {props.stars>=3 ? <BsStarFill onClick={() => avaliar(3)}></BsStarFill> : <BsStar onClick={() => avaliar(3)}></BsStar>}
                                     {props.stars>=4 ? <BsStarFill onClick={() => avaliar(4)}></BsStarFill> : <BsStar onClick={() => avaliar(4)}></BsStar>}
                                     {props.stars>=5 ? <BsStarFill onClick={() => avaliar(5)}></BsStarFill> : <BsStar onClick={() => avaliar(5)}></BsStar>}
                                 </Star>
+                                : <p>Sem Avaliações</p> }
                             </InfoStars>
                             <InfoPost>
                                 <BiComment/>
@@ -75,7 +77,7 @@ function CardPostagemMedio(props){
                         </CardD>
                     </Cardbottom>
                 </Link>
-            </GlobalMedio>
+            </Global>
         </center>
     );
 }

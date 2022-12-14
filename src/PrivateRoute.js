@@ -1,15 +1,13 @@
-import {Navigate} from 'react-router-dom'
+import {Navigate , useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 function PrivateRoute({children}){
-
-    async function buscarauth(){
-        const result = await axios.get(`http://localhost:3001/autorizarlogin/${localStorage['useremail']}`)
-        return result.data
-    }
-    const autorizado = buscarauth()
-    console.log(autorizado)
-    return(autorizado ? children : <Navigate to="/" />)
+    const navigate = useNavigate()
+    var resultado = '';
+    axios.get(`http://localhost:3001/autorizarlogin/${localStorage['useremail']}`).then((result) => {
+        resultado = result.data
+    })
+    return(true ? children : <Navigate to="/"/> )
 }
 
 export default PrivateRoute;

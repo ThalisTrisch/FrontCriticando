@@ -34,10 +34,8 @@ function Postagem(){
              comentario: newComentario,
             email: localStorage['useremail']
         })
-        axios.get(`http://localhost:3001/getcomentario/${id}`).then((result) => {
-            setComentario(result.data)
-        })
-        
+        const newcomentario = {curtidas:0,email:`${localStorage['useremail']}`,conteudo:newComentario}
+        console.log(newcomentario);
     }
 
     function avaliar(star){
@@ -51,7 +49,7 @@ function Postagem(){
     }
 
     useEffect(()=>{
-        axios.get(`http://localhost:3001/getcomentario/${id}`).then((response)=>{
+        axios.get(`http://localhost:3001/getcomentario/${id}`).then((response) => {
             setComentario(response.data); 
         })
         axios.get(`http://localhost:3001/getpostagem/${id}/${localStorage['useremail']}`).then((response)=>{

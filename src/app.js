@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { gapi } from 'gapi-script';
 import Home from './pages/Home/Home.js';
 import Logado from './pages/Principal/Principal.js';
+import Explorar from './pages/Principal/Explorar.js';
 import PrivateRoute from './PrivateRoute';
 import CriarPost from './pages/PagesCriar/CriarPostagem.js';
+import Perfil from './pages/Perfil/Perfil.js';
 import MeuPerfil from './pages/Perfil/MeuPerfil.js';
 import EditarPerfil from './pages/Perfil/EditarPerfil.js';
 import Postagem from './pages/Postagem/Postagem.js';
@@ -34,8 +36,10 @@ function App() {
         <Route exact path='/' element={<Home/>}/>
         <Route exact path='/logarnoauth' element={<LogarNoAuth/>}/>
         <Route exact path='/principal' element={<PrivateRoute><Logado/></PrivateRoute>}/>
+        <Route exact path='/explorar' element={<PrivateRoute><Explorar/></PrivateRoute>}/>
         <Route exact path='/criarpostagem' element={<PrivateRoute><CriarPost/></PrivateRoute>}/>
         <Route exact path='/criarpostagem/inseririmagens/:id' element={<PrivateRoute><InserirImagens/></PrivateRoute>}/>
+        <Route exact path='/perfil' element={<PrivateRoute><Perfil/></PrivateRoute>}/>
         <Route exact path='/meuperfil' element={<PrivateRoute><MeuPerfil/></PrivateRoute>}/>
         <Route exact path='/editarperfil' element={<PrivateRoute><EditarPerfil/></PrivateRoute>}/>
         <Route exact path='/postagem/:id' element={<PrivateRoute><Postagem/></PrivateRoute>}/>

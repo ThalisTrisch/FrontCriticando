@@ -9,6 +9,7 @@ export const Nav = Style.div`
 export const LargeNav = Style.div`
     background:grey; height: 160px;border-radius:0px 0px 60px 0px
 `;
+
 export const BtnCriar = Style.button`
     font-size:16px;border-radius:20px;width:160px;height:30px;margin-top:10px
 `;
