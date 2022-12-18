@@ -61,6 +61,7 @@ function CriarPostagem(){
             obra: obraSelecionada.title,
             obraid: obraSelecionada.id,
             categoria:  categoriaSelecionada,
+            adult: obraSelecionada.adult,
             linguagem: obraSelecionada.original_language,
             lancamento: obraSelecionada.release_date,
             genero: obraSelecionada.genres,

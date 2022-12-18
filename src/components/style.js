@@ -16,11 +16,11 @@ export const IconUser = Style.img`
 `;
 
 export const Heath = Style.div`
-    * { font-size:20px;color:red }
+    * { font-size:32px;color:red }
 `;
 
 export const BlocoComent = Style.div`
-    margin-top:20px
+    margin-top:20px;display:flex;border:black
 `
 
 export const Global = Style.div`
@@ -38,3 +38,31 @@ export const BlocoConteudoTeoria = Style.td`
 export const BlocoAvaliacaoTeoria = Style.td`
     width:200px;background-color:lightGrey;height:100px
 `;
+
+export const User = Style.div`
+    width:250px;display:flex;background-color:darkGrey;height:60px;border-radius:25px;
+    img{
+        margin:5px;
+    }
+    p{margin:16px;}
+`;
+
+export const Conteudo = Style.div`
+    width:500px;display:flex;
+    p{margin:16px;text-align:center;width:100%}
+`;
+
+export const Deletar = Style.button`
+    width:50px;height:36px;background-color:white;border-color:red;border-radius:10px;margin-top:10px;
+    *{
+        color:red;font-size:20px;
+    }
+`
+
+export const Opcoes = Style.div`
+    width:200px;display:flex;background-color:grey;border-radius:20px;height:60px;
+    p{
+        margin:16px;margin-right:8px
+    }
+    *{margin-top:8px}
+`

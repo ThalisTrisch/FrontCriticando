@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate , Link } from 'react-router-dom'
-import { IconUser, Heath, BlocoComent } from './style.js'
+import { IconUser, Heath, BlocoComent, User, Conteudo, Opcoes } from './style.js'
 import FotoPerfil from '../images/imagemusuariodefault.png';
 import { BsHeartFill, BsHeart} from "react-icons/bs";
 import axios from 'axios';
@@ -48,20 +48,25 @@ function Comentario(props){
 
     return(
             <BlocoComent>
-                <center>
-                    {props.foto == 'imagemusuariodefault.png'?
-                    <IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 
-                    <IconUser src={props.foto} onClick={() => navigate('/meuperfil')}/>}
-                    <p>{props.email}</p>
-                    <p>{props.resposta}</p>
-                    <p>{curtidas}</p>
-                    <Heath>
-                        {curtido ?
-                            <BsHeartFill onClick={descurtirComentario}></BsHeartFill>:
-                            <BsHeart onClick={curtirComentario}></BsHeart>
-                        }
-                    </Heath>
-                </center>
+                    <User>
+                        {props.foto == 'imagemusuariodefault.png'?
+                        <IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 
+                        <IconUser src={props.foto} onClick={() => navigate('/meuperfil')}/>}
+                        <p>{props.nome}</p>
+                    </User>
+                    <Conteudo>
+                        <p>{props.resposta}</p>
+                        
+                    </Conteudo>
+                    <Opcoes>
+                        <p>{curtidas}</p>
+                        <Heath>
+                            {curtido ?
+                                <BsHeartFill onClick={descurtirComentario}></BsHeartFill>:
+                                <BsHeart onClick={curtirComentario}></BsHeart>
+                            }
+                        </Heath>
+                    </Opcoes>
             </BlocoComent>
     );
 }

@@ -31,9 +31,11 @@ function Principal(){
         buscarpostagem();
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response)=>{
             setUsuario(response.data[0]);
+            localStorage.setItem('userfoto',response.data[0].foto)
         })
-        window.setTimeout(mostrarpagina() , 1000);
-        async function mostrarpagina(){setBlackout(false)}
+        // window.setTimeout(mostrarpagina() , 1000);
+        // async function mostrarpagina(){setBlackout(false)}
+
     }, []);
 
     return(

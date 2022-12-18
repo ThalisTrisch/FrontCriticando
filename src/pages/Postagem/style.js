@@ -154,3 +154,11 @@ export const Blackout = Style.div`
 export const BotaoSelecionado = Style.button`
     background-color:grey
 `;
+
+export const Deletar = Style.button`
+    width:50px;height:36px;background-color:white;border-color:red;border-radius:10px;
+    position:absolute;
+    *{
+        color:red;font-size:20px
+    }
+`

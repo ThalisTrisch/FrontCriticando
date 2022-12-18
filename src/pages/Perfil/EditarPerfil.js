@@ -22,9 +22,9 @@ function EditarPerfil(){
         .then((message) => {setListaPostagem(message.data)})
     }, []);
 
-    function deletePostagem(id){
-        axios.post('http://localhost:3001/deletarpostagem/'+id)
-        setListaPostagem(listaPostagem.filter(postagem => postagem.id !== id))
+    function deletePostagem(obra){
+        axios.post(`http://localhost:3001/deletarpostagem/${obra.id}/${obra.obra}`)
+        setListaPostagem(listaPostagem.filter(postagem => postagem.id !== obra.id))
     }
 
     function deleteFoto(){
@@ -110,7 +110,7 @@ function EditarPerfil(){
                             <ConfigPost>
                                 <button>engine</button>
                                 <button>editar</button>
-                                <button onClick={() => deletePostagem(obras.id)}>deletar</button>
+                                <button onClick={() => deletePostagem({id: obras.id, obra: obras.obra})}>Deletar</button>
                             </ConfigPost>
                         </div>
                     )

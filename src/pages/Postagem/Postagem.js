@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useEffect , useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Logo , LargeNav, Obra, Teorias, ImagePost, Star} from './style.js'
+import { Logo , LargeNav, Obra, Teorias, ImagePost, Star, Deletar} from './style.js'
 import Comentario from '../../components/Comentario.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { BsStar,BsStarFill } from "react-icons/bs";
+import { FaTrashAlt } from 'react-icons/fa';
 
 function Postagem(){
     const [postagem,setPostagem] = useState('');
@@ -34,8 +35,17 @@ function Postagem(){
              comentario: newComentario,
             email: localStorage['useremail']
         })
-        const newcomentario = {curtidas:0,email:`${localStorage['useremail']}`,conteudo:newComentario}
-        console.log(newcomentario);
+        const novocomentario = {
+            curtidas:0,
+            resposta:newComentario,
+            email: `${localStorage['useremail']}`,
+            foto: `${localStorage['userfoto']}`,
+            nome:`${localStorage['usernome']}`,
+            posicao: comentario[0].posicao,
+            id: id
+        }
+        setComentario(comentario.unshift(novocomentario))
+        console.log(comentario);
     }
 
     function avaliar(star){
@@ -51,9 +61,11 @@ function Postagem(){
     useEffect(()=>{
         axios.get(`http://localhost:3001/getcomentario/${id}`).then((response) => {
             setComentario(response.data); 
+            console.log(comentario)
         })
         axios.get(`http://localhost:3001/getpostagem/${id}/${localStorage['useremail']}`).then((response)=>{
             setPostagem(response.data[0]);
+            localStorage.setItem('userfoto',response.data[0].foto)
         })
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response)=>{
             setUsuario(response.data[0]);
@@ -100,6 +112,9 @@ function Postagem(){
                     comentario.map((coment)=>{
                         return(
                             <div key={coment.posicao}>
+                                { coment.email == localStorage['useremail'] &&
+                                    <Deletar onClick={() => deleteComentario(coment.posicao)}><FaTrashAlt/></Deletar>
+                                }
                                 <Comentario
                                     posicao={coment.posicao}
                                     foto={coment.foto}
@@ -109,9 +124,6 @@ function Postagem(){
                                     curtidas={coment.curtidas}
                                     id={coment.id}
                                 ></Comentario>
-                                { coment.email == localStorage['useremail'] &&
-                                    <button onClick={() => deleteComentario(coment.posicao)}>deletar</button>
-                                }
                             </div>
                         )
                     })

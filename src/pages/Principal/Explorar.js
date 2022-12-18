@@ -16,7 +16,7 @@ function Principal(){
     const [layout, setLayout] = useState('grande')
     const [usuario, setUsuario] = useState('');
     const navigate = useNavigate()
-    document.title = 'Criticando - Explorar postagens';
+    document.title = 'Criticando - Explorar';
 
     const pesquisar = (valor) =>{
         const campopesq = valor.target.value;
@@ -51,14 +51,15 @@ function Principal(){
             {blackout && 
                 <Blackout><h3>Carregando...</h3></Blackout>
             }
-            <FilterBar>
-            </FilterBar>
+            
             <Nav>
                 <Logo>Logo</Logo>
                 {usuario.foto == 'imagemusuariodefault.png'?
                 <FotoPerfilD src={FotoPerfil} onClick={() => navigate('/meuperfil')}></FotoPerfilD>: 
                 <FotoPerfilD src={usuario.foto} onClick={() => navigate('/meuperfil')}></FotoPerfilD>}
             </Nav>
+            <FilterBar>
+            </FilterBar>
             <center>
                 <Bar>
                     <div>

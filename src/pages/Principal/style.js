@@ -3,8 +3,10 @@ import Style from 'styled-components';
 export const Logo = Style.p`
     font-size:30px;margin:0px;padding-top:26px;padding-left:60px;width:300px;float:left;color:white
 `;
+
 export const Nav = Style.div`
-    background:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;width:100%
+    background-color:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 0px 0px;
+    width:100%;
 `;
 
 export const Center = Style.div`
@@ -125,8 +127,9 @@ export const BotaoSelecionado = Style(BotaoLayout)`
     background-color:grey;
 `;
 
-export const FilterBar = Style.div`
-    background-color:black;width:50%;height:100%;position:fixed; min-width:100px;display:none
+export const FilterBar = Style(Nav)`
+    background-color:darkGrey;border-radius:0px 0px 80px 0px;
+    height:140px
 `
 
 export const BtnCriar = Style.button`
