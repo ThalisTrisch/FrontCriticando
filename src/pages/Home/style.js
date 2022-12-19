@@ -11,7 +11,7 @@ export const Logo = Style.p`
 `;
 
 export const Msg = Style.p`
-    font-size:45px;margin-left:10%;margin-top:8%;font-weight:bold;color:white;
+    font-size:45px;margin-left:10%;margin-top:10%;font-weight:bold;color:white;
 `;
 
 export const Image = Style.img`
@@ -25,19 +25,49 @@ export const MenuBar = Style.div`
     }
 `;
 export const BackLogin = Style.div`
-    background: rgba(221,217,206, 0.5);height:200px;width:360px;
-    border-radius:40px;float:right;margin-right:10%;margin-top:4%;
+    background: rgba(5, 5, 5, 0.6);height:200px;width:360px;border-radius:40px;border-style: solid;
+    float:right;margin-right:10%;margin-top:4%;border-color:rgba(120, 120, 120, 0.5);border-width: thin;
     button{
-        margin-left:30%;border-radius:10px;
+        margin-left:30%;border-radius:10px;margin-top:12px;
     }
     h2{
-        width:100%;text-align:center;margin-top:20px;font-size:30px
+        width:100%;text-align:center;margin-top:20px;font-size:30px;color:white;
     }
     p{
-        width:100%;text-align:center;magin-top:10px;
+        text-align:center;margin-top:16px;font-weight: bold;color:white;height:26px;
     }
 `;
 
 export const Shadow = Style.div`
     width:100%;height:80vh;position:absolute;z-index:-1;background: linear-gradient(black, transparent);
 `;
+
+export const Apresentacao = Style.div`
+    margin-top:40%;text-align:center;margin-bottom:6%;
+`;
+
+export const Clouds = Style.div`
+    display:flex;flex-wrap: wrap;
+    svg{
+        font-size:200px;width:240px;z-index:10;color:cyan;
+    }div{
+        width:220px;
+    }
+`;
+
+export const CloudText = Style.p`
+    color:black;position:absolute;margin-top:106px;z-index:11;text-align:center;width:240px;
+`
+
+export const BestPosts = Style.div`
+    h1{
+        text-align:center
+    }
+`
+
+export const BestUsers = Style.div`
+    margin-top:60px;
+    h1{
+        text-align:center
+    }
+`

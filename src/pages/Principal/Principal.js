@@ -33,9 +33,7 @@ function Principal(){
             setUsuario(response.data[0]);
             localStorage.setItem('userfoto',response.data[0].foto)
         })
-        // window.setTimeout(mostrarpagina() , 1000);
-        // async function mostrarpagina(){setBlackout(false)}
-
+        window.setTimeout(setBlackout(false) , 4000);
     }, []);
 
     return(
@@ -71,60 +69,60 @@ function Principal(){
             </center>
             <Postagens>
             {typeof listaPostagem !== "undefined" && layout == 'grande' &&
-                listaPostagem.map((obras)=>{
-                        return(
-                            <CardPostagemGrande
-                                key={obras.id}
-                                id={obras.id}
-                                titulo={obras.titulo}
-                                conteudo={obras.conteudo}
-                                autor={obras.nome}
-                                email={obras.email}
-                                foto={obras.foto}
-                                imagem={obras.imagem}
-                                background={obras.bgimagem}
-                                stars={obras.stars}
-                                comentarios={obras.comentarios}
-                            />
-                        )
+                listaPostagem.map((postagens) => {
+                    return(
+                        <CardPostagemGrande
+                            key={postagens.id}
+                            id={postagens.id}
+                            titulo={postagens.titulo}
+                            conteudo={postagens.conteudo}
+                            autor={postagens.nome}
+                            email={postagens.email}
+                            foto={postagens.foto}
+                            imagem={postagens.imagem}
+                            background={postagens.bgimagem}
+                            stars={postagens.stars}
+                            comentarios={postagens.comentarios}
+                        ></CardPostagemGrande>
+                    )
                 })
             }
             {typeof listaPostagem !== "undefined" && layout == 'medio' &&
-                listaPostagem.map((obras)=>{
-                        return(
-                            <CardPostagemMedio
-                                key={obras.id}
-                                id={obras.id}
-                                titulo={obras.titulo}
-                                conteudo={obras.conteudo}
-                                autor={obras.nome}
-                                email={obras.email}
-                                foto={obras.foto}
-                                imagem={obras.imagem}
-                                background={obras.bgimagem}
-                                stars={obras.stars}
-                                comentarios={obras.comentarios}
-                            />
-                        )
+                listaPostagem.map((postagens) => {
+                    return(
+                        <CardPostagemMedio
+                            key={postagens.id}
+                            id={postagens.id}
+                            titulo={postagens.titulo}
+                            conteudo={postagens.conteudo}
+                            autor={postagens.nome}
+                            email={postagens.email}
+                            foto={postagens.foto}
+                            imagem={postagens.imagem}
+                            background={postagens.bgimagem}
+                            stars={postagens.stars}
+                            comentarios={postagens.comentarios}
+                        ></CardPostagemMedio>
+                    )
                 })
             }
             {typeof listaPostagem !== "undefined" && layout == 'pequeno' &&
-                listaPostagem.map((obras)=>{
-                        return(
-                            <CardPostagemPequeno
-                                key={obras.id}
-                                id={obras.id}
-                                titulo={obras.titulo}
-                                conteudo={obras.conteudo}
-                                autor={obras.nome}
-                                email={obras.email}
-                                foto={obras.foto}
-                                imagem={obras.imagem}
-                                background={obras.bgimagem}
-                                stars={obras.stars}
-                                comentarios={obras.comentarios}
-                            />
-                        )
+                listaPostagem.map((postagens) => {
+                    return(
+                        <CardPostagemPequeno
+                            key={postagens.id}
+                            id={postagens.id}
+                            titulo={postagens.titulo}
+                            conteudo={postagens.conteudo}
+                            autor={postagens.nome}
+                            email={postagens.email}
+                            foto={postagens.foto}
+                            imagem={postagens.imagem}
+                            background={postagens.bgimagem}
+                            stars={postagens.stars}
+                            comentarios={postagens.comentarios}
+                        ></CardPostagemPequeno>
+                    )
                 })
             }
             </Postagens>
