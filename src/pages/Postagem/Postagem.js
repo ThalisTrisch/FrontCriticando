@@ -29,25 +29,26 @@ function Postagem(){
         setComentario(comentario.filter(comentario => comentario.posicao !== posicao))
     }
 
-    function comentar(){
+    async function comentar(){
         axios.post('http://localhost:3001/comentar', {
              id: id,
              comentario: newComentario,
             email: localStorage['useremail']
         })
+        const maiorposicao = await axios.get('http://localhost:3001/getmaiorid') 
         const novocomentario = {
             curtidas:0,
             resposta:newComentario,
             email: `${localStorage['useremail']}`,
             foto: `${localStorage['userfoto']}`,
             nome:`${localStorage['usernome']}`,
-            posicao: comentario[0].posicao,
+            posicao: maiorposicao.data.posicao+1,
             id: id
         }
-        setComentario(comentario.unshift(novocomentario))
-        console.log(comentario);
+        const allnewcoments = comentario.concat(novocomentario)
+        setComentario(allnewcoments)
     }
-
+    
     function avaliar(star){
         axios.post(`http://localhost:3001/avaliarpostagem`,{
             email: localStorage['useremail'],
@@ -61,7 +62,6 @@ function Postagem(){
     useEffect(()=>{
         axios.get(`http://localhost:3001/getcomentario/${id}`).then((response) => {
             setComentario(response.data); 
-            console.log(comentario)
         })
         axios.get(`http://localhost:3001/getpostagem/${id}/${localStorage['useremail']}`).then((response)=>{
             setPostagem(response.data[0]);
