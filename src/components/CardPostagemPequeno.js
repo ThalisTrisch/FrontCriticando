@@ -1,17 +1,21 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, Global, PgTitulo,CardE, CardD, 
+import { Bandeira, Imagem, Cardbottom, Titulo, Global,CardE, CardD, 
     FotoPerfilPost, InfoPost, InfoStars, Star} from './styleCardPequeno.js';
-import { BiComment, ImStarEmpty } from "react-icons/bi";
+import { BiComment } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { BsStar,BsStarFill } from "react-icons/bs";
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
 
-function CardPostagemPequeno(props){
+function CardPostagemGrande(props){
     const [favoritado,setFavoritado] = useState(false)
     const navigate = useNavigate();
-    const rota = "/postagem/"+props.id;
+
+    function verPostagem(){
+        const rota = "/postagem/"+props.id;
+        navigate(rota);
+    }
 
     function favoritar(){
         axios.post("http://localhost:3001/favoritar",{
@@ -39,15 +43,14 @@ function CardPostagemPequeno(props){
     })
 
     return(
-        <center>
             <Global>
                 <Bandeira>
                     {favoritado?
                     <FaBookmark onClick={desfavoritar}/>:
                     <FaRegBookmark onClick={favoritar}/>}
                 </Bandeira>
-                <Link to={rota} className='link'>
-                    <Titulo><PgTitulo>{props.titulo}</PgTitulo></Titulo>
+                <div onClick={verPostagem}>
+                    <Titulo><p>{props.titulo}</p></Titulo>
                     <Imagem><img src={props.background}/></Imagem>
                     <Cardbottom>
                         <CardE>
@@ -76,10 +79,9 @@ function CardPostagemPequeno(props){
                             </InfoPost>
                         </CardD>
                     </Cardbottom>
-                </Link>
+                </div>
             </Global>
-        </center>
     );
 }
 
-export default CardPostagemPequeno;
+export default CardPostagemGrande;

@@ -6,6 +6,14 @@ function CardTeoria(props){
     const [avaliacao, setAvaliacao] = useState();
     const navigate = useNavigate();
 
+    function aprovar(){
+
+    }
+
+    function aprovar(){
+
+    }
+    
     return(
         <center>
             <Global>
@@ -22,8 +30,8 @@ function CardTeoria(props){
                     <tr>
                         <BlocoAvaliacaoTeoria bgcolor="yellow">
                             <div>
-                                <button>Aprovar</button>
-                                <button>Reprovar</button>
+                                <button onClick={aprovar}>Aprovar</button>
+                                <button onClick={reprovar}>Reprovar</button>
                             </div>
                             <div>
                                 {avaliacao ?

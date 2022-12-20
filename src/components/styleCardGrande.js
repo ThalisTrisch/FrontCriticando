@@ -3,7 +3,7 @@ import Style from 'styled-components';
 export const Imagem = Style.div`
     width: 350px; height: 150px; margin-top:50px;border-radius: 40px 40px 0px 0px;background-color:grey;
     img{
-        width:100%;border-radius: 40px 40px 0px 0px;max-height:150px;position:cover;min-height:150px;
+        width:100%;height:auto;border-radius: 40px 40px 0px 0px;max-height:150px;position:cover;min-height:150px;
     }
 `;
 export const Cardbottom = Style.div`
@@ -12,8 +12,8 @@ export const Cardbottom = Style.div`
 
 export const Titulo = Style.div`
     margin-top:125px;background-color:white;position: absolute;
-    text-decoration: none;width:280px;border-radius:40px;height:50px;
-    margin-left:30px;text-align:center;box-shadow: 0px 4px 10px -4px black;
+    text-decoration: none;width:300px;border-radius:40px;height:50px;
+    margin-left:25px;text-align:center;box-shadow: 0px 4px 10px -4px black;
     p{
         margin-top:12px;font-size:18px;font-color:black;margin-left:10px;widht:100%;
     }
@@ -26,10 +26,6 @@ export const Global = Style.div`
 
 export const GlobalMedio = Style.div`
     width:fit-content;
-`;
-
-export const ImgStar = Style.img`
-    height:30px;width:30px;position:absolute;margin-top:60px;margin-left:20px
 `;
 
 export const CardD = Style.div`
@@ -61,7 +57,7 @@ export const InfoStars = Style.div`
     p {
         margin-right:6px;
     }div{
-        margin-right:10px;padding-top:22px;
+        margin-right:10px;padding-top:20px;
     }
 `;
 export const InfoPost = Style.div`
@@ -100,6 +96,6 @@ export const Bandeira = Style.div`
 `
 export const Star = Style.div`
     * {
-        color:orange
+        color:orange;font-size:20px
     }
 `;
