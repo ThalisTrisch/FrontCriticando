@@ -51,7 +51,6 @@ function Principal(){
             {blackout && 
                 <Blackout><h3>Carregando...</h3></Blackout>
             }
-            
             <Nav>
                 <Logo>Logo</Logo>
                 {usuario.foto == 'imagemusuariodefault.png'?

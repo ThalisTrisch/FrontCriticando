@@ -34,8 +34,9 @@ export const BtnPesq = Style.button`
 `;
 
 export const FotoPerfilD = Style.img`
-    float:right;width:80px;height:80px;margin:0px;background-color:white;
-    border-radius:100px;margin-top:10px;margin-right:60px;
+    margin:0px;background-color:white;border-radius:100px;margin-top:10px;margin-right:60px;
+    width:80px;height:80px;
+
 `;
 
 export const FotoPerfilE = Style(FotoPerfilD)`
@@ -51,8 +52,8 @@ export const Teorias = Style.div`
 `;
 
 export const PerfilNav = Style.div`
-    background:grey; height: 300px;border-radius:0px 0px 120px 0px
-`;
+    background:grey; height: 300px;border-radius:0px 0px 120px 0px;box-shadow: 0px 2px 20px 0px black;`;
+
 export const DadosPerfil = Style.div`
     padding-top:50px; padding-left:76px;width:500px;
     h2{

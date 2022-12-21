@@ -12,7 +12,6 @@ function SalaTeorias(){
     useEffect(()=>{
         axios.get(`http://localhost:3001/getteoria/${id}`).then((response)=>{
             setListaTeorias(response.data);
-            console.log(response.data)
         })
     }, []);
 

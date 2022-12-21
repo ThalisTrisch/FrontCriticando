@@ -15,14 +15,6 @@ function EditarPerfil(){
     const [imagemURL,setImagemURL] = useState('');
     const now = new Date
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((message) => {
-            setUsuario(message.data[0])
-        })
-        axios.post('http://localhost:3001/getpostagem/meuperfil', {email: localStorage['useremail']})
-        .then((message) => {setListaPostagem(message.data)})
-    }, []);
-
     function deletePostagem(obra){
         axios.post(`http://localhost:3001/deletarpostagem/${obra.id}/${obra.obra}`)
         setListaPostagem(listaPostagem.filter(postagem => postagem.id !== obra.id))
@@ -57,6 +49,15 @@ function EditarPerfil(){
             }
         )
     }
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((message) => {
+            setUsuario(message.data[0])
+        })
+        axios.post('http://localhost:3001/getpostagem/meuperfil', {email: localStorage['useremail']})
+        .then((message) => {setListaPostagem(message.data)})
+    }, []);
+    
     return(
         <div>
             <PerfilNav>

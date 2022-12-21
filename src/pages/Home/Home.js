@@ -20,6 +20,7 @@ function Home(){
         })
         axios.get('http://localhost:3001/getmelhoresusuarios').then((res) => {
             setMelhoresUsuarios(res.data)
+            console.log(res.data)
         })
     },[])
 
@@ -68,7 +69,7 @@ function Home(){
             </Clouds>
             <BestPosts>
                 <h1>Melhores Postagens</h1>
-                {typeof melhoresPostagens !== "undefined" ?
+                { typeof melhoresPostagens !== "undefined" ?
                     melhoresPostagens.map((postagens) => {
                         return(
                             <CardPostagemGrande
@@ -90,12 +91,13 @@ function Home(){
             </BestPosts>
             <BestUsers>
                 <h1>Usuários mais engajados</h1>
-                {typeof melhoresUsuarios !== "undefined" &&
+                {typeof melhoresUsuarios !== "undefined" ?
                     melhoresUsuarios.map((user) => {
                         return(
-                            <p>{}melhores users:{user.nome}</p>
+                            <p key={user.email}>melhores users:{user.nome}</p>
                         )
                     })
+                    : <p>Não há usuários</p>
                 }
             </BestUsers>
         </div>
