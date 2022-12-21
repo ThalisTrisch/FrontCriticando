@@ -28,7 +28,10 @@ export const Global = Style.div`
 `;
 
 export const BlocoUserTeoria = Style.td`
-    width:200px;background-color:grey;height:100px;
+    width:200px;background-color:grey;height:100px;display:flex;
+    img{
+        width:50px;height:50px;border-radius:25px;
+    }
 `;
 
 export const BlocoConteudoTeoria = Style.td`

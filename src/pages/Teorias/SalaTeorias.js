@@ -12,6 +12,7 @@ function SalaTeorias(){
     useEffect(()=>{
         axios.get(`http://localhost:3001/getteoria/${id}`).then((response)=>{
             setListaTeorias(response.data);
+            console.log(response.data)
         })
     }, []);
 
@@ -30,12 +31,14 @@ function SalaTeorias(){
                 listaTeorias.map((teorias)=>{
                     return(
                         <CardTeorias
-                            key={teorias.posicao}
+                            key={teorias.numero}
+                            numero= {teorias.numero}
                             id={teorias.id}
                             titulo={teorias.titulo}
                             conteudo={teorias.conteudo}
                             autor={teorias.nome}
                             email={teorias.email}
+                            foto={teorias.foto}
                         ></CardTeorias>
                     )
                 })
