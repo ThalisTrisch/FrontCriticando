@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate , Link } from 'react-router-dom'
-import { IconUser, Heath, BlocoComent, User, Conteudo, Opcoes } from './style.js'
+import { IconUser, Heath, BlocoComent, User, Conteudo, Opcoes, Deletar } from './style.js'
 import FotoPerfil from '../images/imagemusuariodefault.png';
 import { BsHeartFill, BsHeart} from "react-icons/bs";
+import { FaTrashAlt } from 'react-icons/fa';
 import axios from 'axios';
 
 function Comentario(props){
-    const [posicao,setPosicao] = useState('')
     const [curtidas,setCurtidas] = useState(0)
     const [curtido,setCurtido] = useState(false)
     const navigate = useNavigate();
@@ -56,7 +56,6 @@ function Comentario(props){
                     </User>
                     <Conteudo>
                         <p>{props.resposta}</p>
-                        
                     </Conteudo>
                     <Opcoes>
                         <p>{curtidas}</p>
@@ -66,6 +65,9 @@ function Comentario(props){
                                 <BsHeart onClick={curtirComentario}></BsHeart>
                             }
                         </Heath>
+                        { props.email == localStorage['useremail'] &&
+                            <Deletar onClick={() => props.deletar(props.posicao)}><FaTrashAlt/></Deletar>
+                        }
                     </Opcoes>
             </BlocoComent>
     );

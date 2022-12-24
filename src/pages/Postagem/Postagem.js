@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useEffect , useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Logo , LargeNav, Obra, Teorias, ImagePost, Star, Deletar} from './style.js'
+import { Logo , LargeNav, Obra, Teorias, ImagePost, Star} from './style.js'
 import Comentario from '../../components/Comentario.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { BsStar,BsStarFill } from "react-icons/bs";
-import { FaTrashAlt } from 'react-icons/fa';
+
 
 function Postagem(){
     const [postagem,setPostagem] = useState('');
@@ -112,9 +112,6 @@ function Postagem(){
                     comentario.map((coment)=>{
                         return(
                             <div key={coment.posicao}>
-                                { coment.email == localStorage['useremail'] &&
-                                    <Deletar onClick={() => deleteComentario(coment.posicao)}><FaTrashAlt/></Deletar>
-                                }
                                 <Comentario
                                     posicao={coment.posicao}
                                     foto={coment.foto}
@@ -123,6 +120,7 @@ function Postagem(){
                                     email={coment.email}
                                     curtidas={coment.curtidas}
                                     id={coment.id}
+                                    deletar={deleteComentario}
                                 ></Comentario>
                             </div>
                         )

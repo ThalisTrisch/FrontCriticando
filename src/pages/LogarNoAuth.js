@@ -10,7 +10,7 @@ function LogarNoAuth(){
     }, []);
 
     return(
-        <div></div>
+        <><p>Logado sem Autenticação</p></>
     )
 }
 

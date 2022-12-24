@@ -16,11 +16,9 @@ function Home(){
     useEffect(()=> {
         axios.get('http://localhost:3001/getmelhorespostagens').then((res) => {
             setMelhoresPostagens(res.data)
-            console.log(res.data)
         })
         axios.get('http://localhost:3001/getmelhoresusuarios').then((res) => {
             setMelhoresUsuarios(res.data)
-            console.log(res.data)
         })
     },[])
 
