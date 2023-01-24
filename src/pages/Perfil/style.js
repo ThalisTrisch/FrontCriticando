@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const Logo = styled.p`
-    font-size:30px;margin:0px;padding-top:26px;padding-left:60px;width:300px;float:left;color:white
+export const Logo = styled.img`
+    width:auto;height:40px;margin-left:10%;
 `;
 export const Nav = styled.div`
-    background:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
+    background:rgba(47,23,86,0.8); height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
 `;
-export const LargeNav = styled.div`
-    background:grey; height: 160px;border-radius:0px 0px 60px 0px
-`;
+// export const LargeNav = styled.div`
+//     height: 160px;border-radius:0px 0px 60px 0px
+// `;
 
 export const BtnCriar = styled.button`
     font-size:16px;border-radius:20px;width:160px;height:30px;margin-top:10px
@@ -34,13 +34,23 @@ export const BtnPesq = styled.button`
 `;
 
 export const FotoPerfilD = styled.img`
-    margin:0px;background-color:white;border-radius:100px;margin-top:10px;margin-right:60px;
-    width:80px;height:80px;
-
-`;
+    background-color:white;border-radius:1000px;
+`
 
 export const FotoPerfilE = styled(FotoPerfilD)`
-    float:left;margin-top:60px;width:200px;height:200px;margin-left:0px;position:absolute;
+    float:left;position:absolute;z-index:2;
+    @media screen and (min-width: 0px) {
+        width:140px;height:140px;margin-top:80px;
+    }
+    @media screen and (min-width: 400px) {
+        width:160px;height:160px;margin-top:70px;
+    }
+    @media screen and (min-width: 600px) {
+        width:180px;height:180px;margin-top:60px;
+    }
+    @media screen and (min-width: 800px) {
+        width:200px;height:200px;margin-top:50px;
+    }
 `;
 
 export const Obra = styled.div`
@@ -52,22 +62,25 @@ export const Teorias = styled.div`
 `;
 
 export const PerfilNav = styled.div`
-    background:grey; height: 300px;border-radius:0px 0px 120px 0px;box-shadow: 0px 2px 20px 0px black;`;
+    height: 300px;border-radius:0px 0px 120px 0px;
+    display:flex; justify-content:space-around;align-items: flex-start;background-color:#34173d;
+    /* box-shadow: 0px 2px 20px 0px black; */
+`;
 
 export const DadosPerfil = styled.div`
-    padding-top:50px; padding-left:76px;width:500px;
+    width:fit-content;margin-top:60px;margin-left:20px;margin-right:20px;color:whitesmoke;
     h2{
-        margin:0px;font-size:30px
+        font-size:30px
     }
     p{
-        margin:0px
+        width:fit-content;padding-right:10px;font-size:12px;
     }
 `;
 
 export const Menu = styled.div`
-    float:right;
+    float:right;width:260px;margin-top:60px;
     button{
-        width:100px;border-radius:10px;border:0px;margin-right:40px;
+        width:fit-content;border-radius:10px;border:0px;
     }
 `;
 
@@ -81,25 +94,7 @@ export const MenuBar = styled.div`
         font-size:40px;
     }
 `;
-export const BackLogin = styled.div`
-    background: rgba(221,217,206, 0.5);height:200px;width:360px;
-    border-radius:40px;float:right;margin-right:10%;margin-top:4%;
-    button{
-        margin-left:30%;border-radius:10px;
-    }
-    h2{
-        width:100%;text-align:center;margin-top:20px;font-size:30px
-    }
-    p{
-        width:100%;text-align:center;margin-top:10px;
-    }
-`;
-export const Msg = styled.p`
-    font-size:45px;margin-left:10%;margin-top:8%;font-weight:bold;color:white;
-`;
-export const Shadow = styled.div`
-    width:100%;height:80vh;position:absolute;z-index:-1;background: linear-gradient(black, transparent);
-`;
+
 export const Campo = styled.input`
     width:20%;text-align:center;font-size:16px;border-radius:10px;margin-top:12px;
 `;
@@ -117,11 +112,7 @@ export const BtnCriarPost = styled.button`
 `;
 
 export const PostTitulo = styled.h2`
-    margin-top:60px
-`;
-
-export const ImgStar = styled.img`
-    height:26px;width:26px;
+    margin-top:100px;margin-bottom:40px;
 `;
 
 export const SelectObras = styled.select`
@@ -133,7 +124,24 @@ export const SelectObras = styled.select`
 `;
 
 export const ConfigPost = styled.div`
-    float:left;margin:0px;margin-left:20px;
+    display:flex;justify-content:center;width:90%;margin-left:80px;position:absolute;margin-top:10px;
+    button{
+        border-radius:10px;border-width:2px;background-color:white;
+    }
+`;
+
+export const Deletar = styled.button`
+    margin-left:10px;width:70px;height:28px;border-color:red;cursor: pointer;
+    svg{
+        color:red;font-size:16px;margin:2px;
+    }
+`;
+
+export const Editar = styled.button`
+    width:60px;height:28px;border-color:green;cursor: pointer;
+    svg{
+        color:green;font-size:16px; margin:2px;
+    }
 `;
 
 export const ImagePost = styled.img`
@@ -156,3 +164,124 @@ export const Blackout = styled.div`
 export const BotaoSelecionado = styled.button`
     background-color:grey
 `;
+
+export const AreaEditar = styled.div`
+    display:flex;justify-content: center;flex-wrap: wrap
+`
+
+export const UploadImg = styled.div`
+    margin-right:40px;margin-top:20px;
+`
+
+
+export const InfoUser = styled.div`
+    height:100%;width:50%;
+`
+
+
+export const CardInfoUser = styled.div`
+    width:80%;max-width:400px;height:160px;background-color:rgba(223, 218, 235,0.8);border-radius:20px;margin-top:60px;
+    display:flex;align-items: center; justify-content: space-evenly;flex-direction: column;box-shadow: 0px 4px 10px 1px #141414;
+    div{display:flex;flex-direction:row}
+    svg{margin-top:3px;}
+`
+
+export const TopBar = styled.div`
+    display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;
+    button{
+        width:fit-content;height:50px;background-color:transparent;border:none;
+    }
+    div{
+        display:flex;flex-direction:row;align-items: center
+    }svg{
+        font-size:26px;margin-left:10px;
+    }
+`
+
+export const PostagensFav = styled.div`
+    
+`
+
+export const InputRedes = styled.div`
+    p{
+        max-width:300px;margin-top:4px;margin-bottom:4px;
+    }   
+    input{
+        width:300px;background-color:transparent;border-radius:5px;border-style:solid;border-color:lightblue;
+        padding:8px;
+    }
+`
+
+
+export const InputDados = styled(InputRedes)`
+    display:flex;align-items:center;
+`
+
+export const SubmitEdit = styled.div`
+    display: flex; justify-content: center;margin-top:20px;
+    button{
+        width:140px;height:32px;background-color:#34173d;border-radius:20px;
+        margin:10px;border-width:1px;font-size:16px;color:white;margin-top:20px;
+    }
+`
+
+export const Bio = styled.div`
+    margin-top:10px;
+`
+
+
+export const IconsRedes = styled.div`
+    margin-top:10px;text-decoration:none;display:flex;justify-content:space-between;
+    svg{
+        text-decoration:none;font-size:24px;margin-right:6px;
+    }
+    a{text-decoration:none;}
+`
+
+export const FormularioUpload = styled.div`
+    position:absolute;margin-left:40%;margin-right:10%;
+    form{
+        width:300px;height:100px;
+        div{
+            margin-top:120px;
+            label{
+                input[type="file"]{
+                    display:none;
+                }
+                span{
+                    padding:16px;background-color:rgba(47,23,86,1);font-size:12px;
+                    border-radius:40px;
+                }
+            }
+        }
+        button{background-color:lightgreen;border-radius:40px;border-color:transparent;
+                width:100px;height:40px;margin-left:130px;}
+    }
+`
+
+export const BtnDelete = styled.button`
+    position:absolute;margin-top:130px;border-radius:100px;border-color:rgba(47,23,86,0.7);
+    background-color: white;width:60px;height:40px;border-radius:0px 20px 20px 0px;z-index:1;
+    svg{
+        padding:6px;color:red;font-size:20px;padding-left:20px;
+    }
+    @media screen and (min-width: 0px) {margin-left:125px}
+    @media screen and (min-width: 400px) {margin-left:140px}
+    @media screen and (min-width: 600px) {margin-left:160px}
+    @media screen and (min-width: 800px) {margin-left:180px}
+`
+
+export const Desc = styled.p`
+    @media screen and (max-width: 600px) {
+        display:none;
+    }
+`
+
+export const Follow = styled.button`
+    width:fit-content;padding-left:10px;padding-right:10px;border-radius:6px;border-color:transparent;
+    height:24px;font-size:16px;background-color:rgba(223, 218, 235,0.8);color:white
+`
+
+export const Unfollow = styled(Follow)`
+    border-color:red;background-color:red;color:white
+`

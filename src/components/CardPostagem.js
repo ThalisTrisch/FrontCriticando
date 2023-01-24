@@ -1,34 +1,24 @@
-import { useNavigate , Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, Global, PgTitulo, ImgStar,CardE, CardD, FotoPerfilPost, InfoPost, InfoStars} from './style';
-import { BiComment, ImStarEmpty } from "react-icons/bi";
+import { Bandeira, Imagem, Cardbottom, Titulo, Global,CardE, CardD, EnginePost,
+    FotoPerfilPost, InfoPost, InfoStars, Star} from './styleCardGrande.js';
+import { BiComment } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
+import { BsStar,BsStarFill } from "react-icons/bs";
+import { AiFillSetting } from "react-icons/ai";
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
 
-function CardPostagemGrande(props){
+function CardPostagem(props){
     const [favoritado,setFavoritado] = useState(false)
-    const navigate = useNavigate();
-    const rota = "/postagem/"+props.id;
+    const [engine, setEngine] = useState(false);
 
-    function favoritar(){
-        axios.post("http://localhost:3001/favoritar",{
-            email: localStorage['useremail'],
-            id: props.id
-        })
-        setFavoritado(true)
-    }
-
-    function desfavoritar(){
-        axios.post("http://localhost:3001/desfavoritar",{
-            email: localStorage['useremail'],
-            id: props.id
-        })
-        setFavoritado(false)
+    function clickengine(){
+        engine ? setEngine(false) : setEngine(true)
     }
 
     useEffect(()=>{
-        axios.post("http://localhost:3001/getfavoritos",{
+        axios.post("http://localhost:3001/validarfavoritos",{
             email: localStorage['useremail'],
             id: props.id
         }).then((response) => {
@@ -41,12 +31,16 @@ function CardPostagemGrande(props){
             <Global>
                 <Bandeira>
                     {favoritado?
-                    <FaBookmark onClick={desfavoritar}/>:
-                    <FaRegBookmark onClick={favoritar}/>}
+                    <FaBookmark/>:
+                    <FaRegBookmark/>}
                 </Bandeira>
-                <Link to={rota} className='link'>
-                    <Titulo><PgTitulo>{props.titulo}</PgTitulo></Titulo>
-                    <Imagem><img src={props.background}/></Imagem>
+                <div>
+                    <Titulo><p>{props.titulo}</p></Titulo>
+                    <Imagem url={props.background}>
+                        <div>
+                            <p>{props.obra}</p>
+                        </div>
+                    </Imagem>
                     <Cardbottom>
                         <CardE>
                             <div>
@@ -58,10 +52,15 @@ function CardPostagemGrande(props){
                         </CardE>
                         <CardD>
                             <InfoStars>
-                                {props.stars == null ?
-                                    <p>Sem Avaliações</p> :
-                                    <p>stars: {props.stars}</p>
-                                }
+                                {props.stars != null ?
+                                <Star>
+                                    {props.stars>=1 ? <BsStarFill onClick={() => avaliar(1)}></BsStarFill> : <BsStar onClick={() => avaliar(1)}></BsStar>}
+                                    {props.stars>=2 ? <BsStarFill onClick={() => avaliar(2)}></BsStarFill> : <BsStar onClick={() => avaliar(2)}></BsStar>}
+                                    {props.stars>=3 ? <BsStarFill onClick={() => avaliar(3)}></BsStarFill> : <BsStar onClick={() => avaliar(3)}></BsStar>}
+                                    {props.stars>=4 ? <BsStarFill onClick={() => avaliar(4)}></BsStarFill> : <BsStar onClick={() => avaliar(4)}></BsStar>}
+                                    {props.stars>=5 ? <BsStarFill onClick={() => avaliar(5)}></BsStarFill> : <BsStar onClick={() => avaliar(5)}></BsStar>}
+                                </Star>
+                                : <p>Sem Avaliações</p> }
                             </InfoStars>
                             <InfoPost>
                                 <BiComment/>
@@ -69,10 +68,10 @@ function CardPostagemGrande(props){
                             </InfoPost>
                         </CardD>
                     </Cardbottom>
-                </Link>
+                </div>
             </Global>
-        </center>
+       </center>
     );
 }
 
-export default CardPostagemGrande;
+export default CardPostagem;

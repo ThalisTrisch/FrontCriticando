@@ -34,7 +34,7 @@ function CardPostagemGrande(props){
     }
 
     useEffect(()=>{
-        axios.post("http://localhost:3001/getfavoritos",{
+        axios.post("http://localhost:3001/validarfavoritos",{
             email: localStorage['useremail'],
             id: props.id
         }).then((response) => {
@@ -52,7 +52,11 @@ function CardPostagemGrande(props){
                 </Bandeira>
                 <div onClick={verPostagem}>
                     <Titulo><p>{props.titulo}</p></Titulo>
-                    <Imagem><img src={props.background}/></Imagem>
+                    <Imagem url={props.background}>
+                        <div>
+                            <p>{props.obra}</p>
+                        </div>
+                    </Imagem>
                     <Cardbottom>
                         <CardE>
                             <div>

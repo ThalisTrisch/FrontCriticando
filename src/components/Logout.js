@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import {GoogleLogout} from 'react-google-login';
 
 function Logout(){
     const navigate = useNavigate();
@@ -9,9 +10,12 @@ function Logout(){
     }
 
     return(
-        <div>
-            <button onClick={logout}>Logout</button>
-        </div>
+        <>
+            <GoogleLogout
+                buttonText='Login Google'
+                onSuccess={logout}
+            />
+        </>
     );
 }
 

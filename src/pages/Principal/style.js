@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
-export const Logo = styled.p`
-    font-size:30px;margin:0px;padding-top:26px;padding-left:60px;width:300px;float:left;color:white
+export const Logo = styled.img`
+    width:190px;height:auto;padding-top:10px;padding-left:40px
+`;
+
+export const LogoExplorar = styled.img`
+    height:50px;padding-left:40px;margin-top:5px;
 `;
 
 export const Nav = styled.div`
-    background-color:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 0px 0px;
-    width:100%;
+    background-color: #34173d;
+    height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;width:100%;display:flex;
+    justify-content:space-between;background-repeat:no-repeat;background-position:cover;
+    background-size:100%;background-position-y:center;z-index:-10;
+    box-shadow: 0px 40px 30px 20px #d8bce0;
+    /* background-image:url('https://img.freepik.com/fotos-gratis/textura-escura-em-aquarela_125540-769.jpg?w=2000'); */
 `;
 
 export const Center = styled.div`
@@ -14,21 +22,28 @@ export const Center = styled.div`
 `;
 
 export const Bar = styled.div`
-    margin-top:20px;width:100%;height:80px;justify-content:space-between;
+    margin-top:10px;width:100%;height:60px;display:flex;justify-content:space-around;
+    align-items: top;z-index:10;
+    div{
+        width:160px;
+    }
+`;
+
+export const ExplorarBar = styled.div`
+    margin-top:10px;width:100%;height:fit-content;display:flex;justify-content:center;
+
 `;
 
 export const CriarPost = styled.div`
-    button{
-        font-size:16px;border-radius:16px;width:50px;height:40px;margin-top:10px;
-        * {
-            font-size:24px;padding-top:4px;color:green;
-        }
+    svg{
+        font-size:40px;color:#34173d;margin-top:6px
     }
 `;
 
 export const Explorar = styled.div`
     button{
-        width:140px;height:40px;font-size:14px;border-radius:20px;margin-top:10px;
+        width:120px;height:40px;font-size:16px;border-radius:20px;margin-top:10px;
+        background-color:rgba(47,23,86,0.8);border-color:transparent;color:white;font-weight:bold;
     }
 `
 
@@ -37,8 +52,8 @@ export const Layouts = styled.div`
 `
 
 export const FotoPerfilD = styled.img`
-    float:right;width:80px;height:80px;margin:0px;background-color:white;
-    border-radius:100px;margin-top:10px;margin-right:60px;
+    float:right;width:70px;height:70px;margin:0px;background-color:white;
+    border-radius:100px;margin-top:15px;margin-right:20px;
 `;
 
 export const Obra = styled.div`
@@ -119,49 +134,72 @@ export const Blackout = styled.div`
 `;
 
 export const BotaoLayout = styled.button`
-    background-color:white;border-radius:16px;width:50px;height:40px; margin:4px;margin-top:10px;
-    font-size:16px;padding-top:4px
+    background-color:#9184c8cc;border-radius:16px;width:36px;height:30px; margin:4px;margin-top:10px;
+    font-size:16px;padding-top:4px;border-width:1px;border-color:transparent;
+    svg{
+        font-size:14px;
+    }
 `;
 
 export const BotaoSelecionado = styled(BotaoLayout)`
-    background-color:grey;
+    background-color:#34173d;
+    svg{color:white}
+`;
+
+export const BotaoLayoutMenor = styled.button`
+    background-color:#9184c8cc;border-radius:16px;width:36px;height:30px; margin:4px;
+    font-size:16px;padding-top:4px;border-width:1px;border-color:transparent;
+    svg{
+        font-size:8px;padding-top:0px;padding-bottom:3px;
+    }
+`;
+
+export const BotaoSelecionadoMenor = styled(BotaoLayoutMenor)`
+    background-color:#34173d;
+    svg{color:white}
 `;
 
 export const FilterBar = styled(Nav)`
-    background-color:darkGrey;border-radius:0px 0px 80px 0px;height:140px;display:flex;
+    background-image: none;background-color:rgba(223, 218, 235,0.8);border-radius:0px 0px 80px 0px;height:140px;display:flex;
     div{
         width:100%;
+    }h3{
+        margin-top:20px;margin-bottom:10px;
     }
 `
 
 export const BtnCriar = styled.button`
-    font-size:16px;border-radius:20px;width:160px;height:30px;margin-top:10px
+    font-size:16px;border-radius:20px;width:160px;height:30px;margin-top:10px;
 `;
 
 
 export const CampoPesq = styled.input`
-    font-size:16px;border-radius:20px 0px 0px 20px;width:300px;height:24px;border-color:grey;
-    text-align:center;border-right:none;
+    font-size:16px;border-radius:20px 0px 0px 20px;width:300px;height:26px;border-color:#141414;
+    text-align:center;border-right:none;margin-top:2px;
 
 `;
 export const BtnPesq = styled.button`
-    border-radius:0px 20px 20px 0px;height:30px;width:40px;background-color:grey;
+    border-radius:0px 20px 20px 0px;height:30px;width:40px;background-color:#141414;
     *{
-        font-size:13px
+        font-size:14px;color:white
     }
 `;
 
 export const Postagens = styled.div`
-    margin-top:90px;
+    margin-top:0px;
 `;
 
 export const Filter = styled.div`
-    background-color:#2e2d32;
-    h2{
-        text-align: center;color:white
-    }
+    background-color:#141414;height: 60px;display:flex;justify-content:space-between;
+    img{height:50px;width:auto;}
+    button{width:80px;height:30px;margin-top:15px;margin-right:4%;font-weight:bold;color:#141414;
+    background-color:rgba(223, 218, 235,0.8);border-radius:10px;border-color:transparent}
 `
 
 export const GenreSpace = styled.div`
     display:flex;justify-content: center;flex-wrap: wrap;
+`
+
+export const DivCardColunas = styled.div`
+    display:flex;justify-content: space-around;flex-wrap: wrap;max-width:800px;
 `

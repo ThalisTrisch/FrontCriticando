@@ -6,11 +6,31 @@ export const Logo = styled.p`
 export const Nav = styled.div`
     background:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
 `;
+
 export const LargeNav = styled.div`
-    background:grey; height: 160px;border-radius:0px 0px 60px 0px
+    height: 50vh;min-height:auto;width:100%;border-radius:0px 0px 100px 0px;
+    background-image: url('${(props) => props.imagem}');background-repeat:no-repeat;
+    background-position-y:center;background-size:160%;z-index:-2;
+    @media screen and (min-width: 300px){background-size:280%;}
+    @media screen and (min-width: 350px){background-size:240%;}
+    @media screen and (min-width: 420px){background-size:180%;}
+    @media screen and (min-width: 540px){background-size:120%;}
+    @media screen and (min-width: 700px){background-size:100%;}
 `;
+
+
+export const ItensNav = styled.div`
+    height: 50vh;min-height:auto;width:100%;display:flex;justify-content:space-around;align-items:center;z-index:20;
+`;
+
+export const Sombra = styled.div`
+    width:100%;height:60vh;position:absolute;z-index:-1;
+    background: linear-gradient(black, transparent);
+`;
+
 export const BtnCriar = styled.button`
-    font-size:16px;border-radius:20px;width:160px;height:30px;margin-top:10px
+    font-size:18px;border-radius:20px;width:160px;height:30px;margin-top:10px;border-color:transparent;
+    background-color:#34173d;color:white
 `;
 
 export const Center = styled.div`
@@ -18,7 +38,7 @@ export const Center = styled.div`
 `;
 
 export const Bar = styled.div`
-    width:500px;margin-top:20px
+    width:100%;margin-top:20px;margin-bottom:30px;
 `;
 export const CampoPesq = styled.input`
     font-size:16px;border-radius:20px 0px 0px 20px;width:300px;height:24px;border-color:grey;
@@ -42,16 +62,16 @@ export const FotoPerfilE = styled(FotoPerfilD)`
 `;
 
 export const Obra = styled.div`
-    padding-top:50px;
-`;
-
-export const Teorias = styled.div`
-    width:400px;float:right
+    background-color:black;width:fit-content;height:fit-content;border-radius:20px;
+    p{
+        margin-left:20px;margin-right:20px;color:white;font-size:24px;padding-bottom:4px;
+    }
 `;
 
 export const PerfilNav = styled.div`
     background:grey; height: 300px;border-radius:0px 0px 120px 0px
 `;
+
 export const DadosPerfil = styled.div`
     padding-top:50px; padding-left:76px;width:500px;
     h2{
@@ -95,9 +115,7 @@ export const BackLogin = styled.div`
 export const Msg = styled.p`
     font-size:45px;margin-left:10%;margin-top:8%;font-weight:bold;color:white;
 `;
-export const Shadow = styled.div`
-    width:100%;height:80vh;position:absolute;z-index:-1;background: linear-gradient(black, transparent);
-`;
+
 export const Campo = styled.input`
     width:20%;text-align:center;font-size:16px;border-radius:10px;margin-top:12px;
 `;
@@ -154,3 +172,64 @@ export const Blackout = styled.div`
 export const BotaoSelecionado = styled.button`
     background-color:grey
 `;
+
+export const TelaAviso = styled.div`
+    height:100vh;background-image: url('https://i.pinimg.com/originals/62/02/b9/6202b931f3d654284e53d6a3e8616a4a.jpg');
+    background-size:cover;
+`
+
+export const CardAviso = styled.div`
+    background-color:grey;height:400px;width:80%;max-width:500px;border-radius:40px;display:flex;
+    justify-content: center;align-items: center;flex-direction: column;margin-top:60px;
+`
+
+export const Aviso = styled.div`
+    display:flex;justify-content: center;
+    p{width:90%;font-size:22px;}
+`
+
+export const BtnTeoria = styled.div`
+    margin-top:40px;
+    label{
+        
+    }
+    input{
+        height:20px;width:20px;
+    }
+    button{
+        width:80px;height:30px;border-radius:20px;margin:10px
+    }
+    div{
+        display:flex;justify-content: center
+    }
+`
+
+export const AvisoBody = styled.div`
+    display:flex;justify-content: center;
+`
+
+export const TopInfo = styled.div`
+    display:flex;justify-content: space-between;
+`;
+
+export const Global = styled.div`
+    background-image:url('${props=> props.url}');background-position:cover;background-color: linear-gradient(black, transparent);
+`
+
+export const Teorias = styled.div`
+    button{
+        width:80px;height:30px;border-radius:20px;font-size:16px;background-color:lightgray;border-color:transparent;
+    }
+`
+
+export const RemoverTeoria = styled.div`
+    background-color: rgba(223, 218, 235,0.8);width:40px;height:40px;border-radius:0px 20px 20px 0px;
+    margin-top:75px;
+    svg{
+        padding:12px;color:red
+    }
+`
+
+export const ImagemPost = styled.img`
+    width:60%;margin-bottom:20px;border-radius:20px;opacity:0.8
+`

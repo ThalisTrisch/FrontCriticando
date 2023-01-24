@@ -1,36 +1,23 @@
-import { useNavigate , Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, Global,CardE, CardD, 
-    FotoPerfilPost, InfoPost, InfoStars, Star} from './styleCardPequeno.js';
+import { Bandeira, Imagem, Cardbottom, Titulo, Global,CardE, CardD, EnginePost,
+    FotoPerfilPost, InfoPost, InfoStars, Star, ConfigPost, Deletar,Editar} from './styleCardGrande.js';
 import { BiComment } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { BsStar,BsStarFill } from "react-icons/bs";
+import { AiFillSetting } from "react-icons/ai";
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
+import { FaTrashAlt } from 'react-icons/fa';
+import { GrConfigure } from 'react-icons/gr';
 
-function CardPostagemPequeno(props){
-    const [favoritado,setFavoritado] = useState(false)
+function CardPostagemEdit(props){
     const navigate = useNavigate();
+    const [favoritado,setFavoritado] = useState(false)
+    const [engine, setEngine] = useState(false);
 
-    function verPostagem(){
-        const rota = "/postagem/"+props.id;
-        navigate(rota);
-    }
-
-    function favoritar(){
-        axios.post("http://localhost:3001/favoritar",{
-            email: localStorage['useremail'],
-            id: props.id
-        })
-        setFavoritado(true)
-    }
-
-    function desfavoritar(){
-        axios.post("http://localhost:3001/desfavoritar",{
-            email: localStorage['useremail'],
-            id: props.id
-        })
-        setFavoritado(false)
+    function clickengine(){
+        engine ? setEngine(false) : setEngine(true)
     }
 
     useEffect(()=>{
@@ -43,13 +30,14 @@ function CardPostagemPequeno(props){
     })
 
     return(
+        <center>
             <Global>
                 <Bandeira>
                     {favoritado?
-                    <FaBookmark onClick={desfavoritar}/>:
-                    <FaRegBookmark onClick={favoritar}/>}
+                    <FaBookmark/>:
+                    <FaRegBookmark/>}
                 </Bandeira>
-                <div onClick={verPostagem}>
+                <div>
                     <Titulo><p>{props.titulo}</p></Titulo>
                     <Imagem url={props.background}>
                         <div>
@@ -85,7 +73,12 @@ function CardPostagemPequeno(props){
                     </Cardbottom>
                 </div>
             </Global>
+            {engine &&
+                props.children
+            }
+            <EnginePost className='config' onClick={clickengine}><AiFillSetting></AiFillSetting></EnginePost>
+        </center>
     );
 }
 
-export default CardPostagemPequeno;
+export default CardPostagemEdit;

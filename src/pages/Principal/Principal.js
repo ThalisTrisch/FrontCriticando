@@ -2,19 +2,22 @@ import axios from 'axios';
 import { useEffect , useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardPostagemGrande from '../../components/CardPostagemGrande.js'
-import CardPostagemMedio from '../../components/CardPostagemMedio.js'
+import CardPostagemExtraGrande from '../../components/CardPostagemExtraGrande.js'
 import CardPostagemPequeno from '../../components/CardPostagemPequeno.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
-import { Logo, Nav, CriarPost, Bar, FotoPerfilD, Blackout, BotaoSelecionado,
-     BotaoLayout, Layouts, Explorar, Postagens } from './style.js'
+import { Logo, Nav, CriarPost, Bar, FotoPerfilD, Blackout, BotaoSelecionado, BotaoSelecionadoMenor,
+    BotaoLayoutMenor,BotaoLayout, Layouts, Explorar, Postagens, DivCardColunas } from './style.js'
 import { BsSearch, BsFillSquareFill } from "react-icons/bs";
 import { TfiLayoutGrid3Alt,TfiLayoutGrid2Alt } from "react-icons/tfi";
 import { IoIosAddCircle } from "react-icons/io";
+import Postagem from '../Postagem/Postagem.js';
+import logo from '../../images/logobranca.png'
+import CreditBar from "../../components/CreditBar.js"
 
 function Principal(){
     const [listaPostagem,setListaPostagem] = useState();
     const [blackout,setBlackout] = useState(true)
-    const [layout, setLayout] = useState('grande')
+    const [layout, setLayout] = useState('medio')
     const [usuario, setUsuario] = useState('');
     const navigate = useNavigate()
     document.title = 'Criticando - Principal';
@@ -42,20 +45,24 @@ function Principal(){
                 <Blackout><h3>Carregando...</h3></Blackout>
             }
             <Nav>
-                <Logo>Logo</Logo>
-                {usuario.foto == 'imagemusuariodefault.png'?
-                <FotoPerfilD src={FotoPerfil} onClick={() => navigate('/meuperfil')}></FotoPerfilD>: 
-                <FotoPerfilD src={usuario.foto} onClick={() => navigate('/meuperfil')}></FotoPerfilD>}
+                <div>
+                    <Logo src={logo}></Logo>
+                </div>
+                <div>
+                    {localStorage['userfoto'] == 'imagemusuariodefault.png'?
+                    <FotoPerfilD src={FotoPerfil} onClick={() => navigate('/meuperfil')}></FotoPerfilD>: 
+                    <FotoPerfilD src={localStorage['userfoto']} onClick={() => navigate('/meuperfil')}></FotoPerfilD>}
+                </div>
             </Nav>
             <center>
                 <Bar>
                     <Layouts>
                         {layout == 'grande' ?<BotaoSelecionado><BsFillSquareFill/></BotaoSelecionado>:
                         <BotaoLayout onClick={() => selecionarbotao('grande')}><BsFillSquareFill/></BotaoLayout>}
-                        {layout == 'medio' ?<BotaoSelecionado><TfiLayoutGrid2Alt/></BotaoSelecionado>:
-                        <BotaoLayout onClick={() => selecionarbotao('medio')}><TfiLayoutGrid2Alt/></BotaoLayout>}
-                        {layout == 'pequeno' ?<BotaoSelecionado><TfiLayoutGrid3Alt/></BotaoSelecionado>:
-                        <BotaoLayout onClick={() => selecionarbotao('pequeno')}><TfiLayoutGrid3Alt/></BotaoLayout>}
+                        {layout == 'medio' ?<BotaoSelecionadoMenor><BsFillSquareFill/></BotaoSelecionadoMenor>:
+                        <BotaoLayoutMenor onClick={() => selecionarbotao('medio')}><BsFillSquareFill/></BotaoLayoutMenor>}
+                        {layout == 'pequeno' ?<BotaoSelecionado><TfiLayoutGrid2Alt/></BotaoSelecionado>:
+                        <BotaoLayout onClick={() => selecionarbotao('pequeno')}><TfiLayoutGrid2Alt/></BotaoLayout>}
                     </Layouts>
                     <Explorar>
                         <button onClick={() => navigate('/Explorar')}>
@@ -63,18 +70,42 @@ function Principal(){
                         </button>
                     </Explorar>
                     <CriarPost>
-                        <button onClick={() => navigate('/criarpostagem')}><IoIosAddCircle/></button>
+                        <IoIosAddCircle onClick={() => navigate('/criarpostagem')}/>
                     </CriarPost>
                 </Bar>
             </center>
             <Postagens>
-            {typeof listaPostagem !== "undefined" && layout == 'grande' &&
+            {!listaPostagem &&
+                <center><p>Não há nenhuma postagem ainda, seja o primeiro!</p></center>
+            }
+            {listaPostagem && layout == 'grande' &&
+                listaPostagem.map((postagens) => {
+                    return(
+                        <CardPostagemExtraGrande
+                            key={postagens.id}
+                            id={postagens.id}
+                            obra = {postagens.obra}
+                            titulo={postagens.titulo}
+                            conteudo={postagens.conteudo}
+                            autor={postagens.nome}
+                            email={postagens.email}
+                            foto={postagens.foto}
+                            imagem={postagens.imagem}
+                            background={postagens.bgimagem}
+                            stars={postagens.stars}
+                            comentarios={postagens.comentarios}
+                        ></CardPostagemExtraGrande>
+                    )
+                })
+            }
+            {listaPostagem && layout == 'medio' &&
                 listaPostagem.map((postagens) => {
                     return(
                         <CardPostagemGrande
                             key={postagens.id}
                             id={postagens.id}
                             titulo={postagens.titulo}
+                            obra = {postagens.obra}
                             conteudo={postagens.conteudo}
                             autor={postagens.nome}
                             email={postagens.email}
@@ -87,45 +118,32 @@ function Principal(){
                     )
                 })
             }
-            {typeof listaPostagem !== "undefined" && layout == 'medio' &&
-                listaPostagem.map((postagens) => {
-                    return(
-                        <CardPostagemMedio
-                            key={postagens.id}
-                            id={postagens.id}
-                            titulo={postagens.titulo}
-                            conteudo={postagens.conteudo}
-                            autor={postagens.nome}
-                            email={postagens.email}
-                            foto={postagens.foto}
-                            imagem={postagens.imagem}
-                            background={postagens.bgimagem}
-                            stars={postagens.stars}
-                            comentarios={postagens.comentarios}
-                        ></CardPostagemMedio>
-                    )
-                })
-            }
-            {typeof listaPostagem !== "undefined" && layout == 'pequeno' &&
-                listaPostagem.map((postagens) => {
-                    return(
-                        <CardPostagemPequeno
-                            key={postagens.id}
-                            id={postagens.id}
-                            titulo={postagens.titulo}
-                            conteudo={postagens.conteudo}
-                            autor={postagens.nome}
-                            email={postagens.email}
-                            foto={postagens.foto}
-                            imagem={postagens.imagem}
-                            background={postagens.bgimagem}
-                            stars={postagens.stars}
-                            comentarios={postagens.comentarios}
-                        ></CardPostagemPequeno>
-                    )
-                })
-            }
+            <center>
+            <DivCardColunas>
+                {listaPostagem && layout == 'pequeno' &&
+                    listaPostagem.map((postagens) => {
+                        return(
+                            <CardPostagemPequeno
+                                key={postagens.id}
+                                id={postagens.id}
+                                titulo={postagens.titulo}
+                                conteudo={postagens.conteudo}
+                                autor={postagens.nome}
+                                obra = {postagens.obra}
+                                email={postagens.email}
+                                foto={postagens.foto}
+                                imagem={postagens.imagem}
+                                background={postagens.bgimagem}
+                                stars={postagens.stars}
+                                comentarios={postagens.comentarios}
+                            ></CardPostagemPequeno>
+                        )
+                    })
+                }
+            </DivCardColunas>
+            </center>
             </Postagens>
+            <CreditBar></CreditBar>
         </div>
     )
 }

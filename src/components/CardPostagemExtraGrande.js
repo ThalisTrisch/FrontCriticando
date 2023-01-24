@@ -1,14 +1,14 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Bandeira, Imagem, Cardbottom, Titulo, Global,CardE, CardD, 
-    FotoPerfilPost, InfoPost, InfoStars, Star} from './styleCardMedio.js';
+import { Imagem, Cardbottom, Global, Obra, Titulo, CardE, CardD, InfoStars, InfoPost, FotoPerfilPost,
+    Star, Bandeira } from './styleCardExtraGrande.js';
 import { BiComment } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { BsStar,BsStarFill } from "react-icons/bs";
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
 
-function CardPostagemGrande(props){
+function CardPostagemExtraGrande(props){
     const [favoritado,setFavoritado] = useState(false)
     const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ function CardPostagemGrande(props){
     }
 
     useEffect(()=>{
-        axios.post("http://localhost:3001/getfavoritos",{
+        axios.post("http://localhost:3001/validarfavoritos",{
             email: localStorage['useremail'],
             id: props.id
         }).then((response) => {
@@ -44,15 +44,11 @@ function CardPostagemGrande(props){
 
     return(
         <center>
-            <Global>
-                <Bandeira>
-                    {favoritado?
-                    <FaBookmark onClick={desfavoritar}/>:
-                    <FaRegBookmark onClick={favoritar}/>}
-                </Bandeira>
-                <div onClick={verPostagem}>
+            <Global onClick={verPostagem}>
+                <Imagem url={props.background}>
+                    <Obra><p>{props.obra}</p></Obra>
                     <Titulo><p>{props.titulo}</p></Titulo>
-                    <Imagem><img src={props.background}/></Imagem>
+                </Imagem>
                     <Cardbottom>
                         <CardE>
                             <div>
@@ -77,13 +73,17 @@ function CardPostagemGrande(props){
                             <InfoPost>
                                 <BiComment/>
                                 <p>{props.comentarios}</p>
+                                <Bandeira>
+                                    {favoritado?
+                                    <FaBookmark onClick={desfavoritar}/>:
+                                    <FaRegBookmark onClick={favoritar}/>}
+                                </Bandeira>
                             </InfoPost>
                         </CardD>
                     </Cardbottom>
-                </div>
             </Global>
         </center>
     );
 }
 
-export default CardPostagemGrande;
+export default CardPostagemExtraGrande;

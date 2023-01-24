@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate , Link } from 'react-router-dom'
-import { IconUser, Heath, BlocoComent, User, Conteudo, Opcoes, Deletar } from './style.js'
+import { IconUser, BlocoComent, User, Conteudo, Opcoes} from './style.js'
 import FotoPerfil from '../images/imagemusuariodefault.png';
 import { BsHeartFill, BsHeart} from "react-icons/bs";
 import { FaTrashAlt } from 'react-icons/fa';
@@ -47,29 +47,29 @@ function Comentario(props){
     },[])
 
     return(
-            <BlocoComent>
-                    <User>
-                        {props.foto == 'imagemusuariodefault.png'?
-                        <IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 
-                        <IconUser src={props.foto} onClick={() => navigate('/meuperfil')}/>}
-                        <p>{props.nome}</p>
-                    </User>
-                    <Conteudo>
-                        <p>{props.resposta}</p>
-                    </Conteudo>
-                    <Opcoes>
-                        <p>{curtidas}</p>
-                        <Heath>
-                            {curtido ?
-                                <BsHeartFill onClick={descurtirComentario}></BsHeartFill>:
-                                <BsHeart onClick={curtirComentario}></BsHeart>
-                            }
-                        </Heath>
-                        { props.email == localStorage['useremail'] &&
-                            <Deletar onClick={() => props.deletar(props.posicao)}><FaTrashAlt/></Deletar>
-                        }
-                    </Opcoes>
-            </BlocoComent>
+        <BlocoComent>
+            <User>
+                {props.foto == 'imagemusuariodefault.png' ?
+                    <IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')} /> :
+                    <IconUser src={props.foto} onClick={() => navigate('/meuperfil')} />}
+                <p>{props.nome}</p>
+            </User>
+            <Conteudo>
+                <p>{props.resposta}</p>
+            </Conteudo>
+            <Opcoes>
+                <div>
+                    <p>{curtidas}</p>
+                    {curtido ?
+                        <BsHeartFill onClick={descurtirComentario}></BsHeartFill> :
+                        <BsHeart onClick={curtirComentario}></BsHeart>
+                    }
+                </div>
+                {props.email == localStorage['useremail'] &&
+                    <FaTrashAlt onClick={() => props.deletar(props.posicao)} />
+                }
+            </Opcoes>
+        </BlocoComent>
     );
 }
 

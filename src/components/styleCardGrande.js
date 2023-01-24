@@ -1,58 +1,63 @@
-import Style from 'styled-components';
+import styled from 'styled-components';
 
-export const Imagem = Style.div`
-    width: 350px; height: 150px; margin-top:50px;border-radius: 40px 40px 0px 0px;background-color:grey;
-    img{
-        width:100%;height:auto;border-radius: 40px 40px 0px 0px;max-height:150px;position:cover;min-height:150px;
+export const Imagem = styled.div`
+    width: 350px; height: 150px; margin-top:50px;border-radius: 26px 26px 0px 0px;background-color:grey;
+    background-image: url('${props => props.url}');background-size: cover;background-position:bottom;
+    div{
+        width:fit-content;background-color:#141414;float:left;margin-top:80px;
+        border-radius:0px 20px 20px 0px;height:fit-content;
+    }
+    p{
+        padding:4px;font-size:12px;color:white;padding-right:8px;
     }
 `;
-export const Cardbottom = Style.div`
-    background: grey;margin:0px;border-radius: 0px 0px 40px 40px;width: 350px; height: 150px;
+export const Cardbottom = styled.div`
+    background: #34173d;margin:0px;border-radius: 0px 0px 26px 26px;width: 350px; height: 150px;
 `;
 
-export const Titulo = Style.div`
+export const Titulo = styled.div`
     margin-top:125px;background-color:white;position: absolute;
     text-decoration: none;width:300px;border-radius:40px;height:50px;
     margin-left:25px;text-align:center;box-shadow: 0px 4px 10px -4px black;
+    display:flex;align-content:center;align-items: center;
     p{
-        margin-top:12px;font-size:18px;font-color:black;margin-left:10px;widht:100%;
+        font-size:18px;color:black;margin-left:10px;width:98%;
     }
 `;
 
-export const Global = Style.div`
-    width:fit-content;
-    cursor: pointer;
+export const Global = styled.div`
+    width:fit-content;cursor: pointer;z-index:-10;
 `;
 
-export const GlobalMedio = Style.div`
+export const GlobalMedio = styled.div`
     width:fit-content;
 `;
 
-export const CardD = Style.div`
+export const CardD = styled.div`
     float:right;margin-top:48px;
     div{
-        margin-top:4px;
+        margin-top:4px;color:white
     }
     p{
-        margin-top:0px;padding-top:20px
+        margin-top:0px;padding-top:20px;color:white
     }
 `;
 
-export const CardE = Style.div`
+export const CardE = styled.div`
     float:left;max-height:40px;margin-top:50px;margin-left:20px;
     div{
         margin-top:8px;
     }
     p{
-        float:right;margin-top:14px;margin-left:6px
+        float:right;margin-top:14px;margin-left:6px;color:white;font-weight:bold;
     }
 `;
 
-export const FotoPerfilPost = Style.img`
+export const FotoPerfilPost = styled.img`
     height:46px;width:46px;border-radius:100px
 `;
 
-export const InfoStars = Style.div`
+export const InfoStars = styled.div`
     height:50px;width:150px;
     p {
         margin-right:6px;
@@ -60,7 +65,7 @@ export const InfoStars = Style.div`
         margin-right:10px;padding-top:20px;
     }
 `;
-export const InfoPost = Style.div`
+export const InfoPost = styled.div`
     height:50px;width:150px;display: flex;align-items: center;
     * {
         position:relative;float:center;height:20px;font-size:20px;margin-left:4px;
@@ -72,18 +77,18 @@ export const InfoPost = Style.div`
         margin-left:20px;
     }
 `;
-export const IconUser = Style.img`
+export const IconUser = styled.img`
     height:50px;width:50px;border-radius:100px;
 `;
 
-export const Heath = Style.div`
+export const Heath = styled.div`
     * { font-size:20px;color:red }
 `;
 
-export const BlocoComent = Style.div`
+export const BlocoComent = styled.div`
     margin-top:20px
 `
-export const Bandeira = Style.div`
+export const Bandeira = styled.div`
     *{
         font-size: 24px; position: absolute; margin-top: 268px;margin-left: 120px;color:white
     }
@@ -91,11 +96,23 @@ export const Bandeira = Style.div`
         transition: transform 0.4s;
     }
     *:hover {
-        transform: scale(1.06);
+        transform: scale(1.1);
     }
 `
-export const Star = Style.div`
+export const Star = styled.div`
     * {
         color:orange;font-size:20px
     }
 `;
+
+
+export const EnginePost = styled.div`
+    background-color:rgba(47,23,86,0.6);width:36px;height:34px; border-radius:0px 0px 16px 16px;
+    margin-right:200px;
+    svg{
+        font-size:24px;transition: 10s;margin-top:4px;
+    }
+    svg:active{
+        transform: rotate(50deg);
+    }
+`

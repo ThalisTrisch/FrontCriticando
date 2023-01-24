@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Navigate , useNavigate} from 'react-router-dom';
-import {Nav , Logo , Campo, CampoMaior, BtnCriarPost, SelectObras, BtnPesq, CampoPesq } from './style.js'
+import {Nav , Logo , Campo, CampoMaior, BtnCriarPost, SelectObras, BtnPesq, CampoPesq, Form } from './style.js'
 import { BsSearch } from "react-icons/bs";
+import CreditBar from '../../components/CreditBar.js'
 
 function CriarPostagem(){
     const navigate = useNavigate();
@@ -16,11 +17,10 @@ function CriarPostagem(){
     const apiInfoUrl = 'https://api.themoviedb.org/3/movie'
     const now = new Date()
 
-    const searchFilms = async () => {
-        const urlSearchMovies = `${apiSearchUrl}?api_key=${apiKey}&language=pt-br&query=${obras}`
+    const searchFilms = async (obra) => {
+        const urlSearchMovies = `${apiSearchUrl}?api_key=${apiKey}&language=pt-br&query=${obra.target.value}`
         const apiSearchResponse = await fetch(urlSearchMovies)
         const resMovies = await apiSearchResponse.json()
-        console.log(resMovies.results)
         setPesquisarObras(resMovies.results)
     }
 
@@ -46,12 +46,12 @@ function CriarPostagem(){
         const urlInfoMovies = `${apiInfoUrl}/${id}?api_key=${apiKey}&language=pt-br`
         const apiInfoResponse = await fetch(urlInfoMovies)
         const resInfo = await apiInfoResponse.json()
-        console.log(resInfo)
         setObraSelecionada(resInfo)
     }
 
     async function Criarpost(){
         const {data} = await axios.get('http://localhost:3001/getidpostagem')
+        console.log(data)
         const datahoje = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`
         axios.post('http://localhost:3001/criarpostagem', {
             titulo: postagem.titulo,
@@ -76,48 +76,53 @@ function CriarPostagem(){
             <Nav>
                 <Logo>Criar Postagem</Logo>
             </Nav>
-            <center>
-                <h2>Sobre qual obra será a postagem?</h2>
-                <div>
-                    <CampoPesq onChange={mudarValoresObra} name='obra' type="text" placeholder="pesquise pelo nome"/>
-                    <BtnPesq onClick={searchFilms}><BsSearch/></BtnPesq>
-                </div>
-                <SelectObras onChange={mudarObraSelecionada}>
-                    <option>selecione uma opção</option>
-                    {pesquisarObras && 
-                        pesquisarObras.map((filmes)=> {
-                            return(
-                                <option key={filmes.id}>{filmes.title}</option>
-                            )
-                        })
-                    }
-                </SelectObras>
-                <SelectObras onChange={mudarValoresCategoria}>
-                    <option>Filme</option>
-                    <option>Série</option>
-                    <option>Anime</option>
-                    <option>Documentário</option>
-                    <option>Novela</option>
-                </SelectObras>
-                <h2>Informações sobre a postagem</h2>
-                <Campo
-                    type='text'
-                    name='titulo'
-                    placeholder='titulo'
-                    onChange={mudarValoresPostagem}
-                /><br/>
-                <CampoMaior
-                    maxlength='20'
-                    rows='4'
-                    type='text'
-                    name='conteudo'
-                    placeholder='conteúdo da postagem'
-                    wrap='soft'
-                    onChange={mudarValoresPostagem}
-                /><br/>
-                
-                <BtnCriarPost onClick={Criarpost}>Criar postagem</BtnCriarPost>
-            </center>
+            <Form>
+                <center>
+                    <h2>Sobre qual obra será a postagem?</h2>
+                    <p>insira um nome de obra e selecione no menu abaixo<br></br> o resultado que seja compativel com seu desejo</p>
+                    <div>
+                        <CampoPesq onChange={searchFilms} name='obra' type="text" placeholder="pesquise pelo nome"/>
+                        <BtnPesq><BsSearch/></BtnPesq>
+                    </div>
+                    <p>Nome</p>
+                    <SelectObras onChange={mudarObraSelecionada}>
+                        {pesquisarObras && 
+                            pesquisarObras.map((filmes)=> {
+                                return(
+                                    <option key={filmes.id}>{filmes.title}</option>
+                                )
+                            })
+                        }
+                    </SelectObras><br></br>
+                    <p>Categoria</p>
+                    <SelectObras onChange={mudarValoresCategoria}>
+                        <option>Filme</option>
+                        <option>Série</option>
+                        <option>Anime</option>
+                        <option>Documentário</option>
+                        <option>Novela</option>
+                    </SelectObras>
+                    <h2>Informações sobre a postagem</h2>
+                    <Campo
+                        type='text'
+                        name='titulo'
+                        placeholder='titulo'
+                        onChange={mudarValoresPostagem}
+                    /><br/>
+                    <CampoMaior
+                        rows='5'
+                        cols='20'
+                        type='text'
+                        name='conteudo'
+                        placeholder='conteúdo da postagem'
+                        wrap='soft'
+                        onChange={mudarValoresPostagem}
+                    /><br/>
+                    
+                    <BtnCriarPost onClick={Criarpost}>Criar postagem</BtnCriarPost>
+                </center>
+            </Form>
+            <CreditBar></CreditBar>
         </>
     )
 }

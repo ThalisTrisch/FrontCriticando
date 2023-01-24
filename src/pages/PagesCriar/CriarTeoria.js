@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { Navigate , useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate , useNavigate, useParams} from 'react-router-dom';
+import {Nav , Logo , Campo, CampoMaior, BtnCriarPost, TituloTeoria } from './style.js'
+import { BsSearch } from "react-icons/bs";
 
 function CriarTeoria(){
     const navigate = useNavigate();
@@ -28,24 +30,29 @@ function CriarTeoria(){
     }
 
     return(
-        <div>
-            <nav>
-                <h2>Criar Teoria</h2>
-            </nav>
-            <input
-                type='text'
-                name='titulo'
-                placeholder='titulo'
-                onChange={mudarValores}
-            />
-            <input
-                type='text'
-                name='conteudo'
-                placeholder='conteúdo'
-                onChange={mudarValores}
-            />
-            <button onClick={Criar}>Finalizar</button>
-        </div>
+        <>
+            <Nav>
+                <Logo>Criar Teoria</Logo>
+            </Nav>
+            <center>
+                <TituloTeoria>Informações da teoria</TituloTeoria>
+                <Campo
+                    type='text'
+                    name='titulo'
+                    placeholder='titulo'
+                    onChange={mudarValores}
+                /><br></br>
+                <CampoMaior
+                    type='text'
+                    name='conteudo'
+                    placeholder='conteúdo'
+                    onChange={mudarValores}
+                    rows={8}
+                    cols={20}
+                /><br></br>
+                <BtnCriarPost onClick={Criar}>Criar</BtnCriarPost>
+            </center>
+        </>
     )
 }
 

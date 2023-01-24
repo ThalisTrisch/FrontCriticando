@@ -2,14 +2,16 @@ import axios from 'axios';
 import { useEffect , useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardPostagemGrande from '../../components/CardPostagemGrande.js'
-import CardPostagemMedio from '../../components/CardPostagemMedio.js'
+import CardPostagemMedio from '../../components/CardPostagemExtraGrande.js'
 import CardPostagemPequeno from '../../components/CardPostagemPequeno.js'
 import CardGeneros from '../../components/CardGeneros.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
-import { Logo, Nav, Bar, BtnPesq, CampoPesq, FotoPerfilD, Blackout,
-    BotaoSelecionado, BotaoLayout, FilterBar, Filter, GenreSpace} from './style.js'
+import { LogoExplorar, Nav, Bar, BtnPesq, CampoPesq, FotoPerfilD, Blackout,
+    BotaoSelecionado, BotaoLayout, FilterBar, Filter, GenreSpace, ExplorarBar, DivCardColunas} from './style.js'
 import { BsSearch, BsFillSquareFill } from "react-icons/bs";
 import { TfiLayoutGrid3Alt,TfiLayoutGrid2Alt } from "react-icons/tfi";
+import logo from '../../images/logofullbranca.png';
+import CreditBar from "../../components/CreditBar.js";
 
 function Principal(){
     const [listaPostagem,setListaPostagem] = useState();
@@ -34,8 +36,7 @@ function Principal(){
     }
 
     function filtrargenero(genero){
-        console.log(listaFiltrados)
-        console.log(listaGeneroFiltrados)
+
         if(typeof listaFiltrados !== "undefined"){
             if(generoFiltrado == genero){
                 setGeneroFiltrado('')
@@ -80,18 +81,13 @@ function Principal(){
             {blackout && 
                 <Blackout><h3>Carregando...</h3></Blackout>
             }
-            <Nav>
-                <Logo>Logo</Logo>
-                {usuario.foto == 'imagemusuariodefault.png'?
-                <FotoPerfilD src={FotoPerfil} onClick={() => navigate('/meuperfil')}></FotoPerfilD>: 
-                <FotoPerfilD src={usuario.foto} onClick={() => navigate('/meuperfil')}></FotoPerfilD>}
-            </Nav>
             <Filter>
-                <h2>Filtrar</h2>
+                <LogoExplorar src={logo}></LogoExplorar>
+                <button onClick={() => navigate('/principal')}>voltar</button>
             </Filter>
             <FilterBar>
                 <div>
-                    <center><h3>Genero</h3></center>
+                    <center><h3>Filtrar por Genero</h3></center>
                     <GenreSpace>
                     { typeof generos !== "undefined" ?
                         generos.map((genre) => {
@@ -112,19 +108,20 @@ function Principal(){
                 </div>
             </FilterBar>
             <center>
-                <Bar>
+                <ExplorarBar>
                     <div>
                         <CampoPesq type="text" placeholder="Pesquisa por obra" onChange={pesquisar}/>
                         <BtnPesq><BsSearch/></BtnPesq>
                     </div>
-                </Bar>
-            </center>
+                </ExplorarBar>
+            <DivCardColunas>
             {typeof listaFiltrados !== "undefined" ?
                 listaFiltrados.map((obras)=>{
                     return(
-                        <CardPostagemGrande
+                        <CardPostagemPequeno
                             key={obras.id}
                             id={obras.id}
+                            obra= {obras.obra}
                             titulo={obras.titulo}
                             conteudo={obras.conteudo}
                             autor={obras.nome}
@@ -142,10 +139,11 @@ function Principal(){
                 typeof listaGeneroFiltrados !== "undefined" ?
                 listaGeneroFiltrados.map((obras)=>{
                     return(
-                        <CardPostagemGrande
+                        <CardPostagemPequeno
                             key={obras.id}
                             id={obras.id}
                             titulo={obras.titulo}
+                            obra= {obras.obra}
                             conteudo={obras.conteudo}
                             autor={obras.nome}
                             email={obras.email}
@@ -160,10 +158,11 @@ function Principal(){
                 typeof listaPostagem !== "undefined" && 
                     listaPostagem.map((obras) => {
                         return (
-                            <CardPostagemGrande
+                            <CardPostagemPequeno
                                 key={obras.id}
                                 id={obras.id}
                                 titulo={obras.titulo}
+                                obra= {obras.obra}
                                 conteudo={obras.conteudo}
                                 autor={obras.nome}
                                 genero={obras.genero}
@@ -178,7 +177,9 @@ function Principal(){
                     }
                 )
             }
-
+            </DivCardColunas>
+            </center>
+            <CreditBar></CreditBar>
         </div>
     )
 }

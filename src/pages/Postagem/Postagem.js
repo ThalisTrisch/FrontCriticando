@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useEffect , useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Logo , LargeNav, Obra, Teorias, ImagePost, Star} from './style.js'
+import { Logo, LargeNav, Obra, Teorias, ImagePost, Star, AddComentario, Sombra, TopInfo, BtnTeoria, ConteudoPage,
+    Coments, FinalBar, ConteudoFinal, ImagemPost, ConteudoPostagem } from './style.js'
 import Comentario from '../../components/Comentario.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { BsStar,BsStarFill } from "react-icons/bs";
-
+import logo from "../../images/logofullbranca.png"
 
 function Postagem(){
     const [postagem,setPostagem] = useState('');
@@ -16,7 +17,7 @@ function Postagem(){
     const [newComentario,setNewComentario] = useState('');
     const navigate = useNavigate()
     const {id} = useParams()
-    document.title = 'Criticando - postagem '+id;
+    
 
     const changecomentario = (value) => {setNewComentario(value.target.value)}
 
@@ -59,6 +60,10 @@ function Postagem(){
         setAvaliado(true)
     }
 
+    function salateoria(){
+        usuario.veravisoteoria=='perguntar'? navigate('/aviso/teoria/'+id) : navigate('/postagem/teoria/'+id)
+        
+    }
     useEffect(()=>{
         axios.get(`http://localhost:3001/getcomentario/${id}`).then((response) => {
             setComentario(response.data); 
@@ -78,37 +83,55 @@ function Postagem(){
                 setAvaliado(false)
             }
         })
+        document.title = 'Criticando - postagem '+id;
     }, []);
 
     return(
         <>
-            <LargeNav>
-                <Obra><p>{postagem.obra}</p></Obra>
-                <Teorias>
-                    <button onClick={() => navigate('/aviso/teoria/'+id)}>Sala de teorias</button>
-                    <button onClick={() => navigate('/principal')}>voltar</button>
-                </Teorias>
+            <LargeNav imagem={postagem.bgimagem}>
+                <Sombra></Sombra>
+                <TopInfo>
+                    <Obra><p>{postagem.obra}</p></Obra>
+                    <Teorias>
+                        <button onClick={() => navigate('/principal')}>Voltar</button>
+                        <BtnTeoria onClick={salateoria}>Teorias</BtnTeoria>
+                    </Teorias>
+                </TopInfo>
             </LargeNav>
-            <h1>{postagem.titulo}</h1>
-            <p>{postagem.conteudo}</p>
-            <h3>Avalie a obra! </h3>
-            {avaliado?<p>{stars}</p>:<p>Você não avaliou ainda</p>}
-            <Star>
-            {stars>=1 ? <BsStarFill onClick={() => avaliar(1)}></BsStarFill> : <BsStar onClick={() => avaliar(1)}></BsStar>}
-            {stars>=2 ? <BsStarFill onClick={() => avaliar(2)}></BsStarFill> : <BsStar onClick={() => avaliar(2)}></BsStar>}
-            {stars>=3 ? <BsStarFill onClick={() => avaliar(3)}></BsStarFill> : <BsStar onClick={() => avaliar(3)}></BsStar>}
-            {stars>=4 ? <BsStarFill onClick={() => avaliar(4)}></BsStarFill> : <BsStar onClick={() => avaliar(4)}></BsStar>}
-            {stars>=5 ? <BsStarFill onClick={() => avaliar(5)}></BsStarFill> : <BsStar onClick={() => avaliar(5)}></BsStar>}
-            </Star>
-            <br></br>
-            {postagem.foto == 'imagemusuariodefault.png'?
-                <ImagePost src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 
-                <ImagePost src={postagem.foto} onClick={() => navigate('/meuperfil')}/>}
-            <p>{postagem.nome}</p>
-            <center>
-                <button onClick={comentar}>Comentar</button>
-                <input onChange={changecomentario} name='comentario' placeholder='Comentario'></input>
-                {typeof comentario !== "undefined" && 
+            <ConteudoPage>
+                <h1>{postagem.titulo}</h1>
+                <p>{postagem.conteudo}</p>
+            </ConteudoPage>
+            <ConteudoPostagem>
+                <ImagemPost src={postagem.imagem}></ImagemPost>
+                <ConteudoFinal>
+                    {localStorage['useremail'] != postagem.email &&
+                        <>
+                            <h3>Avalie a postagem!</h3>
+                            {avaliado?<p>avaliação: {stars} estrelas</p>:<p>Você não avaliou ainda</p>}
+                            <Star>
+                                {stars>=1 ? <BsStarFill onClick={() => avaliar(1)}></BsStarFill> : <BsStar onClick={() => avaliar(1)}></BsStar>}
+                                {stars>=2 ? <BsStarFill onClick={() => avaliar(2)}></BsStarFill> : <BsStar onClick={() => avaliar(2)}></BsStar>}
+                                {stars>=3 ? <BsStarFill onClick={() => avaliar(3)}></BsStarFill> : <BsStar onClick={() => avaliar(3)}></BsStar>}
+                                {stars>=4 ? <BsStarFill onClick={() => avaliar(4)}></BsStarFill> : <BsStar onClick={() => avaliar(4)}></BsStar>}
+                                {stars>=5 ? <BsStarFill onClick={() => avaliar(5)}></BsStarFill> : <BsStar onClick={() => avaliar(5)}></BsStar>}
+                            </Star>
+                            <br></br>
+                        </>
+                    }
+                    <strong><p>Autor da postagem:</p></strong>
+                    {postagem.foto == 'imagemusuariodefault.png'?
+                        <ImagePost src={FotoPerfil} onClick={() => navigate('/perfil/'+postagem.email)}/>: 
+                        <ImagePost src={postagem.foto} onClick={() => navigate('/perfil/'+postagem.email)}/>}
+                    <p>{postagem.nome}</p>
+                </ConteudoFinal>
+            </ConteudoPostagem>
+            <Coments>
+                <AddComentario>
+                    <button onClick={comentar}>Comentar</button>
+                    <textarea  cols="30" rows="5" onChange={changecomentario} name='comentario' placeholder='Comentario'></textarea>
+                </AddComentario>
+                {comentario && 
                     comentario.map((coment)=>{
                         return(
                             <div key={coment.posicao}>
@@ -126,7 +149,13 @@ function Postagem(){
                         )
                     })
                 }   
-            </center>
+            </Coments>
+            <FinalBar>
+                <Logo src={logo}></Logo>
+                <p>
+                    postagem criada por: {usuario.nome}<br></br>desenvolvido por: Thalis Trisch
+                </p>
+            </FinalBar>
         </>
     )
 }

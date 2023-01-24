@@ -4,7 +4,7 @@ export const Logo = styled.p`
     font-size:30px;margin:0px;padding-top:26px;padding-left:60px;width:300px;float:left;color:white
 `;
 export const Nav = styled.div`
-    background:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
+    background:rgba(47,23,86,0.6); height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
 `;
 export const LargeNav = styled.div`
     background:grey; height: 160px;border-radius:0px 0px 60px 0px
@@ -21,14 +21,15 @@ export const Bar = styled.div`
     width:500px;margin-top:20px
 `;
 export const CampoPesq = styled.input`
-    font-size:16px;border-radius:20px 0px 0px 20px;width:300px;height:24px;border-color:grey;
-    text-align:center;border-right:none;
+    font-size:16px;border-radius:20px 0px 0px 20px;width:320px;height:25px;border-color:black;
+    text-align:center;border-right:none;border-width:1px;margin-top:10px;
 
 `;
 export const BtnPesq = styled.button`
-    border-radius:0px 20px 20px 0px;height:30px;width:40px;background-color:grey;
+    border-radius:0px 20px 20px 0px;height:28px;width:40px;background-color:rgba(223, 218, 235,0.8);
+    border-width:1px;
     *{
-        font-size:13px
+        font-size:14px;color:#141414;
     }
 `;
 
@@ -99,19 +100,27 @@ export const Shadow = styled.div`
     width:100%;height:80vh;position:absolute;z-index:-1;background: linear-gradient(black, transparent);
 `;
 export const Campo = styled.input`
-    width:20%;text-align:center;font-size:16px;border-radius:10px;margin-top:12px;
+    width:360px;text-align:center;font-size:16px;border-radius:20px;margin-top:12px;border:solid;
+    border-width:1px;height:24px;
 `;
 export const CampoMaior = styled.textarea`
-    width:40%;text-align:center;font-size:14px;border-radius:10px;margin-top:12px;
+    width:360px;text-align:center;font-size:14px;border-radius:14px;margin-top:12px;resize:vertical;
+    border:solid;border-width:1px;
 `;
+
 export const CampoImg = styled.div`
-    width:200px;height:200px;background-color: grey;
+    width:200px;height:200px;display:flex;align-items: center;justify-content: center;
     img{
-        width:100%;height:auto;margin-top:20%;
+        width:100%;height:auto;
+    }
+    progress{
+        height:40px;color:#34173d;
     }
 `;
+
 export const BtnCriarPost = styled.button`
-    width:120px;height:28px;background-color:LightGrey;border-radius:20px;margin:10px
+    width:140px;height:32px;background-color:#34173d;border-radius:20px;
+    margin:10px;border-width:1px;font-size:16px;color:white
 `;
 
 export const PostTitulo = styled.h2`
@@ -123,10 +132,10 @@ export const ImgStar = styled.img`
 `;
 
 export const SelectObras = styled.select`
-    width:220px;height:32px;background-color:LightGrey;border-radius:20px;margin:10px;
+    width:220px;height:32px;background-color:white;border-radius:20px;margin:10px;
     text-align:center;
     option{
-        background-color:LightGrey
+        background-color:white
     }
 `;
 
@@ -154,3 +163,83 @@ export const Blackout = styled.div`
 export const BotaoSelecionado = styled.button`
     background-color:grey
 `;
+
+
+export const TituloTeoria = styled.h2`
+    margin-top:80px;margin-bottom:10px;font-size:30px;
+`;
+
+export const Form = styled.div`
+    display:flex;align-content:center;justify-content: center;flex-direction: column;
+    align-items: center;height:90vh;
+`
+
+export const FormImg = styled.div`
+    display:flex;justify-content: center;flex-direction: row;flex-wrap: wrap;align-items: center;
+`
+
+export const InputSeparado = styled.div`
+    width:400px;height:200px;background:linear-gradient(rgba(223, 218, 235,0.8),rgba(47,23,86,0.8));display:flex;margin:40px;
+    justify-content: space-between;align-items: center;border-radius:6px;
+    div{
+        form{
+            display:flex;flex-direction: column;align-items: center;margin:4px;
+            div{
+                background-color:rgba(223, 218, 235,0.8);margin:4px;border-radius:2px;padding:4px;width:172px;
+                label{
+                    height:100px;width:100%;padding:46px;
+                    input[type="file"]{
+                        display:none;
+                    }
+                    span{height:100%;width:100%;font-size:18px;}
+                }
+            }
+            p{font-size:10px;padding:4px;margin-bottom:4px;}
+            button{
+                width:180px;background-color:lightgreen;border-radius:10px;border-color:transparent;
+                height: 24px;font-size:16px;
+            }
+        }
+    }
+`
+
+export const FundoClaro = styled.div`
+    background-color:white; width:100%;min-height:100vh;height:100%;display:flex;justify-content:center;
+    div{
+        background-color:rgba(223, 218, 235,0.8);width:80%;height:100vh;box-shadow: 0px 0px 40px 6px #141414;
+        display:flex;justify-content:center;flex-direction: column;align-items: center;
+        h1{font-size:40px;z-index:10}
+        p{width:60%;margin-top:40px;font-size:14px;margin-bottom:40px;z-index:10}
+        img{height:20%;position:absolute;opacity:0.8;top:10px;}
+        div{
+            margin-top:20px;background-color:whitesmoke;border-radius:20px;width:60%;height:fit-content;
+            box-shadow: 0px 0px 20px 1px #141414;padding:20px;display:flex;flex-direction: row;
+            svg{color:#34173d;font-size:40px;margin-left:2%;margin-right:2%;}
+        }
+    }
+`
+
+export const FundoEscuro = styled.div`
+    width:100%;height:100vh;display:flex;justify-content:center;color:white;
+    div{
+        background-color:#141414;width:80%;height:100vh;box-shadow: 0px 0px 40px 6px #141414;
+        display:flex;justify-content:center;flex-direction: column;align-items: center;
+        img{height:16%;position:absolute;opacity:0.6;top:10px;}
+        div{
+            display:flex;justify-content:center;align-items: center;
+            p{width:80%;text-align:center;margin-bottom:10px;}
+            input{width:200px;}
+            height:160px;margin-top:20px;background-color:white;border-radius:10px;border-color:none;
+            color:black;
+        }
+    }
+`
+
+export const Sair = styled.button`
+    width:200px;background-color:lightblue;border-radius:10px;border-color:transparent;
+    height:40px;font-size:20px;color:white;margin-top:20px;
+`
+
+export const Deletar = styled(Sair)`
+    background-color:red
+`

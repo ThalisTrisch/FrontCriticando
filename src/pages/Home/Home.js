@@ -2,16 +2,22 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Login from '../../components/Login'
 import { Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow, Apresentacao, Clouds, CloudText,
-    BestPosts,BestUsers } from './style.js'
+    BestPosts,BestUsers, Bemvindo, SecondPlace, FirstPlace, ThirdPlace, ImagePost, Podium,
+    TituloUsuarios, MelhoresPostagens, MsgDefault} from './style.js'
 import imagem from '../../images/backgroundhome.png'
+import clouds from '../../images/nuvens.png'
+import CardPostagemGrande from '../../components/CardPostagem.js'
+import { FaInfoCircle } from "react-icons/fa";
+import logo from '../../images/logotransparente.png'
+import {IoMdTrophy} from "react-icons/io"
 import FotoPerfil from '../../images/imagemusuariodefault.png';
-import CardPostagemGrande from '../../components/CardPostagemGrande.js'
-import { BiMenu } from "react-icons/bi";
-import { ImCloud } from "react-icons/im";
+import CreditBar from '../../components/CreditBar.js'
+import { useNavigate } from 'react-router-dom';
 
 function Home(){
     const [melhoresPostagens,setMelhoresPostagens] = useState();
     const [melhoresUsuarios,setMelhoresUsuarios] = useState();
+    const navigate = useNavigate();
 
     useEffect(()=> {
         axios.get('http://localhost:3001/getmelhorespostagens').then((res) => {
@@ -27,47 +33,32 @@ function Home(){
             <Image src={imagem}/>
             <Shadow></Shadow>
             <Nav>
-                <Logo>Logo</Logo>
-                <MenuBar><BiMenu/></MenuBar>
+                <Logo src={logo}></Logo>
+                <FaInfoCircle onClick={() => navigate('/informacoes')}/>
             </Nav>
-            <Msg>Bem vindo ao Criticando!</Msg>
-            <BackLogin>
-                <h2>Login</h2>
-                <Login></Login>
-                <p>Para entrar, faça login com o google</p>
-            </BackLogin>
+            <Bemvindo>
+                <div>
+                    <Msg>Bem vindo ao Criticando!</Msg>
+                </div>
+                <div>
+                    <BackLogin>
+                        <h2>Login</h2>
+                        <Login></Login>
+                        <p>Para entrar, faça login com o google</p>
+                    </BackLogin>
+                </div>
+            </Bemvindo>
             <Apresentacao>
-            <h2>Ao criar uma conta você terá acesso à maior plataforma <br></br> críticas à obras da internet. Assim poderá:</h2>
+                <div>
+                    <h2>Ao criar uma conta você terá acesso a maior plataforma <br></br> críticas à obras da internet. Assim poderá:</h2>
+                </div>
             </Apresentacao>
             <Clouds>
-                <div>
-                    <CloudText>Criar teorias</CloudText>
-                    <ImCloud></ImCloud>
-                </div>
-                <div>
-                    <CloudText>Ver outras críticas</CloudText>
-                    <ImCloud></ImCloud>
-                </div>
-                <div>
-                    <CloudText>interagir com <br></br>outros usuários</CloudText>
-                    <ImCloud></ImCloud>
-                </div>
-                <div>
-                    <CloudText>personalizar perfil</CloudText>
-                    <ImCloud></ImCloud>
-                </div>
-                <div>
-                    <CloudText>ter visibilidade</CloudText>
-                    <ImCloud></ImCloud>
-                </div>
-                <div>
-                    <CloudText>Criar teorias</CloudText>
-                    <ImCloud></ImCloud>
-                </div>
+               <img src={clouds}></img>
             </Clouds>
-            <BestPosts>
-                <h1>Melhores Postagens</h1>
-                { typeof melhoresPostagens !== "undefined" ?
+            <center><MelhoresPostagens>Melhores Postagens</MelhoresPostagens></center>
+            <BestPosts> 
+                {melhoresPostagens ?
                     melhoresPostagens.map((postagens) => {
                         return(
                             <CardPostagemGrande
@@ -76,28 +67,75 @@ function Home(){
                                 titulo={postagens.titulo}
                                 conteudo={postagens.conteudo}
                                 autor={postagens.nome}
+                                obra = {postagens.obra}
                                 email={postagens.email}
                                 foto={postagens.foto}
                                 imagem={postagens.imagem}
                                 background={postagens.bgimagem}
                                 stars={postagens.stars}
                                 comentarios={postagens.comentarios}
-                            ></CardPostagemGrande>
+                            />
                         )
-                    }):<p>Sem nenhuma postagem ainda</p>
+                    }):<center><MsgDefault>Sem nenhuma postagem ainda</MsgDefault></center>
                 }
             </BestPosts>
-            <BestUsers>
-                <h1>Usuários mais engajados</h1>
-                {typeof melhoresUsuarios !== "undefined" ?
-                    melhoresUsuarios.map((user) => {
-                        return(
-                            <p key={user.email}>melhores users:{user.nome}</p>
-                        )
-                    })
-                    : <p>Não há usuários</p>
-                }
-            </BestUsers>
+                <BestUsers>
+                    <h1>Usuários mais engajados</h1>
+                    {melhoresUsuarios ?
+                    <>
+                    <SecondPlace svgcolor={'silver'}>
+                        <div>
+                            {melhoresUsuarios[1] ?
+                                <>
+                                    {melhoresUsuarios[1].foto == 'imagemusuariodefault.png'?
+                                    <ImagePost src={FotoPerfil}/>: 
+                                    <ImagePost src={melhoresUsuarios[1].foto}/>}
+                                    <div>
+                                        <p>{melhoresUsuarios[1].nome}</p>
+                                        <IoMdTrophy></IoMdTrophy>
+                                    </div>
+                                </> : <p>Posição vazia</p>
+                            }
+                        </div>
+                        <Podium color={'silver'} tamanho={'220px'}><p>Second Place</p></Podium>
+                    </SecondPlace>
+                    <FirstPlace svgcolor={'gold'}>
+                        <div>
+                            {melhoresUsuarios[0] ?
+                                <>
+                                    {melhoresUsuarios[0].foto == 'imagemusuariodefault.png'?
+                                    <ImagePost src={FotoPerfil}/>: 
+                                    <ImagePost src={melhoresUsuarios[0].foto}/>}
+                                    <div>
+                                        <p>{melhoresUsuarios[0].nome}</p>
+                                        <IoMdTrophy></IoMdTrophy>
+                                    </div>
+                                    
+                                </> : <p>Posição vazia</p>
+                            }
+                        </div>
+                        <Podium color={'gold'} tamanho={'260px'}><p>First Place</p></Podium>
+                    </FirstPlace>
+                    <ThirdPlace svgcolor={'rgb(205, 127, 50)'}>
+                        <div>
+                            {melhoresUsuarios[2] ? 
+                                <>
+                                    {melhoresUsuarios[2].foto == 'imagemusuariodefault.png'?
+                                    <ImagePost src={FotoPerfil}/>: 
+                                    <ImagePost src={melhoresUsuarios[2].foto}/>}
+                                    <div>
+                                        <p>{melhoresUsuarios[2].nome}</p>
+                                        <IoMdTrophy></IoMdTrophy>
+                                    </div>
+                                </> : <p>Posição vazia</p>
+                            }
+                        </div>
+                        <Podium color={'brown'} tamanho={'180px'}><p>Third Place</p></Podium>
+                    </ThirdPlace>
+                    </>
+                    : <center><MsgDefault>Não há usuários no ranking ainda</MsgDefault></center>}
+                </BestUsers>
+            <CreditBar></CreditBar>
         </div>
     )
 }

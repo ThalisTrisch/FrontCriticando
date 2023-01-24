@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navigate , useNavigate , useParams } from 'react-router-dom';
 import { storage } from '../../firebase.js';
 import { ref , uploadBytesResumable , getDownloadURL } from 'firebase/storage';
-import { Nav, CampoImg , Logo} from './style.js'
+import { Nav, CampoImg , Logo, TituloTeoria, Form, FormImg, InputSeparado, BtnCriarPost} from './style.js'
 
 function InserirImagens(){
     const navigate = useNavigate();
@@ -69,35 +69,66 @@ function InserirImagens(){
         )
     }
     return(
-        <div>
+        <>
             <Nav>
-                <Logo>Criar Postagem</Logo>
+                <Logo>Inserir Imagens</Logo>
             </Nav>
-            <h2>Envio de imagens (opcional)</h2>
-            <form onSubmit={Uploadimage}>
-                <div>
-                    <input onChange={Uploadimage} type='file' name='image'/>
-                    <button type='submit'>enviar imagem</button>
-                    {!imagemURL && <progress value={imagemProgresso} max={100}/>}
-                    {imagemURL && 
-                    <CampoImg>
-                        <img src={imagemURL} alt='imagemUpload'/>
-                    </CampoImg>}
-                </div>
-            </form>
-            <form onSubmit={Uploadbackground}>
-                <div>
-                    <input type='file' name='image'/>
-                    <button type='submit'>enviar background</button>
-                    {!backgroundURL && <progress value={backgroundProgresso} max={100}/>}
-                    {backgroundURL &&
-                    <CampoImg>
-                        <img src={backgroundURL} alt='imagemUpload'/>
-                    </CampoImg>}
-                </div>
-            </form>
-            <button onClick={() => navigate('/principal')}>finalizar</button>
-        </div>
+            <center>
+                <TituloTeoria>Insira Imagens (Opcional)</TituloTeoria>
+                <p>Para enviar a imagem, Clique no botão do topo e posteriormente no botão de cor verde</p>
+            </center>
+            <FormImg>
+                <InputSeparado>
+                    <div>
+                        <form onSubmit={Uploadimage} >
+                            <div>
+                                <label name='image'>
+                                    <span>Imagem</span>
+                                    <input type='file' name='image' onChange={Uploadimage}/>
+                                </label>
+                            </div>
+                            <p>Dimensões da imagem: livre</p>
+                            <button type='submit'>enviar imagem</button>
+                        </form>
+                    </div>
+                    <div>
+                        {imagemURL 
+                        ? 
+                        <CampoImg>
+                            <img src={imagemURL} alt='imagemUpload'/>
+                        </CampoImg>
+                        :
+                        <CampoImg><progress value={imagemProgresso} max={100}/></CampoImg>
+                        }
+                    </div>
+                </InputSeparado>
+                <InputSeparado>
+                    <div>
+                        <form onSubmit={Uploadbackground} >
+                            <div>
+                                <label name='image'>
+                                    <span>Background</span>
+                                    <input type='file' name='image' onChange={Uploadbackground}/>
+                                </label>
+                            </div>
+                            <p>Preferencialmente: Insira uma imagem com proporções de computador (1980x1080px)</p>
+                            <button type='submit'>enviar background</button>
+                        </form>
+                    </div>
+                    <div>
+                        {backgroundURL 
+                        ? 
+                        <CampoImg>
+                            <img src={backgroundURL} alt='imagemUpload'/>
+                        </CampoImg>
+                        :
+                        <CampoImg><progress value={backgroundProgresso} max={100}/></CampoImg>
+                        }
+                    </div>
+                </InputSeparado>
+            </FormImg>
+            <center><BtnCriarPost onClick={() => navigate('/principal')}>finalizar</BtnCriarPost></center>
+        </>
     )
 }
 

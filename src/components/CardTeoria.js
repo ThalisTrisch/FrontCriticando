@@ -1,5 +1,6 @@
 import { useNavigate , Link } from 'react-router-dom'
-import { Global, BlocoUserTeoria, BlocoConteudoTeoria, BlocoAvaliacaoTeoria } from './style';
+import { Global, BlocoUserTeoria, BlocoConteudoTeoria, BlocoAvaliacaoTeoria, Teoria, Coluna, Texto,
+    AlternarLados} from './style';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
@@ -45,7 +46,6 @@ function CardTeoria(props){
         axios.get(`http://localhost:3001/getuseravaliacoes/${localStorage['useremail']}/${props.numero}`)
         .then((resultado)=>{
             setAvaliacao(resultado.data)
-            console.log(resultado.data[0])
         })
         
         axios.get(`http://localhost:3001/getaceitacao/${props.numero}`)
@@ -59,51 +59,57 @@ function CardTeoria(props){
     return(
         <center>
             <Global>
-                <table>
-                    <tr>
-                        <BlocoUserTeoria bgcolor="blue">
+                <Teoria>
+                    <BlocoUserTeoria>
+                        <div>
                             { props.foto == 'imagemusuariodefault.png' ?
                                 <img src={FotoPerfilPostagem}></img>: 
                                 <img src={props.foto}></img>
                             } 
                             <p>{props.autor}</p>
-                        </BlocoUserTeoria>
-                        <BlocoConteudoTeoria rowSpan={'2'} bgcolor="red">
-                            <h3>{props.titulo}</h3>
-                            <p>{props.conteudo}</p>
-                        </BlocoConteudoTeoria>
-                    </tr>
-                    <tr>
-                        <BlocoAvaliacaoTeoria bgcolor="yellow">
-                            <div>
+                        </div>
+                        <div>
+                            {aceitacao ?
+                                <>
+                                    <p>Aceitação: {aceitacao.aprovada}</p>
+                                    <p>reprovação: {aceitacao.reprovada}</p>
+                                </>
+                                : <p>Sem Avaliações</p>
+                            }
+                        </div>
+                    </BlocoUserTeoria>
+                    <BlocoConteudoTeoria rowSpan={'2'} bgcolor="red">
+                        <Coluna></Coluna>
+                        <Texto>
+                            <AlternarLados>
+                                <div>
+                                    <h3>{props.titulo}</h3>
+                                    <p>{props.conteudo}</p>
+                                </div>
+                                <div>
                                 {typeof avaliacao != "undefined" &&
                                     <>
-                                        {avaliacao[0]?
+                                        {avaliacao[0] ?
                                             <>
-                                            <button disabled>Aprovar</button>
-                                            <button disabled>Reprovar</button>
-                                        </>
-                                        :
-                                        <>
-                                            <button onClick={aprovar}>Aprovar</button>
-                                            <button onClick={reprovar}>Reprovar</button>
-                                        </>
+                                                <button disabled>Aprovar</button>
+                                                <button disabled>Reprovar</button>
+                                            </>
+                                            :
+                                            <>
+                                                <button onClick={aprovar}>Aprovar</button>
+                                                <button onClick={reprovar}>Reprovar</button>
+                                            </>
                                         }
                                     </>
                                 }
-                            </div>
-                            <div>
-                                {aceitacao ?
-                                    <>
-                                        <p>Aceitação: {aceitacao.aprovada}</p>
-                                        <p>reprovação: {aceitacao.reprovada}</p>
-                                    </>
-                                    : <p>Sem Avaliações</p>
-                                }
-                            </div>
-                        </BlocoAvaliacaoTeoria>
-                    </tr>
-                </table>
+                                </div>
+                            </AlternarLados>
+                        </Texto>
+                    </BlocoConteudoTeoria>
+                    {localStorage['useremail'] == props.email &&
+                        props.children
+                    }
+                </Teoria>
             </Global>
         </center>
     );

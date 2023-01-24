@@ -2,31 +2,41 @@ import Styled from 'styled-components';
 
 //Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow
 
-export const Nav = Styled.div`
-    background:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
+
+export const Logo = Styled.img`
+    width:200px
 `;
 
-export const Logo = Styled.p`
-    font-size:30px;margin:0px;padding-top:26px;padding-left:60px;width:300px;float:left;color:white
+export const Nav = Styled.div`
+    background:white; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
+    display:flex;justify-content:space-between;align-items:center;
+    svg{font-size:30px;margin-right:4%}
+    img{margin-left:4%}
+`;
+
+export const Bemvindo = Styled.div`
+    display:flex; justify-content:space-around;flex-wrap: wrap;align-items:center;height:80vh;
 `;
 
 export const Msg = Styled.p`
-    font-size:45px;margin-left:10%;margin-top:10%;font-weight:bold;color:white;
+    font-size:45px;font-weight:bold;color:white;margin-right:4%;margin-left:4%;
 `;
 
 export const Image = Styled.img`
-    width:100%;height:120vh;position:absolute;z-index:-1;filter: blur(2px);
+    width:100%;position:absolute;z-index:-1;filter: blur(2px);min-width:1000px;
 `;
 export const MenuBar = Styled.div`
     padding-top:35px;padding-right:40px; 
     * {
-        float:right;width:80px;height:30px;background-color:transparent;border-radius:20px;
-        font-size:40px;
+        font-size:40px;color:#141414;
     }
 `;
 export const BackLogin = Styled.div`
-    background: rgba(5, 5, 5, 0.6);height:200px;width:360px;border-radius:40px;border-Styled: solid;
-    float:right;margin-right:10%;margin-top:4%;border-color:rgba(120, 120, 120, 0.5);border-width: thin;
+    height:200px;width:320px;border-radius:20px;border-Styled: solid;background-color:#34173d;
+    float:right;border-width: thin;
+    background: rgba( 255, 255, 255, 0.35 );box-shadow: 0px 8px 40px 10px #141414;
+    backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );margin-right:4%;margin-left:4%;
     button{
         margin-left:30%;border-radius:10px;margin-top:12px;
     }
@@ -43,15 +53,27 @@ export const Shadow = Styled.div`
 `;
 
 export const Apresentacao = Styled.div`
-    margin-top:40%;text-align:center;margin-bottom:6%;
+    text-align:center;margin-bottom:6%;height:fit-content;
+    display:flex;justify-content:center;
+    @media screen and (min-width: 0px){margin-top:10%;}
+    @media screen and (min-width: 500px){margin-top:12%;}
+    @media screen and (min-width: 1000px){margin-top:20%;}
+    div{
+        padding:20px;border-radius:20px;width:360px;color:white;
+        box-shadow: 0px 20px 40px 6px #141414;
+        background: #34173d;
+        backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
+        border: 1px solid rgba(47,23,86,0.8);
+    }
+    
 `;
 
 export const Clouds = Styled.div`
-    display:flex;flex-wrap: wrap;
-    svg{
-        font-size:200px;width:240px;z-index:10;color:cyan;
-    }div{
-        width:220px;
+    background-image:url('https://services.meteored.com/img/article/o-que-torna-o-ceu-azul-195151-1_768.jpg');
+    width:100%;background-position:center;background-size:cover;background-repeat: no-repeat;
+    display:flex;justify-content:center;margin-bottom:40px;
+    img{
+        width:60%;min-width:380px;
     }
 `;
 
@@ -60,14 +82,55 @@ export const CloudText = Styled.p`
 `
 
 export const BestPosts = Styled.div`
-    h1{
-        text-align:center
-    }
+    p{width:fit-content}
 `
 
 export const BestUsers = Styled.div`
-    margin-top:60px;
-    h1{
-        text-align:center
-    }
+    margin-top:40px;display:flex;flex-wrap: wrap;justify-content: center;align-items: flex-end;
+    background-color: lightgray;margin-bottom:60px;
+    h1{text-align:center;width:100%;margin-bottom:40px;margin-top:20px;}
+`
+
+
+export const FirstPlace = Styled.div`
+    width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
+    align-content: center;margin-top:20px;
+    svg{color: ${props => props.svgcolor}}
+    div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
+}}
+`
+
+export const SecondPlace = Styled.div`
+    width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
+    align-content: center;margin-top:20px;
+    svg{color: ${props => props.svgcolor}}
+    div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
+`
+
+export const ThirdPlace = Styled.div`
+    width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
+    align-content: center;margin-top:20px;
+    svg{color: ${props => props.svgcolor}}
+    div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
+`
+
+export const ImagePost = Styled.img`
+    width:60px;height:60px;border-radius:120px;
+`;
+
+export const Podium = Styled.div`
+    background-color: ${(props) => props.color};width:180px;height:${props => props.tamanho};
+    display:flex;justify-content: center;border-radius: 6px 6px 0px 0px;
+    *{margin-top:60px;font-size:26px;}
+`
+
+export const TituloUsuarios = Styled.h1`
+    text-align:center;
+`
+
+export const MsgDefault = Styled.p`
+    font-size:16px;margin-bottom:40px;
+`
+export const MelhoresPostagens = Styled.h1`
+    margin-bottom:40px;
 `
