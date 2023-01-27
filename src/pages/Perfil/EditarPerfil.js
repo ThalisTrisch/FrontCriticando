@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect , useState } from 'react';
 import { Logo, PerfilNav, FotoPerfilE , DadosPerfil , PostTitulo, ConfigPost, Editar, Deletar,
     AreaEditar, UploadImg, TopBar, CardInfoUser, InfoUser, InputRedes, SubmitEdit, InputDados,
-    FormularioUpload, BtnDelete, Desc } from './style.js'
+    FormularioUpload, BtnDelete, Desc, Npost} from './style.js'
 import CardPostagem from '../../components/CardPostagemEdit.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { storage } from '../../firebase.js';
@@ -22,7 +22,7 @@ function EditarPerfil(){
     const [redesSociais,setRedesSociais] = useState('');
     const [dados,setDados] = useState('');
     const [usuario,setUsuario] = useState('');
-    const [listaPostagem, setListaPostagem] = useState();
+    const [listaPostagem, setListaPostagem] = useState(undefined);
     const [imagemURL, setImagemURL] = useState('');
     const now = new Date;
 
@@ -98,7 +98,9 @@ function EditarPerfil(){
             setDados((prevPostagem) => ({...prevPostagem,['bio']: response.data[0].biografia}))
         })
         axios.post('http://localhost:3001/getpostagem/meuperfil', {email: localStorage['useremail']}).then((response)=>{
-            setListaPostagem(response.data)
+            if(response.data.length > 0){
+                setListaPostagem(response.data)
+            }
         })
         axios.get('http://localhost:3001/getredessociais/'+localStorage['useremail']).then((response)=>{
             console.log(response.data[0])
@@ -122,7 +124,7 @@ function EditarPerfil(){
                 </div>
                 <div>
                     <button onClick={() => navigate('/meuperfil')}>meu perfil</button>
-                    <AiFillSetting></AiFillSetting>
+                    <AiFillSetting onClick={() => navigate('/configuracoes')}></AiFillSetting>
                 </div>
             </TopBar>
             <PerfilNav>
@@ -168,41 +170,6 @@ function EditarPerfil(){
                     </CardInfoUser>
                 </InfoUser>
             </PerfilNav>
-                {/* <FormularioUpload>
-                    <form onSubmit={Uploadfoto}>
-                        <UploadImg>
-                            <label name='image'>
-                                <span>nova foto de perfil</span>
-                                <input type='file' name='image'/>
-                            </label>
-                            <button type='submit'>enviar imagem</button>
-                        </UploadImg>
-                    </form>
-                </FormularioUpload> */}
-                {/* <InputSeparado>
-                    <div>
-                        <form onSubmit={Uploadbackground} >
-                            <div>
-                                <label name='image'>
-                                    <span>Background</span>
-                                    <input type='file' name='image' onChange={Uploadbackground}/>
-                                </label>
-                            </div>
-                            <p>Preferencialmente: Insira uma imagem com proporções de computador (1980x1080px)</p>
-                            <button type='submit'>enviar background</button>
-                        </form>
-                    </div>
-                    <div>
-                        {backgroundURL 
-                        ? 
-                        <CampoImg>
-                            <img src={backgroundURL} alt='imagemUpload'/>
-                        </CampoImg>
-                        :
-                        <CampoImg><progress value={backgroundProgresso} max={100}/></CampoImg>
-                        }
-                    </div>
-                </InputSeparado> */}
                 <center>
                 <PostTitulo>Editar Perfil</PostTitulo>
                 <AreaEditar>
@@ -233,7 +200,7 @@ function EditarPerfil(){
                             <p>Instagram:</p>
                             <input 
                                 id='insta'
-                                type='text' 
+                                type='url' 
                                 name='insta' 
                                 placeholder='https://www.instagram.com/nome_de_usuario'
                                 onChange={mudarDadosRedes}
@@ -241,7 +208,7 @@ function EditarPerfil(){
                             <p>Facebook:</p>
                             <input 
                                 id='face'
-                                type='text' 
+                                type='url' 
                                 name='face' 
                                 placeholder='https://pt-br.facebook.com/nome_de_usuario'
                                 onChange={mudarDadosRedes}
@@ -249,7 +216,7 @@ function EditarPerfil(){
                             <p>Twitter:</p>
                             <input 
                                 id='twitter'
-                                type='text' 
+                                type='url' 
                                 name='twitter' 
                                 placeholder='https://twitter.com/nome_de_usuario'
                                 onChange={mudarDadosRedes}
@@ -258,7 +225,12 @@ function EditarPerfil(){
                     </InputRedes>
                 </AreaEditar>
                 <SubmitEdit><button onClick={AtualizarDados}>Editar perfil</button></SubmitEdit>
-                <PostTitulo>Suas postagens</PostTitulo>
+                <center>
+                <PostTitulo>Suas Postagens</PostTitulo>
+                {listaPostagem == undefined
+                    &&<Npost><p>Não há nenhuma postagem ainda</p></Npost>
+                }
+                </center>
                 {listaPostagem &&
                     listaPostagem.map((postagens) => {
                         return(

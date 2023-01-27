@@ -22,6 +22,7 @@ function CriarPostagem(){
         const apiSearchResponse = await fetch(urlSearchMovies)
         const resMovies = await apiSearchResponse.json()
         setPesquisarObras(resMovies.results)
+        setObraSelecionada(resMovies.results[0])
     }
 
     const mudarValoresPostagem = (value) => {
@@ -29,7 +30,7 @@ function CriarPostagem(){
             ...prevPostagem,
             [value.target.name]: value.target.value
         }))
-    }
+    }       
 
     const mudarValoresCategoria = (value) => {setCategoriaSelecionada(value.target.value)}
     const mudarValoresObra = (value) => {setObras(value.target.value)}
@@ -50,27 +51,29 @@ function CriarPostagem(){
     }
 
     async function Criarpost(){
-        const {data} = await axios.get('http://localhost:3001/getidpostagem')
-        console.log(data)
-        const datahoje = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`
-        axios.post('http://localhost:3001/criarpostagem', {
-            titulo: postagem.titulo,
-            conteudo: postagem.conteudo,
-            id: postagem.id,
-            email: localStorage['useremail'],
-            obra: obraSelecionada.title,
-            obraid: obraSelecionada.id,
-            categoria:  categoriaSelecionada,
-            adult: obraSelecionada.adult,
-            linguagem: obraSelecionada.original_language,
-            lancamento: obraSelecionada.release_date,
-            genero: obraSelecionada.genres,
-            data: datahoje
-        })
-        console.log(`Id da postagem criada: ${data[0].id+1}`)
-        navigate('/criarpostagem/inseririmagens/'+(data[0].id+1))
+            const {data} = await axios.get('http://localhost:3001/getidpostagem')
+            var idpost = 1
+            if(data.length > 0){
+                idpost = data.id+1
+            }
+            const datahoje = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}`
+            axios.post('http://localhost:3001/criarpostagem', {
+                titulo: postagem.titulo,
+                conteudo: postagem.conteudo,
+                id: idpost,
+                email: localStorage['useremail'],
+                obra: obraSelecionada.title,
+                obraid: obraSelecionada.id,
+                categoria:  categoriaSelecionada,
+                adult: obraSelecionada.adult,
+                linguagem: obraSelecionada.original_language,
+                lancamento: obraSelecionada.release_date,
+                genero: obraSelecionada.genres,
+                data: datahoje
+            })
+            console.log(`Id da postagem criada: ${idpost}`)
+            navigate(`/criarpostagem/inseririmagens/${idpost+1}`)
     }
-
     return(
         <>
             <Nav>

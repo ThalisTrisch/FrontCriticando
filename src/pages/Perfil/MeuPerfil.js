@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Navigate , useNavigate } from 'react-router-dom';
 import { useEffect , useState } from 'react';
 import { Logo, PerfilNav, FotoPerfilE , DadosPerfil , PostTitulo, InfoUser, TopBar, CardInfoUser, 
-    Bio,IconsRedes, Desc } from './style.js'
+    Bio,IconsRedes, Desc, Npost } from './style.js'
 import CardPostagem from '../../components/CardPostagemGrande.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { BsInstagram,BsFacebook,BsTwitter } from 'react-icons/bs';
@@ -17,13 +17,17 @@ function MeuPerfil(){
     const navigate = useNavigate()
     const [dados,setDados] = useState('');
     const [usuario,setUsuario] = useState('');
-    const [listaPostagem,setListaPostagem] = useState();
+    const [listaPostagem,setListaPostagem] = useState(undefined);
 
     useEffect(()=>{
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`)
         .then((message) => {setUsuario(message.data[0])})
         axios.post('http://localhost:3001/getpostagem/meuperfil', {email: localStorage['useremail']})
-        .then((message) => {setListaPostagem(message.data)})
+        .then((response) => {
+            if(response.data.length > 0){
+                setListaPostagem(response.data);
+            }
+        })
         document.title = 'Criticando - '+localStorage['usernome'];
         axios.get(`http://localhost:3001/getdados/${localStorage['useremail']}`).then((response)=>{
             setDados(response.data)
@@ -44,8 +48,8 @@ function MeuPerfil(){
             </TopBar>
             <PerfilNav>
                 <DadosPerfil>
-                    <h2>{usuario.nome}</h2>
-                    <p>{usuario.email}</p>
+                    <h2>{localStorage['usernome']}</h2>
+                    <p>{localStorage['useremail']}</p>
                     <Bio>{usuario.biografia}</Bio>
                     {usuario.foto == 'imagemusuariodefault.png'?
                     <FotoPerfilE src={FotoPerfil}></FotoPerfilE>: 
@@ -85,9 +89,11 @@ function MeuPerfil(){
                     </CardInfoUser>
                 </InfoUser>
             </PerfilNav>
-            
             <center>
-            <PostTitulo>Suas postagens</PostTitulo>
+            <PostTitulo>Postagens</PostTitulo>
+            {listaPostagem == undefined
+                && <Npost><p>Não há nenhuma postagem ainda</p></Npost>
+            }
             {typeof listaPostagem !== "undefined" &&
                 listaPostagem.map((obras)=>{
                     return(

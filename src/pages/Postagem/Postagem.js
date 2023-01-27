@@ -17,7 +17,6 @@ function Postagem(){
     const [newComentario,setNewComentario] = useState('');
     const navigate = useNavigate()
     const {id} = useParams()
-    
 
     const changecomentario = (value) => {setNewComentario(value.target.value)}
 
@@ -61,8 +60,7 @@ function Postagem(){
     }
 
     function salateoria(){
-        usuario.veravisoteoria=='perguntar'? navigate('/aviso/teoria/'+id) : navigate('/postagem/teoria/'+id)
-        
+        usuario.salateorias=='perguntar'? navigate('/aviso/teoria/'+id) : navigate('/postagem/teoria/'+id)
     }
     useEffect(()=>{
         axios.get(`http://localhost:3001/getcomentario/${id}`).then((response) => {
@@ -123,7 +121,8 @@ function Postagem(){
                     {postagem.foto == 'imagemusuariodefault.png'?
                         <ImagePost src={FotoPerfil} onClick={() => navigate('/perfil/'+postagem.email)}/>: 
                         <ImagePost src={postagem.foto} onClick={() => navigate('/perfil/'+postagem.email)}/>}
-                    <p>{postagem.nome}</p>
+                    <p onClick={() => navigate('/perfil/'+postagem.email)}>{postagem.nome}</p>
+                    <p>Postado em: {postagem.data}</p>
                 </ConteudoFinal>
             </ConteudoPostagem>
             <Coments>

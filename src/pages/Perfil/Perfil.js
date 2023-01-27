@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Navigate , useNavigate, useParams} from 'react-router-dom';
 import { useEffect , useState } from 'react';
 import { Logo, PerfilNav, FotoPerfilE , DadosPerfil , PostTitulo, InfoUser, TopBar, CardInfoUser, 
-    Bio,IconsRedes, Desc, Follow, Unfollow} from './style.js'
+    Bio,IconsRedes, Desc, Follow, Unfollow, Npost} from './style.js'
 import CardPostagem from '../../components/CardPostagemGrande.js'
 import Logout from '../../components/Logout.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
@@ -19,7 +19,7 @@ function Perfil(){
     const [seguindo, setSeguindo] = useState(false)
     const [dados,setDados] = useState('');
     const [usuario,setUsuario] = useState('');
-    const [listaPostagem,setListaPostagem] = useState();
+    const [listaPostagem,setListaPostagem] = useState(undefined);
 
     function seguir(){
         axios.post(`http://localhost:3001/seguirperfil`,{
@@ -41,7 +41,11 @@ function Perfil(){
         axios.get(`http://localhost:3001/getuser/${email}`)
         .then((message) => {setUsuario(message.data[0])})
         axios.post('http://localhost:3001/getpostagem/meuperfil', {email: email})
-        .then((message) => {setListaPostagem(message.data)})
+        .then((response) => {
+            if(response.data.length > 0){
+                setListaPostagem(response.data);
+            }
+        })
         document.title = 'Criticando - '+localStorage['usernome'];
         axios.get(`http://localhost:3001/getdados/${email}`).then((response)=>{
             setDados(response.data)
@@ -113,9 +117,11 @@ function Perfil(){
                     </CardInfoUser>
                 </InfoUser>
             </PerfilNav>
-            
             <center>
             <PostTitulo>Postagens</PostTitulo>
+            {listaPostagem == undefined
+                && <Npost><p>Não há nenhuma postagem ainda</p></Npost>
+            }
             {typeof listaPostagem !== "undefined" &&
                 listaPostagem.map((obras)=>{
                     return(

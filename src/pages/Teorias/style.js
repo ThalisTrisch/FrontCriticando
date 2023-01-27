@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const Logo = styled.p`
-    font-size:30px;margin:0px;padding-top:26px;padding-left:60px;width:300px;float:left;color:white
+export const Logo = styled.img`
+    width:190px;height:auto;padding-top:10px;padding-left:40px
 `;
 export const Nav = styled.div`
-    background:grey; height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
+    background:rgba(47,23,86,1); height: 100px;border:grey,1px,solid;border-radius:0px 0px 40px 0px;
 `;
 
 export const LargeNav = styled.div`
@@ -179,7 +179,7 @@ export const TelaAviso = styled.div`
 `
 
 export const CardAviso = styled.div`
-    background-color:grey;height:400px;width:80%;max-width:500px;border-radius:40px;display:flex;
+    background-color:rgba(223, 218, 235,1);height:400px;width:80%;max-width:500px;border-radius:40px;display:flex;
     justify-content: center;align-items: center;flex-direction: column;margin-top:60px;
 `
 
@@ -190,17 +190,17 @@ export const Aviso = styled.div`
 
 export const BtnTeoria = styled.div`
     margin-top:40px;
-    label{
-        
+    p{
+        margin-bottom:2px;margin-left:10px;
     }
     input{
-        height:20px;width:20px;
+        height:20px;width:20px;cursor:pointer;background-color:transparent;
     }
     button{
-        width:80px;height:30px;border-radius:20px;margin:10px
+        width:80px;height:30px;border-radius:20px;margin:10px;cursor:pointer;
     }
     div{
-        display:flex;justify-content: center
+        display:flex;justify-content: center;
     }
 `
 
@@ -232,4 +232,19 @@ export const RemoverTeoria = styled.div`
 
 export const ImagemPost = styled.img`
     width:60%;margin-bottom:20px;border-radius:20px;opacity:0.8
+`
+
+
+export const Pass = styled.button`
+    border-color:transparent;background-color:rgba(47,23,86,0.8);color:white
+`
+
+export const Back = styled(Pass)`
+    background-color:#141414
+`
+
+
+export const Npost = styled.div`
+    display:flex;justify-content: center;align-content:center;align-items: center;height:60vh;
+    p{text-align:center;}
 `

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Login from '../../components/Login'
 import { Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow, Apresentacao, Clouds, CloudText,
     BestPosts,BestUsers, Bemvindo, SecondPlace, FirstPlace, ThirdPlace, ImagePost, Podium,
-    TituloUsuarios, MelhoresPostagens, MsgDefault} from './style.js'
+    TituloUsuarios, MelhoresPostagens, MsgDefault, Npost} from './style.js'
 import imagem from '../../images/backgroundhome.png'
 import clouds from '../../images/nuvens.png'
 import CardPostagemGrande from '../../components/CardPostagem.js'
@@ -15,13 +15,15 @@ import CreditBar from '../../components/CreditBar.js'
 import { useNavigate } from 'react-router-dom';
 
 function Home(){
-    const [melhoresPostagens,setMelhoresPostagens] = useState();
+    const [melhoresPostagens,setMelhoresPostagens] = useState(undefined);
     const [melhoresUsuarios,setMelhoresUsuarios] = useState();
     const navigate = useNavigate();
 
     useEffect(()=> {
         axios.get('http://localhost:3001/getmelhorespostagens').then((res) => {
-            setMelhoresPostagens(res.data)
+            if(res.data.length>0){
+                setMelhoresPostagens(res.data)
+            }
         })
         axios.get('http://localhost:3001/getmelhoresusuarios').then((res) => {
             setMelhoresUsuarios(res.data)
@@ -57,8 +59,11 @@ function Home(){
                <img src={clouds}></img>
             </Clouds>
             <center><MelhoresPostagens>Melhores Postagens</MelhoresPostagens></center>
+            {melhoresPostagens == undefined
+                && <Npost><p>Sem nenhuma postagem ainda</p></Npost>
+            }
             <BestPosts> 
-                {melhoresPostagens ?
+                {melhoresPostagens &&
                     melhoresPostagens.map((postagens) => {
                         return(
                             <CardPostagemGrande
@@ -76,7 +81,7 @@ function Home(){
                                 comentarios={postagens.comentarios}
                             />
                         )
-                    }):<center><MsgDefault>Sem nenhuma postagem ainda</MsgDefault></center>
+                    })
                 }
             </BestPosts>
                 <BestUsers>
@@ -97,7 +102,7 @@ function Home(){
                                 </> : <p>Posição vazia</p>
                             }
                         </div>
-                        <Podium color={'silver'} tamanho={'220px'}><p>Second Place</p></Podium>
+                        <Podium color={'silver'} tamanho={'220px'}><p>2º lugar</p></Podium>
                     </SecondPlace>
                     <FirstPlace svgcolor={'gold'}>
                         <div>
@@ -114,7 +119,7 @@ function Home(){
                                 </> : <p>Posição vazia</p>
                             }
                         </div>
-                        <Podium color={'gold'} tamanho={'260px'}><p>First Place</p></Podium>
+                        <Podium color={'gold'} tamanho={'260px'}><p>1º lugar</p></Podium>
                     </FirstPlace>
                     <ThirdPlace svgcolor={'rgb(205, 127, 50)'}>
                         <div>
@@ -130,7 +135,7 @@ function Home(){
                                 </> : <p>Posição vazia</p>
                             }
                         </div>
-                        <Podium color={'brown'} tamanho={'180px'}><p>Third Place</p></Podium>
+                        <Podium color={'brown'} tamanho={'180px'}><p>3º lugar</p></Podium>
                     </ThirdPlace>
                     </>
                     : <center><MsgDefault>Não há usuários no ranking ainda</MsgDefault></center>}

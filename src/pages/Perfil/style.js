@@ -285,3 +285,8 @@ export const Follow = styled.button`
 export const Unfollow = styled(Follow)`
     border-color:red;background-color:red;color:white
 `
+
+export const Npost = styled.div`
+    display:flex;justify-content: center;align-content:center;align-items: center;height:60vh;
+    p{text-align:center;}
+`

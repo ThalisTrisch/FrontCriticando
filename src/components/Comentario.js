@@ -54,7 +54,7 @@ function Comentario(props){
                     <IconUser src={props.foto} onClick={() => navigate('/meuperfil')} />}
                 <p>{props.nome}</p>
             </User>
-            <Conteudo>
+            <Conteudo wrap="hard">
                 <p>{props.resposta}</p>
             </Conteudo>
             <Opcoes>

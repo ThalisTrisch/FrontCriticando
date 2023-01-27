@@ -160,7 +160,7 @@ export const BotaoSelecionadoMenor = styled(BotaoLayoutMenor)`
 `;
 
 export const FilterBar = styled(Nav)`
-    background-image: none;background-color:rgba(223, 218, 235,0.8);border-radius:0px 0px 80px 0px;height:140px;display:flex;
+    background-image: none;background-color:rgba(47,23,86,0.8);border-radius:0px 0px 80px 0px;height:140px;display:flex;
     div{
         width:100%;
     }h3{
@@ -202,4 +202,9 @@ export const GenreSpace = styled.div`
 
 export const DivCardColunas = styled.div`
     display:flex;justify-content: space-around;flex-wrap: wrap;max-width:800px;
+`
+
+export const Npost = styled.div`
+    display:flex;justify-content: center;align-content:center;align-items: center;height:60vh;
+    p{text-align:center;}
 `

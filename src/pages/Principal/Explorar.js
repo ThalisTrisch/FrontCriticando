@@ -6,8 +6,8 @@ import CardPostagemMedio from '../../components/CardPostagemExtraGrande.js'
 import CardPostagemPequeno from '../../components/CardPostagemPequeno.js'
 import CardGeneros from '../../components/CardGeneros.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
-import { LogoExplorar, Nav, Bar, BtnPesq, CampoPesq, FotoPerfilD, Blackout,
-    BotaoSelecionado, BotaoLayout, FilterBar, Filter, GenreSpace, ExplorarBar, DivCardColunas} from './style.js'
+import { LogoExplorar, Nav, Bar, BtnPesq, CampoPesq, FotoPerfilD, Blackout,FilterBar, Filter,
+    GenreSpace, ExplorarBar, DivCardColunas, Npost} from './style.js'
 import { BsSearch, BsFillSquareFill } from "react-icons/bs";
 import { TfiLayoutGrid3Alt,TfiLayoutGrid2Alt } from "react-icons/tfi";
 import logo from '../../images/logofullbranca.png';
@@ -60,7 +60,9 @@ function Principal(){
         setlistaFiltrados()
         setlistaGeneroFiltrados()
         axios.get(`http://localhost:3001/getpostagensdetalhadas`).then((response)=>{
-            setListaPostagem(response.data);
+            if(response.data.length > 0){
+                setListaPostagem(response.data);
+            }
         })
         filtrargenero(generoFiltrado)
     }
@@ -179,7 +181,6 @@ function Principal(){
             }
             </DivCardColunas>
             </center>
-            <CreditBar></CreditBar>
         </div>
     )
 }

@@ -21,7 +21,7 @@ export const Titulo = styled.div`
     margin-left:25px;text-align:center;box-shadow: 0px 4px 10px -4px black;
     display:flex;align-content:center;align-items: center;
     p{
-        font-size:18px;color:black;margin-left:10px;width:98%;
+        font-size:18px;color:black;margin-left:10px;width:98%;text-align:center;
     }
 `;
 

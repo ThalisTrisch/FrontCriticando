@@ -15,9 +15,9 @@ function CardGeneros({obra,genero,filtrar,generofiltrado}){
     return(
         <>
             {generofiltrado == genero ?
-            <GenreButton color={cor} onClick={() => filtrar(genero)}><strong>{genero}</strong></GenreButton>
-            :
             <SelectGenreButton color={cor} onClick={() => filtrar(genero)}><strong>{genero}</strong></SelectGenreButton>
+            :
+            <GenreButton color={cor} onClick={() => filtrar(genero)}><strong>{genero}</strong></GenreButton>
             }
             </>
     );

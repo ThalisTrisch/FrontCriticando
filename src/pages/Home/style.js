@@ -24,6 +24,7 @@ export const Msg = Styled.p`
 
 export const Image = Styled.img`
     width:100%;position:absolute;z-index:-1;filter: blur(2px);min-width:1000px;
+    border-bottom:4px solid black;
 `;
 export const MenuBar = Styled.div`
     padding-top:35px;padding-right:40px; 
@@ -53,8 +54,7 @@ export const Shadow = Styled.div`
 `;
 
 export const Apresentacao = Styled.div`
-    text-align:center;margin-bottom:6%;height:fit-content;
-    display:flex;justify-content:center;
+    text-align:center;margin-bottom:6%;height:fit-content;display:flex;justify-content:center;
     @media screen and (min-width: 0px){margin-top:10%;}
     @media screen and (min-width: 500px){margin-top:12%;}
     @media screen and (min-width: 1000px){margin-top:20%;}
@@ -71,7 +71,8 @@ export const Apresentacao = Styled.div`
 export const Clouds = Styled.div`
     background-image:url('https://services.meteored.com/img/article/o-que-torna-o-ceu-azul-195151-1_768.jpg');
     width:100%;background-position:center;background-size:cover;background-repeat: no-repeat;
-    display:flex;justify-content:center;margin-bottom:40px;
+    display:flex;justify-content:center;margin-bottom:40px;border-bottom:2px solid #141414;
+    border-top:2px solid #141414;
     img{
         width:60%;min-width:380px;
     }
@@ -86,32 +87,37 @@ export const BestPosts = Styled.div`
 `
 
 export const BestUsers = Styled.div`
-    margin-top:40px;display:flex;flex-wrap: wrap;justify-content: center;align-items: flex-end;
-    background-color: lightgray;margin-bottom:60px;
+    margin-top:80px;display:flex;flex-wrap: wrap;justify-content: center;align-items: flex-end;
+    background-color: lightgray;margin-bottom:60px;border-top:2px solid #141414;border-bottom:2px solid #141414;
     h1{text-align:center;width:100%;margin-bottom:40px;margin-top:20px;}
 `
 
 
 export const FirstPlace = Styled.div`
     width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
-    align-content: center;margin-top:20px;
+    align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
     div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
-}}
+        flex-direction: column
+    }
 `
 
 export const SecondPlace = Styled.div`
     width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
-    align-content: center;margin-top:20px;
+    align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
     div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
+        justify-content: center
+    }
 `
 
 export const ThirdPlace = Styled.div`
     width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
-    align-content: center;margin-top:20px;
+    align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
     div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
+        justify-content: center;
+    }
 `
 
 export const ImagePost = Styled.img`
@@ -131,6 +137,12 @@ export const TituloUsuarios = Styled.h1`
 export const MsgDefault = Styled.p`
     font-size:16px;margin-bottom:40px;
 `
+
 export const MelhoresPostagens = Styled.h1`
     margin-bottom:40px;
+`
+
+export const Npost = Styled.div`
+    display:flex;justify-content: center;align-content:center;align-items: center;height:60vh;
+    p{text-align:center;}
 `

@@ -1,6 +1,6 @@
 import { useNavigate , Link } from 'react-router-dom'
 import { Global, BlocoUserTeoria, BlocoConteudoTeoria, BlocoAvaliacaoTeoria, Teoria, Coluna, Texto,
-    AlternarLados} from './style';
+    AlternarLados, Reprovar, Aprovar} from './style';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import FotoPerfilPostagem from '../images/imagemusuariodefault.png';
@@ -63,10 +63,10 @@ function CardTeoria(props){
                     <BlocoUserTeoria>
                         <div>
                             { props.foto == 'imagemusuariodefault.png' ?
-                                <img src={FotoPerfilPostagem}></img>: 
-                                <img src={props.foto}></img>
+                                <img src={FotoPerfilPostagem} onClick={() => navigate('/perfil/'+postagem.email)}></img>: 
+                                <img src={props.foto} onClick={() => navigate('/perfil/'+postagem.email)}></img>
                             } 
-                            <p>{props.autor}</p>
+                            <p onClick={() => navigate('/perfil/'+postagem.email)}>{props.autor}</p>
                         </div>
                         <div>
                             {aceitacao ?
@@ -91,13 +91,13 @@ function CardTeoria(props){
                                     <>
                                         {avaliacao[0] ?
                                             <>
-                                                <button disabled>Aprovar</button>
-                                                <button disabled>Reprovar</button>
+                                                <Aprovar disabled>Aprovar</Aprovar>
+                                                <Reprovar disabled>Reprovar</Reprovar>
                                             </>
                                             :
                                             <>
-                                                <button onClick={aprovar}>Aprovar</button>
-                                                <button onClick={reprovar}>Reprovar</button>
+                                                <Aprovar onClick={aprovar}>Aprovar</Aprovar>
+                                                <Reprovar onClick={reprovar}>Reprovar</Reprovar>
                                             </>
                                         }
                                     </>

@@ -65,7 +65,7 @@ export const User = Styled.div`
 export const Conteudo = Styled.div`
     width:100%;border-color:black;border:2px;display:flex;align-items: center;
     background-color:lightGrey;
-    p{text-align:left;width:100%;font-size:14px;margin-right:10px;margin-left:10px;}
+    p{text-align:left;max-width:100%;width:90%;font-size:14px;margin-right:10px;margin-left:10px;}
 `;
 
 export const Opcoes = Styled.div`
@@ -82,13 +82,13 @@ export const Opcoes = Styled.div`
     }
 `
 
-export const GenreButton = Styled.button`
+export const SelectGenreButton = Styled.button`
     border-radius:10px;background-color:${(props) => props.color};width:fit-content;
-    border-width:0px;margin:2px;justify-content: center;
+    border-width:0px;margin:4px;justify-content: center;border:2px solid white;color:white;
 `
 
-export const SelectGenreButton = Styled(GenreButton)`
-    border-width:2px;border-color:white;margin:2px;
+export const GenreButton = Styled(SelectGenreButton)`
+    border:3px solid black;border-left:none;border-bottom:none;color:black;
 `
 
 export const Teoria = Styled.div`
@@ -118,10 +118,20 @@ export const AlternarLados = Styled.div`
 
 export const Bar = Styled.div`
     width:100%;display:flex;justify-content:space-around;align-items: center;background-color:#141414;
-    height:120px;color:white;margin-bottom: 0px;position:absolute;margin-top:19%;
+    height:120px;color:white;margin-bottom: 0px;position:absolute;margin-top:40px;
     img{height:60px;width:auto;}
 `
 
 export const Logo = Styled.img`
     width:180px;
+`;
+
+
+export const Aprovar = Styled.button`
+    border: 2px solid white;background-color:lightgreen;
+`;
+
+
+export const Reprovar = Styled(Aprovar)`
+    background-color:lightcoral;
 `;

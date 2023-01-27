@@ -6,7 +6,7 @@ import CardPostagemExtraGrande from '../../components/CardPostagemExtraGrande.js
 import CardPostagemPequeno from '../../components/CardPostagemPequeno.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { Logo, Nav, CriarPost, Bar, FotoPerfilD, Blackout, BotaoSelecionado, BotaoSelecionadoMenor,
-    BotaoLayoutMenor,BotaoLayout, Layouts, Explorar, Postagens, DivCardColunas } from './style.js'
+    BotaoLayoutMenor,BotaoLayout, Layouts, Explorar, Postagens, DivCardColunas, Npost } from './style.js'
 import { BsSearch, BsFillSquareFill } from "react-icons/bs";
 import { TfiLayoutGrid3Alt,TfiLayoutGrid2Alt } from "react-icons/tfi";
 import { IoIosAddCircle } from "react-icons/io";
@@ -15,7 +15,7 @@ import logo from '../../images/logobranca.png'
 import CreditBar from "../../components/CreditBar.js"
 
 function Principal(){
-    const [listaPostagem,setListaPostagem] = useState();
+    const [listaPostagem,setListaPostagem] = useState(undefined);
     const [blackout,setBlackout] = useState(true)
     const [layout, setLayout] = useState('medio')
     const [usuario, setUsuario] = useState('');
@@ -26,7 +26,9 @@ function Principal(){
 
     function buscarpostagem(){
         axios.get(`http://localhost:3001/getpostagens`).then((response)=>{
-            setListaPostagem(response.data);
+            if(response.data.length > 0){
+                setListaPostagem(response.data);
+            }
         })
     }
 
@@ -75,8 +77,8 @@ function Principal(){
                 </Bar>
             </center>
             <Postagens>
-            {!listaPostagem &&
-                <center><p>Não há nenhuma postagem ainda, seja o primeiro!</p></center>
+            {listaPostagem == undefined &&
+                <Npost><p>Não há nenhuma postagem ainda, seja o primeiro!</p></Npost>
             }
             {listaPostagem && layout == 'grande' &&
                 listaPostagem.map((postagens) => {
