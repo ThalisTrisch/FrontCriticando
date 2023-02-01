@@ -68,7 +68,7 @@ export const PerfilNav = styled.div`
 `;
 
 export const DadosPerfil = styled.div`
-    width:fit-content;margin-top:60px;margin-left:20px;margin-right:20px;color:whitesmoke;
+    min-width: 240px;width:fit-content;margin-top:60px;margin-left:20px;margin-right:20px;color:whitesmoke;
     h2{
         font-size:30px
     }
@@ -183,7 +183,7 @@ export const CardInfoUser = styled.div`
     width:80%;max-width:400px;height:160px;background-color:rgba(223, 218, 235,0.8);border-radius:20px;margin-top:60px;
     display:flex;align-items: center; justify-content: space-evenly;flex-direction: column;box-shadow: 0px 4px 10px 1px #141414;
     div{display:flex;flex-direction:row}
-    svg{margin-top:3px;}
+    svg{margin:2px;margin-left:6px;margin-right:6px;color:#34173d;font-size:18px}
 `
 
 export const TopBar = styled.div`

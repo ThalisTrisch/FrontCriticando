@@ -118,7 +118,7 @@ export const AlternarLados = Styled.div`
 
 export const Bar = Styled.div`
     width:100%;display:flex;justify-content:space-around;align-items: center;background-color:#141414;
-    height:120px;color:white;margin-bottom: 0px;position:absolute;margin-top:40px;
+    height:120px;color:white;margin-bottom: 0px;position:absolute;margin-top:4%;
     img{height:60px;width:auto;}
 `
 

@@ -13,15 +13,16 @@ import { GrConfigure } from 'react-icons/gr';
 import { TfiWrite} from 'react-icons/tfi';
 import { BiComment } from "react-icons/bi";
 import {AiOutlineUser, AiFillSetting} from "react-icons/ai"
-import {FaLightbulb} from "react-icons/fa"
+import {FaLightbulb,FaCommentAlt,FaUser} from "react-icons/fa"
+import {BsFillPencilFill} from "react-icons/bs"
 import logo from '../../images/logotransparente.png'
 import CreditBar from "../../components/CreditBar.js"
 
 function EditarPerfil(){
     const navigate = useNavigate()
     const [redesSociais,setRedesSociais] = useState('');
-    const [dados,setDados] = useState('');
     const [usuario,setUsuario] = useState('');
+    const [dados,setDados] = useState('');
     const [listaPostagem, setListaPostagem] = useState(undefined);
     const [imagemURL, setImagemURL] = useState('');
     const now = new Date;
@@ -38,10 +39,11 @@ function EditarPerfil(){
     }
 
     const mudarDadosUsuario = (value) => {
-        setDados((prevPostagem) => ({
+        setUsuario((prevPostagem) => ({
             ...prevPostagem,
             [value.target.name]: value.target.value
         }))
+        console.log(value.target.name+": "+value.target.value)
     }
 
     const mudarDadosRedes = (value) => {
@@ -55,13 +57,13 @@ function EditarPerfil(){
     function AtualizarDados(){
         axios.post(`http://localhost:3001/atualizardados`,{
             email: localStorage['useremail'],
-            nome: dados.nome,
-            bio: dados.bio,
-            instagram: redesSociais.insta,
-            facebook: redesSociais.face,
+            nome: usuario.nome,
+            bio: usuario.biografia,
+            instagram: redesSociais.instagram,
+            facebook: redesSociais.facebook,
             twitter: redesSociais.twitter
         })
-        navigate('/editarperfil')
+        alert("dados atualizados!")
     }
 
     const Uploadfoto = (event) => {
@@ -92,10 +94,6 @@ function EditarPerfil(){
     useEffect(()=>{
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response) => {
             setUsuario(response.data[0])
-            document.getElementById('bioinput').value = response.data[0].biografia
-            document.getElementById('nomeinput').value = response.data[0].nome
-            setDados((prevPostagem) => ({...prevPostagem,['nome']: response.data[0].nome}))
-            setDados((prevPostagem) => ({...prevPostagem,['bio']: response.data[0].biografia}))
         })
         axios.post('http://localhost:3001/getpostagem/meuperfil', {email: localStorage['useremail']}).then((response)=>{
             if(response.data.length > 0){
@@ -104,15 +102,11 @@ function EditarPerfil(){
         })
         axios.get('http://localhost:3001/getredessociais/'+localStorage['useremail']).then((response)=>{
             console.log(response.data[0])
-            document.getElementById('insta').value = response.data[0].instagram
-            document.getElementById('face').value = response.data[0].facebook
-            document.getElementById('twitter').value = response.data[0].twitter
-            setRedesSociais((prevPostagem) => ({...prevPostagem,['nome']: response.data[0].instagram}))
-            setRedesSociais((prevPostagem) => ({...prevPostagem,['bio']: response.data[0].facebook}))
-            setRedesSociais((prevPostagem) => ({...prevPostagem,['nome']:  response.data[0].twitter}))
+            setRedesSociais(response.data[0])
         })
         axios.get(`http://localhost:3001/getdados/${localStorage['useremail']}`).then((response)=>{
             setDados(response.data)
+            console.log(response.data)
         })
     }, []);
     
@@ -132,9 +126,14 @@ function EditarPerfil(){
                     <h2>{usuario.nome}</h2>
                     <p>{usuario.email}</p>
                     <div>{usuario.biografia}</div>
-                    {usuario.foto == 'imagemusuariodefault.png'?
-                        <FotoPerfilE src={FotoPerfil}></FotoPerfilE>: 
-                        <FotoPerfilE src={usuario.foto}></FotoPerfilE>
+                    {imagemURL
+                        ?<FotoPerfilE src={imagemURL}></FotoPerfilE>
+                        :
+                        <>
+                            {usuario.foto == 'imagemusuariodefault.png'
+                            ?<FotoPerfilE src={FotoPerfil}></FotoPerfilE>
+                            : <FotoPerfilE src={usuario.foto}></FotoPerfilE>}
+                        </>
                     }
                     <BtnDelete><FaTrashAlt onClick={deleteFoto}></FaTrashAlt></BtnDelete>
                     <FormularioUpload>
@@ -150,18 +149,18 @@ function EditarPerfil(){
                     </FormularioUpload>
                 </DadosPerfil>
                 <InfoUser>
-                <CardInfoUser>
+                    <CardInfoUser>
                         <div>
                             <Desc>Postagens criadas</Desc>
-                            <div><TfiWrite/><p>{dados.postagens}</p></div>
+                            <div><BsFillPencilFill/><p>{dados.postagens}</p></div>
                         </div>
                         <div>
                             <Desc>Comentários em publicações</Desc>
-                            <div><BiComment/><p>{dados.comentarios}</p></div>
+                            <div><FaCommentAlt/><p>{dados.comentarios}</p></div>
                         </div>
                         <div>
                             <Desc>seguidores</Desc>
-                            <div><AiOutlineUser/><p>{dados.seguidores}</p></div>
+                            <div><FaUser/><p>{dados.seguidores}</p></div>
                         </div>
                         <div>
                             <Desc>teorias criadas</Desc>
@@ -181,15 +180,15 @@ function EditarPerfil(){
                                 type='text' 
                                 name='nome' 
                                 placeholder='Nome'
-                                value={dados.nome}
+                                value={usuario.nome}
                                 onChange={mudarDadosUsuario}
                             ></input><br/>
                             <p>Biografia:</p>
                             <input 
-                                value={dados.bio}
+                                value={usuario.biografia}
                                 id='bioinput'
                                 type='text' 
-                                name='bio'
+                                name='biografia'
                                 placeholder='Biografia'
                                 onChange={mudarDadosUsuario}
                             ></input>
@@ -199,23 +198,23 @@ function EditarPerfil(){
                         <form>
                             <p>Instagram:</p>
                             <input 
-                                id='insta'
+                                value={redesSociais.instagram}
                                 type='url' 
-                                name='insta' 
+                                name='instagram' 
                                 placeholder='https://www.instagram.com/nome_de_usuario'
                                 onChange={mudarDadosRedes}
                             ></input><br/>
                             <p>Facebook:</p>
                             <input 
-                                id='face'
+                                value={redesSociais.facebook}
                                 type='url' 
-                                name='face' 
+                                name='facebook' 
                                 placeholder='https://pt-br.facebook.com/nome_de_usuario'
                                 onChange={mudarDadosRedes}
                             ></input><br/>
                             <p>Twitter:</p>
                             <input 
-                                id='twitter'
+                                value={redesSociais.twitter}
                                 type='url' 
                                 name='twitter' 
                                 placeholder='https://twitter.com/nome_de_usuario'
@@ -224,7 +223,7 @@ function EditarPerfil(){
                         </form>
                     </InputRedes>
                 </AreaEditar>
-                <SubmitEdit><button onClick={AtualizarDados}>Editar perfil</button></SubmitEdit>
+                <SubmitEdit><button onClick={AtualizarDados}>Salvar alterações</button></SubmitEdit>
                 <center>
                 <PostTitulo>Suas Postagens</PostTitulo>
                 {listaPostagem == undefined

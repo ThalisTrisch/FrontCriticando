@@ -3,12 +3,14 @@ import axios from 'axios';
 import Login from '../../components/Login'
 import { Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow, Apresentacao, Clouds, CloudText,
     BestPosts,BestUsers, Bemvindo, SecondPlace, FirstPlace, ThirdPlace, ImagePost, Podium,
-    TituloUsuarios, MelhoresPostagens, MsgDefault, Npost} from './style.js'
+    TituloUsuarios, MelhoresPostagens, MsgDefault, Npost, Popcorn} from './style.js'
 import imagem from '../../images/backgroundhome.png'
 import clouds from '../../images/nuvens.png'
 import CardPostagemGrande from '../../components/CardPostagem.js'
 import { FaInfoCircle } from "react-icons/fa";
 import logo from '../../images/logotransparente.png'
+import pipocasolo from '../../images/pipocasolo.png'
+import pipoca from '../../images/pipoca.png'
 import {IoMdTrophy} from "react-icons/io"
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import CreditBar from '../../components/CreditBar.js'
@@ -33,6 +35,9 @@ function Home(){
     return(
         <div>
             <Image src={imagem}/>
+            <Popcorn>
+                <img src={pipoca}></img>
+            </Popcorn>
             <Shadow></Shadow>
             <Nav>
                 <Logo src={logo}></Logo>
@@ -56,7 +61,7 @@ function Home(){
                 </div>
             </Apresentacao>
             <Clouds>
-               <img src={clouds}></img>
+               <img className="cloud" src={clouds}></img>
             </Clouds>
             <center><MelhoresPostagens>Melhores Postagens</MelhoresPostagens></center>
             {melhoresPostagens == undefined

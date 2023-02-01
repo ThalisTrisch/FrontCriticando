@@ -10,7 +10,7 @@ export const Nav = styled.div`
 export const LargeNav = styled.div`
     height: 50vh;min-height:auto;width:100%;border-radius:0px 0px 100px 0px;
     background-image: url('${(props) => props.imagem}');background-repeat:no-repeat;
-    background-position-y:center;background-size:160%;z-index:-2;
+    background-position-y:center;
     @media screen and (min-width: 300px){background-size:280%;}
     @media screen and (min-width: 350px){background-size:240%;}
     @media screen and (min-width: 420px){background-size:180%;}
@@ -20,17 +20,20 @@ export const LargeNav = styled.div`
 
 
 export const ItensNav = styled.div`
-    height: 50vh;min-height:auto;width:100%;display:flex;justify-content:space-around;align-items:center;z-index:20;
+    height: 50vh;min-height:auto;width:100%;display:flex;justify-content:space-around;
+    align-items:center;z-index:10;
+    *{
+        z-index:10
+    }
 `;
 
 export const Sombra = styled.div`
-    width:100%;height:60vh;position:absolute;z-index:-1;
-    background: linear-gradient(black, transparent);
+    width:100%;height:50vh;position:absolute;z-index:1;background: linear-gradient(black, transparent);
 `;
 
 export const BtnCriar = styled.button`
     font-size:18px;border-radius:20px;width:160px;height:30px;margin-top:10px;border-color:transparent;
-    background-color:#34173d;color:white
+    background-color:#34173d;color:white;z-index:20;
 `;
 
 export const Center = styled.div`
@@ -231,7 +234,7 @@ export const RemoverTeoria = styled.div`
 `
 
 export const ImagemPost = styled.img`
-    width:60%;margin-bottom:20px;border-radius:20px;opacity:0.8
+    width:60%;margin-bottom:20px;border-radius:20px;opacity:0.8;margin-top:40px
 `
 
 
@@ -245,6 +248,6 @@ export const Back = styled(Pass)`
 
 
 export const Npost = styled.div`
-    display:flex;justify-content: center;align-content:center;align-items: center;height:60vh;
+    display:flex;justify-content: center;align-content:center;align-items: center;height:40vh;
     p{text-align:center;}
 `

@@ -6,8 +6,7 @@ export const Imagem = styled.div`
     div{
         width:fit-content;background-color:#141414;float:left;margin-top:80px;
         border-radius:0px 20px 20px 0px;height:fit-content;
-    }
-    p{
+    }p{
         padding:4px;font-size:12px;color:white;padding-right:8px;
     }
 `;

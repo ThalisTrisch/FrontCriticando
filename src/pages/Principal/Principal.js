@@ -36,6 +36,7 @@ function Principal(){
         buscarpostagem();
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response)=>{
             setUsuario(response.data[0]);
+            console.log(response.data[0])
             localStorage.setItem('userfoto',response.data[0].foto)
         })
         window.setTimeout(setBlackout(false) , 4000);

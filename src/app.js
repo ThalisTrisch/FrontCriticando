@@ -54,7 +54,7 @@ function App() {
         <Route exact path='/postagem/teoria/:id' element={<PrivateRoute><SalaTeorias/></PrivateRoute>}/>
         <Route exact path='/postagem/criarteoria/:id' element={<PrivateRoute><CriarTeoria/></PrivateRoute>}/>
         <Route exact path='/configuracoes' element={<PrivateRoute><Configuracoes/></PrivateRoute>}/>
-        <Route exact path='/informacoes' element={<PrivateRoute><Informacoes/></PrivateRoute>}/>
+        <Route exact path='/informacoes' element={<Informacoes/>}/>
       </Routes>
     </Router>
   );

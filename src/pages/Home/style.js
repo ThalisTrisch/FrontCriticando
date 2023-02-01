@@ -19,12 +19,13 @@ export const Bemvindo = Styled.div`
 `;
 
 export const Msg = Styled.p`
-    font-size:45px;font-weight:bold;color:white;margin-right:4%;margin-left:4%;
+    font-size:45px;font-weight:bold;color:white;margin-right:4%;margin-left:4%;text-align:center;
+    width:320px;
 `;
 
 export const Image = Styled.img`
-    width:100%;position:absolute;z-index:-1;filter: blur(2px);min-width:1000px;
-    border-bottom:4px solid black;
+    width:100%;height:auto;position:absolute;z-index:-10;filter: blur(2px);min-width:1000px;
+    position:center;overflow:hidden;border-bottom:2px solid black;
 `;
 export const MenuBar = Styled.div`
     padding-top:35px;padding-right:40px; 
@@ -34,18 +35,19 @@ export const MenuBar = Styled.div`
 `;
 export const BackLogin = Styled.div`
     height:200px;width:320px;border-radius:20px;border-Styled: solid;background-color:#34173d;
-    float:right;border-width: thin;
+    border-width: thin;
     background: rgba( 255, 255, 255, 0.35 );box-shadow: 0px 8px 40px 10px #141414;
     backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );margin-right:4%;margin-left:4%;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );display:flex;justify-content: space-evenly;
+    flex-direction: column;align-items: center;
     button{
-        margin-left:30%;border-radius:10px;margin-top:12px;
+        border-radius:10px;
     }
     h2{
-        width:100%;text-align:center;margin-top:20px;font-size:30px;color:white;
+        width:100%;text-align:center;font-size:30px;color:white;
     }
     p{
-        text-align:center;margin-top:16px;font-weight: bold;color:white;height:26px;
+        text-align:center;font-weight: bold;color:white;height:26px;margin-bottom:10px;
     }
 `;
 
@@ -60,8 +62,7 @@ export const Apresentacao = Styled.div`
     @media screen and (min-width: 1000px){margin-top:20%;}
     div{
         padding:20px;border-radius:20px;width:360px;color:white;
-        box-shadow: 0px 20px 40px 6px #141414;
-        background: #34173d;
+        box-shadow: 0px 10px 40px 2px #141414;background: #141414;
         backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
         border: 1px solid rgba(47,23,86,0.8);
     }
@@ -71,11 +72,15 @@ export const Apresentacao = Styled.div`
 export const Clouds = Styled.div`
     background-image:url('https://services.meteored.com/img/article/o-que-torna-o-ceu-azul-195151-1_768.jpg');
     width:100%;background-position:center;background-size:cover;background-repeat: no-repeat;
-    display:flex;justify-content:center;margin-bottom:40px;border-bottom:2px solid #141414;
-    border-top:2px solid #141414;
-    img{
-        width:60%;min-width:380px;
+    display:flex;justify-content:center;margin-bottom:80px;box-shadow: 0px 10px 40px 1px #64c7dc;
+    /* @keyframes clouds {
+        0% {margin-left:80%;}
+        100% {margin-right:80%;}
+        100% {margin-left:80%;}
     }
+    .cloud{
+        width:60%;min-width:380px;animation: clouds 20s linear 20s infinite;
+    } */
 `;
 
 export const CloudText = Styled.p`
@@ -88,7 +93,7 @@ export const BestPosts = Styled.div`
 
 export const BestUsers = Styled.div`
     margin-top:80px;display:flex;flex-wrap: wrap;justify-content: center;align-items: flex-end;
-    background-color: lightgray;margin-bottom:60px;border-top:2px solid #141414;border-bottom:2px solid #141414;
+    background-color: #Eaeaea;margin-bottom:60px;
     h1{text-align:center;width:100%;margin-bottom:40px;margin-top:20px;}
 `
 
@@ -145,4 +150,8 @@ export const MelhoresPostagens = Styled.h1`
 export const Npost = Styled.div`
     display:flex;justify-content: center;align-content:center;align-items: center;height:60vh;
     p{text-align:center;}
+`
+
+export const Popcorn = Styled.div`
+    *{position:fixed; width:120px; animation: mov1 3s linear;display:none}
 `

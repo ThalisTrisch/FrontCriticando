@@ -6,10 +6,9 @@ import { Logo, PerfilNav, FotoPerfilE , DadosPerfil , PostTitulo, InfoUser, TopB
 import CardPostagem from '../../components/CardPostagemGrande.js'
 import FotoPerfil from '../../images/imagemusuariodefault.png';
 import { BsInstagram,BsFacebook,BsTwitter } from 'react-icons/bs';
-import { TfiWrite} from 'react-icons/tfi';
-import { BiComment } from "react-icons/bi";
-import {AiOutlineUser, AiFillSetting} from "react-icons/ai"
-import {FaLightbulb} from "react-icons/fa"
+import { AiFillSetting} from "react-icons/ai"
+import {FaLightbulb,FaCommentAlt,FaUser} from "react-icons/fa"
+import {BsFillPencilFill} from "react-icons/bs"
 import logo from '../../images/logotransparente.png'
 import CreditBar from "../../components/CreditBar.js"
 
@@ -48,7 +47,7 @@ function MeuPerfil(){
             </TopBar>
             <PerfilNav>
                 <DadosPerfil>
-                    <h2>{localStorage['usernome']}</h2>
+                    <h2>{usuario.nome}</h2>
                     <p>{localStorage['useremail']}</p>
                     <Bio>{usuario.biografia}</Bio>
                     {usuario.foto == 'imagemusuariodefault.png'?
@@ -72,15 +71,15 @@ function MeuPerfil(){
                     <CardInfoUser>
                         <div>
                             <Desc>Postagens criadas</Desc>
-                            <div><TfiWrite/><p>{dados.postagens}</p></div>
+                            <div><BsFillPencilFill/><p>{dados.postagens}</p></div>
                         </div>
                         <div>
                             <Desc>Comentários em publicações</Desc>
-                            <div><BiComment/><p>{dados.comentarios}</p></div>
+                            <div><FaCommentAlt/><p>{dados.comentarios}</p></div>
                         </div>
                         <div>
                             <Desc>seguidores</Desc>
-                            <div><AiOutlineUser/><p>{dados.seguidores}</p></div>
+                            <div><FaUser/><p>{dados.seguidores}</p></div>
                         </div>
                         <div>
                             <Desc>teorias criadas</Desc>
@@ -90,7 +89,7 @@ function MeuPerfil(){
                 </InfoUser>
             </PerfilNav>
             <center>
-            <PostTitulo>Postagens</PostTitulo>
+            <PostTitulo>Suas Postagens</PostTitulo>
             {listaPostagem == undefined
                 && <Npost><p>Não há nenhuma postagem ainda</p></Npost>
             }

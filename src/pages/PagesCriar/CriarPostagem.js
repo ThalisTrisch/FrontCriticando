@@ -51,28 +51,26 @@ function CriarPostagem(){
     }
 
     async function Criarpost(){
-            const {data} = await axios.get('http://localhost:3001/getidpostagem')
-            var idpost = 1
-            if(data.length > 0){
-                idpost = data.id+1
-            }
-            const datahoje = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}`
-            axios.post('http://localhost:3001/criarpostagem', {
-                titulo: postagem.titulo,
-                conteudo: postagem.conteudo,
-                id: idpost,
-                email: localStorage['useremail'],
-                obra: obraSelecionada.title,
-                obraid: obraSelecionada.id,
-                categoria:  categoriaSelecionada,
-                adult: obraSelecionada.adult,
-                linguagem: obraSelecionada.original_language,
-                lancamento: obraSelecionada.release_date,
-                genero: obraSelecionada.genres,
-                data: datahoje
+            axios.get('http://localhost:3001/getidpostagem').then((res)=>{
+                const novoid = res.data[0].id+1
+                const datahoje = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}`
+                axios.post('http://localhost:3001/criarpostagem', {
+                    titulo: postagem.titulo,
+                    conteudo: postagem.conteudo,
+                    id: novoid,
+                    email: localStorage['useremail'],
+                    obra: obraSelecionada.title,
+                    obraid: obraSelecionada.id,
+                    categoria:  categoriaSelecionada,
+                    adult: obraSelecionada.adult,
+                    linguagem: obraSelecionada.original_language,
+                    lancamento: obraSelecionada.release_date,
+                    genero: obraSelecionada.genres,
+                    data: datahoje
+                })
+                console.log(`Id da postagem criada: ${novoid}`)
+                navigate(`/criarpostagem/inseririmagens/${novoid}`)
             })
-            console.log(`Id da postagem criada: ${idpost}`)
-            navigate(`/criarpostagem/inseririmagens/${idpost+1}`)
     }
     return(
         <>

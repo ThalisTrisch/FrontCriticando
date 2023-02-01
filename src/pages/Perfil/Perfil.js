@@ -10,8 +10,10 @@ import { BsInstagram,BsFacebook,BsTwitter } from 'react-icons/bs';
 import { TfiWrite} from 'react-icons/tfi';
 import { BiComment } from "react-icons/bi";
 import {AiOutlineUser, AiFillSetting} from "react-icons/ai"
-import {FaLightbulb} from "react-icons/fa"
+import {FaLightbulb,FaCommentAlt,FaUser} from "react-icons/fa"
+import {BsFillPencilFill} from "react-icons/bs"
 import logo from '../../images/logotransparente.png'
+import CreditBar from "../../components/CreditBar.js"
 
 function Perfil(){
     const {email} = useParams();
@@ -23,16 +25,16 @@ function Perfil(){
 
     function seguir(){
         axios.post(`http://localhost:3001/seguirperfil`,{
-            emailseguindo:usuario.email,
-            emailseguidor:localStorage['useremail']
+            email:localStorage['useremail'],
+            emailseguidor:usuario.email
         })
         setSeguindo(true)
     }
 
     function cancelseguir(){
         axios.post(`http://localhost:3001/cancelseguirperfil`,{
-            emailseguindo:usuario.email,
-            emailseguidor:localStorage['useremail']
+            email:localStorage['useremail'],
+            emailseguidor:usuario.email
         })
         setSeguindo(false)
     }
@@ -50,8 +52,9 @@ function Perfil(){
         axios.get(`http://localhost:3001/getdados/${email}`).then((response)=>{
             setDados(response.data)
         })
-        axios.post('http://localhost:3001/verifseguidor', {emailseguindo: email, emailseguidor:localStorage['useremail']})
+        axios.post('http://localhost:3001/verifseguidor', {email: email, emailseguidor:localStorage['useremail']})
         .then((message) => {
+            console.log()
             message.data.length!=0?setSeguindo(true):setSeguindo(false)
         })
     }, []);
@@ -97,18 +100,18 @@ function Perfil(){
                     </IconsRedes>
                 </DadosPerfil>
                 <InfoUser>
-                <CardInfoUser>
+                    <CardInfoUser>
                         <div>
                             <Desc>Postagens criadas</Desc>
-                            <div><TfiWrite/><p>{dados.postagens}</p></div>
+                            <div><BsFillPencilFill/><p>{dados.postagens}</p></div>
                         </div>
                         <div>
                             <Desc>Comentários em publicações</Desc>
-                            <div><BiComment/><p>{dados.comentarios}</p></div>
+                            <div><FaCommentAlt/><p>{dados.comentarios}</p></div>
                         </div>
                         <div>
                             <Desc>seguidores</Desc>
-                            <div><AiOutlineUser/><p>{dados.seguidores}</p></div>
+                            <div><FaUser/><p>{dados.seguidores}</p></div>
                         </div>
                         <div>
                             <Desc>teorias criadas</Desc>
@@ -143,6 +146,7 @@ function Perfil(){
                 })
             }
             </center>
+            <CreditBar></CreditBar>
         </div>
     )
 }

@@ -118,11 +118,25 @@ function Postagem(){
                         </>
                     }
                     <strong><p>Autor da postagem:</p></strong>
-                    {postagem.foto == 'imagemusuariodefault.png'?
-                        <ImagePost src={FotoPerfil} onClick={() => navigate('/perfil/'+postagem.email)}/>: 
-                        <ImagePost src={postagem.foto} onClick={() => navigate('/perfil/'+postagem.email)}/>}
-                    <p onClick={() => navigate('/perfil/'+postagem.email)}>{postagem.nome}</p>
-                    <p>Postado em: {postagem.data}</p>
+                    {postagem.email == localStorage['useremail'] 
+                        ?
+                        <>
+                            {postagem.foto == 'imagemusuariodefault.png'?
+                            <ImagePost src={FotoPerfil} onClick={() => navigate('/meuperfil')}/>: 
+                            <ImagePost src={postagem.foto} onClick={() => navigate('/meuperfil')}/>}
+                            <p onClick={() => navigate('/meuperfil')}>{postagem.nome}</p>
+                            <p>Postado em: {postagem.data}</p>
+                        </>
+                        :
+                        <>
+                            {postagem.foto == 'imagemusuariodefault.png'?
+                            <ImagePost src={FotoPerfil} onClick={() => navigate('/perfil/'+postagem.email)}/>: 
+                            <ImagePost src={postagem.foto} onClick={() => navigate('/perfil/'+postagem.email)}/>}
+                            <p onClick={() => navigate('/perfil/'+postagem.email)}>{postagem.nome}</p>
+                            <p>Postado em: {postagem.data}</p>
+                        </>
+                    }
+                    
                 </ConteudoFinal>
             </ConteudoPostagem>
             <Coments>
