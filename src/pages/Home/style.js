@@ -70,7 +70,7 @@ export const Apresentacao = Styled.div`
 `;
 
 export const Clouds = Styled.div`
-    background-image:url('https://services.meteored.com/img/article/o-que-torna-o-ceu-azul-195151-1_768.jpg');
+    background-image:url('https://a-static.mlcdn.com.br/1500x1500/painel-de-lona-ceu-azul-sol-entre-nuvens-fabrika-de-festa/fabrikadefesta/555131647/070d6d61e9ad5a3ca528d90705f9a90a.jpeg');
     width:100%;background-position:center;background-size:cover;background-repeat: no-repeat;
     display:flex;justify-content:center;margin-bottom:80px;box-shadow: 0px 10px 40px 1px #64c7dc;
     /* @keyframes clouds {
@@ -102,8 +102,9 @@ export const FirstPlace = Styled.div`
     width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
     align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
-    div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
-        flex-direction: column
+    div{
+        display:flex; align-content: center;flex-direction: column;flex-wrap: wrap;
+        flex-direction: column;align-items: center
     }
 `
 
@@ -111,8 +112,8 @@ export const SecondPlace = Styled.div`
     width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
     align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
-    div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
-        justify-content: center
+    div{display:flex; align-content: center;flex-direction: column;flex-wrap: wrap;
+        justify-content: center;align-items: center
     }
 `
 
@@ -120,8 +121,8 @@ export const ThirdPlace = Styled.div`
     width:300px;display:flex;flex-wrap: wrap;justify-content: center;flex-direction: column;
     align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
-    div{display:flex; align-content: center;flex-direction: row;flex-wrap: wrap;
-        justify-content: center;
+    div{display:flex; align-content: center;flex-direction: column;flex-wrap: wrap;
+        justify-content: center;align-items: center
     }
 `
 
@@ -131,7 +132,7 @@ export const ImagePost = Styled.img`
 
 export const Podium = Styled.div`
     background-color: ${(props) => props.color};width:180px;height:${props => props.tamanho};
-    display:flex;justify-content: center;border-radius: 6px 6px 0px 0px;
+    display:flex;justify-content: center;border-radius: 6px 6px 0px 0px;border: 2px solid #141414;border-bottom:none;
     *{margin-top:60px;font-size:26px;}
 `
 

@@ -132,7 +132,7 @@ export const ImgStar = styled.img`
 `;
 
 export const SelectObras = styled.select`
-    width:220px;height:32px;background-color:white;border-radius:20px;margin:10px;
+    width:220px;height:32px;background-color:white;border-radius:20px;margin-top:8px;
     text-align:center;
     option{
         background-color:white
@@ -170,8 +170,17 @@ export const TituloTeoria = styled.h2`
 `;
 
 export const Form = styled.div`
-    display:flex;align-content:center;justify-content: center;flex-direction: column;
-    align-items: center;height:90vh;
+    display:flex;align-content:center;justify-content: center;flex-direction: row;
+    align-items: center;height:90vh;justify-content: space-evenly;flex-wrap: wrap;
+    h2{margin-top:20px;}
+    div{
+        display:flex;flex-direction: column;align-items: center;
+        div{
+            flex-direction: row;
+            button{margin-top:10px;height:29px;}
+        }
+        p{margin-top:10px;}
+    }
 `
 
 export const FormImg = styled.div`

@@ -78,7 +78,7 @@ function CriarPostagem(){
                 <Logo>Criar Postagem</Logo>
             </Nav>
             <Form>
-                <center>
+                <div>
                     <h2>Sobre qual obra será a postagem?</h2>
                     <p>insira um nome de obra e selecione no menu abaixo<br></br> o resultado que seja compativel com seu desejo</p>
                     <div>
@@ -103,6 +103,8 @@ function CriarPostagem(){
                         <option>Documentário</option>
                         <option>Novela</option>
                     </SelectObras>
+                </div>
+                <div>
                     <h2>Informações sobre a postagem</h2>
                     <Campo
                         type='text'
@@ -121,7 +123,7 @@ function CriarPostagem(){
                     /><br/>
                     
                     <BtnCriarPost onClick={Criarpost}>Criar postagem</BtnCriarPost>
-                </center>
+                </div>
             </Form>
             <CreditBar></CreditBar>
         </>
