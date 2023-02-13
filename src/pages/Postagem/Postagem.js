@@ -34,19 +34,20 @@ function Postagem(){
              id: id,
              comentario: newComentario,
             email: localStorage['useremail']
+        }).then((result)=>{
+            console.log(result.data.posicao)
+            const novocomentario = {
+                curtidas:0,
+                resposta:newComentario,
+                email: `${localStorage['useremail']}`,
+                foto: `${localStorage['userfoto']}`,
+                nome:`${localStorage['usernome']}`,
+                posicao: result.data.posicao,
+                id: id
+            }
+            const allnewcoments = comentario.concat(novocomentario)
+            setComentario(allnewcoments)
         })
-        const maiorposicao = await axios.get('http://localhost:3001/getmaiorid') 
-        const novocomentario = {
-            curtidas:0,
-            resposta:newComentario,
-            email: `${localStorage['useremail']}`,
-            foto: `${localStorage['userfoto']}`,
-            nome:`${localStorage['usernome']}`,
-            posicao: maiorposicao.data.posicao+1,
-            id: id
-        }
-        const allnewcoments = comentario.concat(novocomentario)
-        setComentario(allnewcoments)
     }
     
     function avaliar(star){

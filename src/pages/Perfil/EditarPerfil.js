@@ -136,17 +136,6 @@ function EditarPerfil(){
                         </>
                     }
                     <BtnDelete><FaTrashAlt onClick={deleteFoto}></FaTrashAlt></BtnDelete>
-                    <FormularioUpload>
-                        <form onSubmit={Uploadfoto}>
-                            <UploadImg>
-                                <label name='image'>
-                                    <span>nova foto de perfil</span>
-                                    <input type='file' name='image'/>
-                                </label>
-                            </UploadImg>
-                            <button type='submit'>enviar</button>
-                        </form>
-                    </FormularioUpload>
                 </DadosPerfil>
                 <InfoUser>
                     <CardInfoUser>
@@ -169,6 +158,17 @@ function EditarPerfil(){
                     </CardInfoUser>
                 </InfoUser>
             </PerfilNav>
+            <FormularioUpload>
+                <form onSubmit={Uploadfoto}>
+                    <UploadImg>
+                        <label name='image'>
+                        <span>Inserir foto de perfil</span>
+                            <input type='file' name='image' />
+                        </label>
+                    </UploadImg>
+                    <button type='submit'>enviar</button>
+                </form>
+            </FormularioUpload>
                 <center>
                 <PostTitulo>Editar Perfil</PostTitulo>
                 <AreaEditar>

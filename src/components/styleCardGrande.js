@@ -106,12 +106,12 @@ export const Star = styled.div`
 
 
 export const EnginePost = styled.div`
-    background-color:rgba(47,23,86,0.6);width:36px;height:34px; border-radius:0px 0px 16px 16px;
+    background-color:rgba(47,23,86,0.6);width:36px;height:34px; border-radius:0px 0px 16px 16px;z-index: 10;
     margin-right:200px;
     svg{
-        font-size:24px;transition: 10s;margin-top:4px;
+        font-size:24px;transition: 10s;margin-top:4px;z-index: 10;
     }
     svg:active{
-        transform: rotate(50deg);
+        transform: rotate(50deg);z-index: 10;
     }
 `

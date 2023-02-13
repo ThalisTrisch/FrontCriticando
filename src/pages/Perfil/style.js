@@ -133,7 +133,7 @@ export const ConfigPost = styled.div`
 export const Deletar = styled.button`
     margin-left:10px;width:70px;height:28px;border-color:red;cursor: pointer;
     svg{
-        color:red;font-size:16px;margin:2px;
+        color:red;font-size:16px;margin:2px;z-index: 20;
     }
 `;
 
@@ -204,11 +204,11 @@ export const PostagensFav = styled.div`
 
 export const InputRedes = styled.div`
     p{
-        max-width:300px;margin-top:4px;margin-bottom:4px;
+        max-width:300px;margin-top:8px;margin-bottom:8px;
     }   
     input{
-        width:300px;background-color:transparent;border-radius:5px;border-style:solid;border-color:lightblue;
-        padding:8px;
+        width:300px;background-color:transparent;border-radius:10px;border-style:solid;border-color:lightblue;
+        padding:16px;
     }
 `
 
@@ -220,7 +220,7 @@ export const InputDados = styled(InputRedes)`
 export const SubmitEdit = styled.div`
     display: flex; justify-content: center;margin-top:20px;
     button{
-        width:140px;height:32px;background-color:#34173d;border-radius:20px;
+        width:160px;height:32px;background-color:#34173d;border-radius:20px;
         margin:10px;border-width:1px;font-size:16px;color:white;margin-top:20px;
     }
 `
@@ -239,23 +239,24 @@ export const IconsRedes = styled.div`
 `
 
 export const FormularioUpload = styled.div`
-    position:absolute;margin-left:40%;margin-right:10%;
+    position:absolute;right:0;display:flex;
     form{
-        width:300px;height:100px;
+        width:200px;
         div{
-            margin-top:120px;
             label{
                 input[type="file"]{
                     display:none;
                 }
                 span{
-                    padding:16px;background-color:rgba(47,23,86,1);font-size:12px;
-                    border-radius:40px;
+                    padding:10px;background-color:rgba(47,23,86,0.2);font-size:12px;
+                    border-radius:4px;border:1px #141414 dashed;
                 }
             }
         }
-        button{background-color:lightgreen;border-radius:40px;border-color:transparent;
-                width:100px;height:40px;margin-left:130px;}
+        
+    }
+    button{background-color:lightgreen;border-radius:20px;border-color:transparent;width:100px;
+        height:30px;margin-right:40px;margin-top:15px;
     }
 `
 

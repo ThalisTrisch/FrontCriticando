@@ -71,7 +71,7 @@ function SalaTeorias(){
                 })
             }
             {!listaTeorias && 
-                <Npost>Não ha nenhuma teoria nessa sessão</Npost>
+                <Npost>Não há nenhuma teoria nessa sessão</Npost>
             }
             <center>
                 {postagem && <ImagemPost src={postagem.imagem}></ImagemPost>}
