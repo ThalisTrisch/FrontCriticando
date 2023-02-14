@@ -56,12 +56,12 @@ export const Shadow = Styled.div`
 `;
 
 export const Apresentacao = Styled.div`
-    text-align:center;margin-bottom:6%;height:fit-content;display:flex;justify-content:center;
+    text-align:center;height:fit-content;display:flex;justify-content:center;margin-bottom:320px;
     @media screen and (min-width: 0px){margin-top:10%;}
     @media screen and (min-width: 500px){margin-top:12%;}
     @media screen and (min-width: 1000px){margin-top:20%;}
     div{
-        padding:20px;border-radius:20px;width:360px;color:white;
+        padding:20px;color:white;
         box-shadow: 0px 10px 40px 2px #141414;background: #141414;
         backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
         border: 1px solid rgba(47,23,86,0.8);
@@ -83,6 +83,11 @@ export const Clouds = Styled.div`
         width:80%;min-width:380px;animation: clouds 20s linear 20s infinite;opacity:1;
     } 
 `;
+
+
+export const Caracts = Styled.div`
+    display:flex;margin-top:24%;margin-bottom:10%
+`
 
 export const CloudText = Styled.p`
     color:black;position:absolute;margin-top:106px;z-index:11;text-align:center;width:240px;
