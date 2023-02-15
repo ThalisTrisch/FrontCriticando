@@ -3,7 +3,7 @@ import axios from 'axios';
 import Login from '../../components/Login'
 import { Image, Nav, Logo, MenuBar, BackLogin, Msg , Shadow, Apresentacao, Clouds, CloudText,
     BestPosts,BestUsers, Bemvindo, SecondPlace, FirstPlace, ThirdPlace, ImagePost, Podium,
-    TituloUsuarios, MelhoresPostagens, MsgDefault, Npost, Popcorn, Caracts} from './style.js'
+    TituloUsuarios, MelhoresPostagens, MsgDefault, Npost, Popcorn} from './style.js'
 import imagem from '../../images/backgroundhome.png'
 import clouds from '../../images/nuvens.png'
 import CardPostagemGrande from '../../components/CardPostagem.js'
@@ -55,16 +55,14 @@ function Home(){
                     </BackLogin>
                 </div>
             </Bemvindo>
-            <Caracts>
-                <Apresentacao>
-                    <div>
-                        <h2>Ao criar uma conta você terá acesso a maior plataforma <br></br> críticas à obras da internet. Assim poderá:</h2>
-                    </div>
-                </Apresentacao>
-                <Clouds>
-                <img className="cloud" src={clouds}></img>
-                </Clouds>
-            </Caracts>
+            <Apresentacao>
+                <div>
+                    <h2>Ao criar uma conta você terá acesso a maior plataforma <br></br> críticas à obras da internet. Assim poderá:</h2>
+                </div>
+            </Apresentacao>
+            <Clouds>
+               <img className="cloud" src={clouds}></img>
+            </Clouds>
             <center><MelhoresPostagens>Melhores Postagens</MelhoresPostagens></center>
             {melhoresPostagens == undefined
                 && <Npost><p>Sem nenhuma postagem ainda</p></Npost>

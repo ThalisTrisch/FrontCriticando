@@ -30,24 +30,24 @@ function Postagem(){
     }
 
     async function comentar(){
+        const newpos = await axios.get('http://localhost:3001/getmaiorposicao')
         axios.post('http://localhost:3001/comentar', {
-             id: id,
-             comentario: newComentario,
-            email: localStorage['useremail']
-        }).then((result)=>{
-            console.log(result.data.posicao)
-            const novocomentario = {
-                curtidas:0,
-                resposta:newComentario,
-                email: `${localStorage['useremail']}`,
-                foto: `${localStorage['userfoto']}`,
-                nome:`${localStorage['usernome']}`,
-                posicao: result.data.posicao,
-                id: id
-            }
-            const allnewcoments = comentario.concat(novocomentario)
-            setComentario(allnewcoments)
+            id: id,
+            comentario: newComentario,
+            email: localStorage['useremail'],
+            posicao: newpos.data.posicao
         })
+        const novocomentario = {
+            curtidas: 0,
+            resposta: newComentario,
+            email: `${localStorage['useremail']}`,
+            foto: `${localStorage['userfoto']}`,
+            nome: `${localStorage['usernome']}`,
+            posicao: newpos.data.posicao,
+            id: id
+        }
+        const allnewcoments = comentario.concat(novocomentario)
+        setComentario(allnewcoments)
     }
     
     function avaliar(star){
@@ -69,7 +69,6 @@ function Postagem(){
         })
         axios.get(`http://localhost:3001/getpostagem/${id}/${localStorage['useremail']}`).then((response)=>{
             setPostagem(response.data[0]);
-            localStorage.setItem('userfoto',response.data[0].foto)
         })
         axios.get(`http://localhost:3001/getuser/${localStorage['useremail']}`).then((response)=>{
             setUsuario(response.data[0]);

@@ -56,13 +56,13 @@ export const Shadow = Styled.div`
 `;
 
 export const Apresentacao = Styled.div`
-    text-align:center;height:fit-content;display:flex;justify-content:center;margin-bottom:320px;
+    text-align:center;margin-bottom:6%;height:fit-content;display:flex;justify-content:center;
     @media screen and (min-width: 0px){margin-top:10%;}
     @media screen and (min-width: 500px){margin-top:12%;}
     @media screen and (min-width: 1000px){margin-top:20%;}
     div{
-        padding:20px;color:white;
-        box-shadow: 0px 10px 40px 2px #141414;background: #141414;
+        padding:20px;border-radius:20px;width:360px;color:white;
+        box-shadow: 0px 20px 20px 8px darkgrey;background: #141414;
         backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
         border: 1px solid rgba(47,23,86,0.8);
     }
@@ -73,7 +73,7 @@ export const Clouds = Styled.div`
     background-image:url('https://a-static.mlcdn.com.br/1500x1500/painel-de-lona-ceu-azul-sol-entre-nuvens-fabrika-de-festa/fabrikadefesta/555131647/070d6d61e9ad5a3ca528d90705f9a90a.jpeg');
     width:50%;background-position:center;background-size:cover;background-repeat: no-repeat;
     display:flex;justify-content:center;box-shadow: 0px 10px 40px 1px #64c7dc;
-    height:auto;margin:auto;margin-bottom:80px;opacity:1;
+    height:auto;margin:auto;margin-bottom:80px;opacity:1;border-radius:20px;border:none;
     /* @keyframes clouds {
         0% {margin-left:80%;}
         100% {margin-right:80%;}
@@ -83,11 +83,6 @@ export const Clouds = Styled.div`
         width:80%;min-width:380px;animation: clouds 20s linear 20s infinite;opacity:1;
     } 
 `;
-
-
-export const Caracts = Styled.div`
-    display:flex;margin-top:24%;margin-bottom:10%
-`
 
 export const CloudText = Styled.p`
     color:black;position:absolute;margin-top:106px;z-index:11;text-align:center;width:240px;
@@ -99,7 +94,8 @@ export const BestPosts = Styled.div`
 
 export const BestUsers = Styled.div`
     margin-top:80px;display:flex;flex-wrap: wrap;justify-content: center;align-items: flex-end;
-    background-color: #Eaeaea;margin-bottom:60px;
+    background: linear-gradient(white,rgba(47,23,86,0.2));margin-bottom:60px;
+    border-bottom:2px solid #141414;
     h1{text-align:center;width:100%;margin-bottom:40px;margin-top:20px;}
 `
 
@@ -110,7 +106,7 @@ export const FirstPlace = Styled.div`
     svg{color: ${props => props.svgcolor}}
     div{
         display:flex; align-content: center;flex-direction: column;flex-wrap: wrap;
-        flex-direction: column;align-items: center
+        flex-direction: column;align-items: center;margin-bottom:10px;
     }
 `
 
@@ -119,7 +115,7 @@ export const SecondPlace = Styled.div`
     align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
     div{display:flex; align-content: center;flex-direction: column;flex-wrap: wrap;
-        justify-content: center;align-items: center
+        justify-content: center;align-items: center;margin-bottom:10px;
     }
 `
 
@@ -128,7 +124,7 @@ export const ThirdPlace = Styled.div`
     align-content: center;margin-top:40px;
     svg{color: ${props => props.svgcolor}}
     div{display:flex; align-content: center;flex-direction: column;flex-wrap: wrap;
-        justify-content: center;align-items: center
+        justify-content: center;align-items: center;margin-bottom:10px;
     }
 `
 
@@ -138,7 +134,8 @@ export const ImagePost = Styled.img`
 
 export const Podium = Styled.div`
     background-color: ${(props) => props.color};width:180px;height:${props => props.tamanho};
-    display:flex;justify-content: center;border-radius: 6px 6px 0px 0px;border: 2px solid #141414;border-bottom:none;
+    margin-bottom:0px!important;display:flex;justify-content: center;border-radius: 6px 6px 0px 0px;
+    border: 2px solid #141414;border-bottom:none;
     *{margin-top:60px;font-size:26px;}
 `
 

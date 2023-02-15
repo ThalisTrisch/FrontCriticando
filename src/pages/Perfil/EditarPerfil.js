@@ -82,6 +82,7 @@ function EditarPerfil(){
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((url=>{
                     setImagemURL(url);
+                    localStorage.setItem('userfoto',url)
                     axios.post('http://localhost:3001/inserirfoto', {
                         email: localStorage['useremail'],
                         foto: url

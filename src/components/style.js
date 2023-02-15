@@ -52,7 +52,7 @@ export const BlocoAvaliacaoTeoria = Styled.div`
 `;
 
 export const User = Styled.div`
-    width:250px;display:flex;background-color:darkGrey;height:60px;border-radius:50px 0px 0px 50px;
+    width:250px;display:flex;background-color:darkgrey;height:60px;border-radius:50px 0px 0px 50px;
     justify-content: space-between;align-items: center;
     *{
         margin:4px;
@@ -63,8 +63,8 @@ export const User = Styled.div`
 `;
 
 export const Conteudo = Styled.div`
-    width:100%;border-color:black;border:2px;display:flex;align-items: center;
-    background-color:lightGrey;
+    width:100%;display:flex;align-items: center;background-color:lightgrey;
+    /* border-top:2px solid #141414; */
     p{text-align:left;max-width:100%;width:90%;font-size:14px;margin-right:10px;margin-left:10px;}
 `;
 
