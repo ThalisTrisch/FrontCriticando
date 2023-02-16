@@ -100,12 +100,12 @@ export const Shadow = styled.div`
     width:100%;height:80vh;position:absolute;z-index:-1;background: linear-gradient(black, transparent);
 `;
 export const Campo = styled.input`
-    width:360px;text-align:center;font-size:16px;border-radius:20px;margin-top:12px;border:solid;
-    border-width:1px;height:24px;
+    width:360px;text-align:center;font-size:16px;border-radius:20px;margin-top:12px;height:24px;
+    border:1px solid #141414;
 `;
 export const CampoMaior = styled.textarea`
     width:360px;text-align:center;font-size:14px;border-radius:14px;margin-top:12px;resize:vertical;
-    border:solid;border-width:1px;
+    border:1px solid #141414;
 `;
 
 export const CampoImg = styled.div`
@@ -132,10 +132,12 @@ export const ImgStar = styled.img`
 `;
 
 export const SelectObras = styled.select`
-    width:220px;height:32px;background-color:white;border-radius:20px;margin-top:8px;
-    text-align:center;
+    width:360px;height:32px;background-color:white;border-radius:20px;margin-top:8px;
+    text-align:center;border:1px solid #141414;
     option{
-        background-color:white
+        background-color:white;
+    }option:hover{
+        background-color:#34173d;color:white;
     }
 `;
 

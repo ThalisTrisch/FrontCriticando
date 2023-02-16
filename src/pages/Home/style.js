@@ -73,7 +73,7 @@ export const Clouds = Styled.div`
     background-image:url('https://a-static.mlcdn.com.br/1500x1500/painel-de-lona-ceu-azul-sol-entre-nuvens-fabrika-de-festa/fabrikadefesta/555131647/070d6d61e9ad5a3ca528d90705f9a90a.jpeg');
     width:50%;background-position:center;background-size:cover;background-repeat: no-repeat;
     display:flex;justify-content:center;box-shadow: 0px 10px 40px 1px #64c7dc;
-    height:auto;margin:auto;margin-bottom:80px;opacity:1;border-radius:20px;border:none;
+    height:auto;margin:auto;margin-bottom:80px;opacity:1;border-radius:20px;border: 2px solid #141414;
     /* @keyframes clouds {
         0% {margin-left:80%;}
         100% {margin-right:80%;}
