@@ -62,7 +62,7 @@ export const Apresentacao = Styled.div`
     @media screen and (min-width: 1000px){margin-top:20%;}
     div{
         padding:20px;border-radius:20px;width:360px;color:white;
-        box-shadow: 0px 20px 20px 8px darkgrey;background: #141414;
+        box-shadow: 0px 10px 20px 8px darkgrey;background: #141414;
         backdrop-filter: blur( 13.5px );-webkit-backdrop-filter: blur( 13.5px );
         border: 1px solid rgba(47,23,86,0.8);
     }
@@ -73,7 +73,7 @@ export const Clouds = Styled.div`
     background-image:url('https://a-static.mlcdn.com.br/1500x1500/painel-de-lona-ceu-azul-sol-entre-nuvens-fabrika-de-festa/fabrikadefesta/555131647/070d6d61e9ad5a3ca528d90705f9a90a.jpeg');
     width:50%;background-position:center;background-size:cover;background-repeat: no-repeat;
     display:flex;justify-content:center;box-shadow: 0px 10px 40px 1px #64c7dc;
-    height:auto;margin:auto;margin-bottom:80px;opacity:1;border-radius:20px;border: 2px solid #141414;
+    height:auto;margin:auto;margin-bottom:80px;opacity:1;border-radius:20px;margin-top:40px;
     /* @keyframes clouds {
         0% {margin-left:80%;}
         100% {margin-right:80%;}
@@ -134,9 +134,9 @@ export const ImagePost = Styled.img`
 
 export const Podium = Styled.div`
     background-color: ${(props) => props.color};width:180px;height:${props => props.tamanho};
-    margin-bottom:0px!important;display:flex;justify-content: center;border-radius: 6px 6px 0px 0px;
+    margin-bottom:0px!important;display:flex;justify-content: center;border-radius: 16px 16px 0px 0px;
     border: 2px solid #141414;border-bottom:none;
-    *{margin-top:60px;font-size:26px;}
+    *{margin-top:20px;font-size:26px;}
 `
 
 export const TituloUsuarios = Styled.h1`

@@ -57,7 +57,7 @@ function Home(){
             </Bemvindo>
             <Apresentacao>
                 <div>
-                    <h2>Ao criar uma conta você terá acesso a maior plataforma <br></br> críticas à obras da internet. Assim poderá:</h2>
+                    <h3>Ao criar uma conta você terá acesso a maior rede social sobre críticas à obras cinematográficas. Assim poderá:</h3>
                 </div>
             </Apresentacao>
             <Clouds>
@@ -107,7 +107,7 @@ function Home(){
                                 </> : <p>Posição vazia</p>
                             }
                         </div>
-                        <Podium color={'silver'} tamanho={'220px'}><p>2º lugar</p></Podium>
+                        <Podium color={'silver'} tamanho={'200px'}><p>2º lugar</p></Podium>
                     </SecondPlace>
                     <FirstPlace svgcolor={'gold'}>
                         <div>
@@ -124,7 +124,7 @@ function Home(){
                                 </> : <p>Posição vazia</p>
                             }
                         </div>
-                        <Podium color={'gold'} tamanho={'260px'}><p>1º lugar</p></Podium>
+                        <Podium color={'gold'} tamanho={'240px'}><p>1º lugar</p></Podium>
                     </FirstPlace>
                     <ThirdPlace svgcolor={'rgb(205, 127, 50)'}>
                         <div>
@@ -140,7 +140,7 @@ function Home(){
                                 </> : <p>Posição vazia</p>
                             }
                         </div>
-                        <Podium color={'brown'} tamanho={'180px'}><p>3º lugar</p></Podium>
+                        <Podium color={'brown'} tamanho={'160px'}><p>3º lugar</p></Podium>
                     </ThirdPlace>
                     </>
                     : <center><MsgDefault>Não há usuários no ranking ainda</MsgDefault></center>}

@@ -49,9 +49,22 @@ function Comentario(props){
     return(
         <BlocoComent>
             <User>
-                {props.foto == 'imagemusuariodefault.png' ?
-                    <IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')} /> :
-                    <IconUser src={props.foto} onClick={() => navigate('/meuperfil')} />}
+                {props.email == localStorage['useremail'] 
+                    ?
+                    <>
+                        {props.foto == 'imagemusuariodefault.png'
+                            ?<IconUser src={FotoPerfil} onClick={() => navigate('/meuperfil')}/> 
+                            :<IconUser src={props.foto} onClick={() => navigate('/meuperfil')}/>
+                        }
+                    </>
+                    :
+                    <>
+                        {props.foto == 'imagemusuariodefault.png'
+                            ?<IconUser src={FotoPerfil} onClick={() => navigate('/perfil/'+props.email)}/> 
+                            :<IconUser src={props.foto} onClick={() => navigate('/perfil/'+props.email)}/>
+                        }
+                    </>
+                }
                 <p>{props.nome}</p>
             </User>
             <Conteudo wrap="hard">

@@ -46,6 +46,7 @@ function Configuracoes(){
                         <Deletar onClick={deletarconta}>Cofirmar</Deletar>
                     </div>
                 }
+                <br></br>
             </div>
         </FundoEscuro>
     )
