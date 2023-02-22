@@ -143,7 +143,7 @@ function Home(){
                         <Podium color={'brown'} tamanho={'160px'}><p>3º lugar</p></Podium>
                     </ThirdPlace>
                     </>
-                    : <center><MsgDefault>Não há usuários no ranking ainda</MsgDefault></center>}
+                    : <MsgDefault>Não há usuários no ranking ainda</MsgDefault>}
                 </BestUsers>
             <CreditBar></CreditBar>
         </div>

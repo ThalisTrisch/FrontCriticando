@@ -95,7 +95,7 @@ export const BestPosts = Styled.div`
 export const BestUsers = Styled.div`
     margin-top:80px;display:flex;flex-wrap: wrap;justify-content: center;align-items: flex-end;
     background: linear-gradient(white,rgba(47,23,86,0.2));margin-bottom:60px;
-    border-bottom:2px solid #141414;
+    border-bottom:2px solid #141414;min-height:500px;
     h1{text-align:center;width:100%;margin-bottom:40px;margin-top:20px;}
 `
 

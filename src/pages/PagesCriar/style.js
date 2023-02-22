@@ -111,7 +111,7 @@ export const CampoMaior = styled.textarea`
 export const CampoImg = styled.div`
     width:200px;height:200px;display:flex;align-items: center;justify-content: center;
     img{
-        width:100%;height:auto;
+        max-width:100%;height:auto;max-height:100%;
     }
     progress{
         height:40px;color:#34173d;

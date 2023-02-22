@@ -55,13 +55,13 @@ function MeuPerfil(){
                     <FotoPerfilE src={usuario.foto}></FotoPerfilE>}
                     <IconsRedes>
                         <div>
-                            {usuario.instagram !== "undefined" &&
+                            {usuario.instagram &&
                                 <a href={usuario.instagram} target="_blank"><BsInstagram></BsInstagram></a>
                             }
-                            {usuario.facebook !== "undefined" &&
+                            {usuario.facebook &&
                                 <a href={usuario.facebook} target="_blank"><BsFacebook></BsFacebook></a>
                             }
-                            {usuario.twitter !== "undefined" &&
+                            {usuario.twitter &&
                                 <a href={usuario.twitter} target="_blank"><BsTwitter></BsTwitter></a>
                             }
                         </div>
