@@ -1,3 +1,20 @@
+# FrontCriticando
+
+Conjunto de códigos frontend da aplicação Criticando. Versão não finalizada do software web.
+
+# Como ver o projeto:
+
+ferrementas: VSCode, Git e NodeJS.
+
+1º - crie a pasta Criticando e abra ela no VSCode.
+2º - abra o terminal e digite git clone https://github.com/ThalisTrisch/FrontCriticando.git
+3º - digite no terminal cd FrontCriticando
+4º - npm install --force
+5º - npm run dev
+
+Pronto! o frontend da aplicação está rodando.
+para o software funcionar perfeitamente o backend deve estar rodando simultaneamente assim como o banco de dados.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
